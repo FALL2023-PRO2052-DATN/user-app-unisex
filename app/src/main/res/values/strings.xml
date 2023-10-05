@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ShopClothes</string>
+    <string name="content_login">THỜI TRANG CHO MỌI NGƯỜI</string>
+    <string name="content_email">Email</string>
+    <string name="hint_email">example@gmail.com</string>
+    <string name="content_password">Mật khẩu</string>
+    <string name="hint_password">**********</string>
+    <string name="content_forgot_password">Quên mật khẩu?</string>
+    <string name="content_button_login">Đăng nhập</string>
+    <string name="content_of">Hoặc</string>
+    <string name="content_google">Tiếp tục với Google</string>
+    <string name="content_facebook">Tiếp tục với Facebook</string>
+    <string name="content_have_account">Bạn đã có tài khoản?</string>
+    <string name="content_register">Đăng ký</string>
 </resources>
