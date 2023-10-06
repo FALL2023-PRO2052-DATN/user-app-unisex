@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.forgotPassword;
+package com.example.shopclothes.view.activity.account.forgotPassword;
 
 import android.content.Context;
 

@@ -1,11 +1,11 @@
-package com.example.shopclothes.view.activity.login;
+package com.example.shopclothes.view.activity.account.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import com.example.shopclothes.databinding.ActivityLoginBinding;
 import com.example.shopclothes.utils.UIUtils;
-import com.example.shopclothes.view.activity.forgotPassword.ForgotPasswordActivity;
+import com.example.shopclothes.view.activity.account.forgotPassword.ForgotPasswordActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {

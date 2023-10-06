@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.login;
+package com.example.shopclothes.view.activity.account.login;
 
 public interface LoginContract {
     interface View{

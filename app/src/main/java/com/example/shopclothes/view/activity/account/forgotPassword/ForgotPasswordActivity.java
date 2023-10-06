@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.forgotPassword;
+package com.example.shopclothes.view.activity.account.forgotPassword;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;

@@ -1,5 +1,6 @@
-package com.example.shopclothes.view.activity.login;
+package com.example.shopclothes.view.activity.account.login;
 import com.example.shopclothes.constant.AppConstants;
+import com.example.shopclothes.utils.ValidateUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -15,13 +16,17 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void doLogin(String email, String password) {
+        if (!ValidateUtils.validateLogin(email,password)){
+            view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
+            return;
+        }
         Executor executor = Executors.newSingleThreadExecutor();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor, task -> {
                     if (task.isSuccessful()) {
-                        view.onMessage(AppConstants.onSuccess);
+                        view.onMessage(AppConstants.ON_SUCCESS);
                     } else {
-                        view.onMessage(AppConstants.onError);
+                        view.onMessage(AppConstants.ON_FAILURE);
                     }
                 });
 

@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.register;
+package com.example.shopclothes.view.activity.account.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 

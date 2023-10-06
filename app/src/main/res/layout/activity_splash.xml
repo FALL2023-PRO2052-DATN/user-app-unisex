@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.welcome.WelcomeActivity">
+    tools:context=".view.activity.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,5 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-       android:src="@drawable/img_welcome_activity" />
+        android:src="@drawable/img_welcome_activity"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
