@@ -1,5 +1,5 @@
 package com.example.shopclothes.view.activity.login;
-import com.example.shopclothes.constant.Constant;
+import com.example.shopclothes.constant.AppConstants;
 import com.google.firebase.auth.FirebaseAuth;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -19,9 +19,9 @@ public class LoginPresenter implements LoginContract.Presenter{
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor, task -> {
                     if (task.isSuccessful()) {
-                        view.onMessage(Constant.onSuccess);
+                        view.onMessage(AppConstants.onSuccess);
                     } else {
-                        view.onMessage(Constant.onError);
+                        view.onMessage(AppConstants.onError);
                     }
                 });
 
