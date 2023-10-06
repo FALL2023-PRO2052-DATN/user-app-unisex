@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.shopclothes.databinding.ActivityLoginBinding;
 import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.account.forgotPassword.ForgotPasswordActivity;
+import com.example.shopclothes.view.activity.account.register.RegisterActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void onClick() {
         mActivityLoginBinding.btnLogin.setOnClickListener(view -> login());
         mActivityLoginBinding.tvForgotPassword.setOnClickListener(view -> startActivity(new Intent(this, ForgotPasswordActivity.class)));
+        mActivityLoginBinding.tvRegister.setOnClickListener(view -> startActivity(new Intent(this, RegisterActivity.class)));
     }
     public void login() {
         String email = mActivityLoginBinding.etEmailLogin.getText().toString();

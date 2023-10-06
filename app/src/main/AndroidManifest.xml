@@ -24,11 +24,12 @@
             android:name=".view.activity.MainActivity"
             android:exported="false" />
         <activity
+
             android:name=".view.activity.account.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.SplashActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

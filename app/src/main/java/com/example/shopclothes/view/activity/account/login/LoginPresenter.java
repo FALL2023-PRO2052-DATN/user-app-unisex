@@ -16,7 +16,7 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void doLogin(String email, String password) {
-        if (!ValidateUtils.validateLogin(email,password)){
+        if (!ValidateUtils.validateLoginIsEmpty(email,password)){
             view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
             return;
         }

@@ -18,7 +18,7 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
 
     @Override
     public void senEmailResetPass(String emailAddress) {
-        if (!ValidateUtils.validateForgotPass(emailAddress)){
+        if (!ValidateUtils.validateForgotPassIsEmpty(emailAddress)){
             view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
             return;
         }
