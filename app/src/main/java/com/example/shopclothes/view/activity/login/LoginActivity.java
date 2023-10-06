@@ -1,8 +1,11 @@
 package com.example.shopclothes.view.activity.login;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import com.example.shopclothes.databinding.ActivityLoginBinding;
-import com.example.shopclothes.utils.UIView;
+import com.example.shopclothes.utils.UIUtils;
+import com.example.shopclothes.view.activity.forgotPassword.ForgotPasswordActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -19,6 +22,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     public void onClick() {
         mActivityLoginBinding.btnLogin.setOnClickListener(view -> login());
+        mActivityLoginBinding.tvForgotPassword.setOnClickListener(view -> startActivity(new Intent(this, ForgotPasswordActivity.class)));
     }
     public void login() {
         String email = mActivityLoginBinding.etEmailLogin.getText().toString();
@@ -28,6 +32,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void onMessage(String message) {
-        UIView.showMessage(mActivityLoginBinding.getRoot(), message);
+        UIUtils.showMessage(mActivityLoginBinding.getRoot(), message);
     }
 }
