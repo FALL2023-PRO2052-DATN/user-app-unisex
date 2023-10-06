@@ -17,11 +17,15 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void doRegister(String email, String password, String confirmPassword) {
-        if (!password.equals(confirmPassword)) {
-            view.onMessage("Passwords Incorrect");
+        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+            view.onMessage("Please enter information");
             return;
+        }else {
+            if (!password.equals(confirmPassword)) {
+                view.onMessage("Passwords Incorrect");
+                return;
+            }
         }
-
         Executor executor = Executors.newSingleThreadExecutor();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor, task -> {
