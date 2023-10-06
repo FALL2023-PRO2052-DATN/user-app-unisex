@@ -164,11 +164,10 @@
 
         <TextView
             android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fontFamily="@font/sf_pro_display_medium"
+            android:gravity="center"
             android:text="@string/content_button_login"
             android:textColor="@color/white"
             android:textSize="17sp" />

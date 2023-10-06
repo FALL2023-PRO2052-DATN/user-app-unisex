@@ -12,4 +12,6 @@
     <string name="content_facebook">Tiếp tục với Facebook</string>
     <string name="content_have_account">Bạn đã có tài khoản?</string>
     <string name="content_register">Đăng ký</string>
+    <string name="content_sen">Gửi</string>
+    <string name="content_forgot_password_activity">Quên mật khẩu</string>
 </resources>
