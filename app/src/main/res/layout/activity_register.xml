@@ -227,7 +227,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/sf_pro_display_medium"
             android:gravity="center"
-            android:text="@string/content_button_login"
+            android:text="@string/content_register"
             android:textColor="@color/white"
             android:textSize="17sp" />
     </LinearLayout>
@@ -252,7 +252,7 @@
         android:layout_height="25dp"
         android:layout_marginStart="6dp"
         android:fontFamily="@font/sf_pro_display_regular"
-        android:text="@string/content_register"
+        android:text="@string/content_button_login"
         android:textColor="@color/blue"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_have_account"
