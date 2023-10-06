@@ -14,4 +14,8 @@
     <string name="content_register">Đăng ký</string>
     <string name="content_sen">Gửi</string>
     <string name="content_forgot_password_activity">Quên mật khẩu</string>
+
+    <string name="title_register">Đăng ký tài khoản</string>
+    <string name="content_passagain_register">Nhập lại mật khẩu</string>
+    <string name="content_button_register">Đăng ký</string>
 </resources>

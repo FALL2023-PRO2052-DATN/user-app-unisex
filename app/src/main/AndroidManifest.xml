@@ -24,10 +24,10 @@
             android:name=".view.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.register.RegisterActivity"
+            android:name=".view.activity.welcome.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.welcome.WelcomeActivity"
+            android:name=".view.activity.register.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
