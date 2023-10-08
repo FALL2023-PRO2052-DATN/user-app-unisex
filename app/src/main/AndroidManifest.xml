@@ -15,6 +15,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.activity.productOutstanding.ProductOutstandingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.productNew.ProductNewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.address.AddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.account.forgotPassword.ForgotPasswordActivity"
             android:exported="false" />
         <activity
@@ -24,12 +33,11 @@
             android:name=".view.activity.MainActivity"
             android:exported="false" />
         <activity
-
             android:name=".view.activity.account.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
