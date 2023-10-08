@@ -35,7 +35,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     @Override
     public void onMessage(String message) {
-        UIUtils.showMessage(mBinding.getRoot(),message);
         mProgressDialog.dismiss();
+        UIUtils.clearText(mBinding.etEmailForgotPass);
+        UIUtils.showMessage(mBinding.getRoot(),message);
     }
 }

@@ -40,8 +40,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void onMessage(String message) {
-        UIUtils.showMessage(mBinding.getRoot(), message);
         mProgressDialog.dismiss();
+        UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
+        UIUtils.showMessage(mBinding.getRoot(), message);
         mPresenter.nextActivity(this);
     }
 }

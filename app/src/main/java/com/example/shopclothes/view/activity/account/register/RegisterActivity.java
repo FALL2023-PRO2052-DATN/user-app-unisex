@@ -38,7 +38,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 
     @Override
     public void onMessage(String message) {
-        UIUtils.showMessage(mBinding.getRoot(), message);
         mProgressDialog.dismiss();
+        UIUtils.clearText(mBinding.etEmailRegister, mBinding.etPasswordRegister, mBinding.etPasswordAgainRegister);
+        UIUtils.showMessage(mBinding.getRoot(), message);
     }
 }
