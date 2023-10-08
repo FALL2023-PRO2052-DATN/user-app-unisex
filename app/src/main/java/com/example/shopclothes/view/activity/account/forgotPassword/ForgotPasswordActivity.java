@@ -2,6 +2,8 @@ package com.example.shopclothes.view.activity.account.forgotPassword;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
+import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityForgotPasswordBinding;
 import com.example.shopclothes.utils.UIUtils;
 
@@ -27,8 +29,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
     private void senEmail() {
         String email = mBinding.etEmailForgotPass.getText().toString();
         String SEN_CODE = "Gửi mã xác nhận";
-        String LOADING = "Loading...";
-        mProgressDialog = ProgressDialog.show(this, SEN_CODE, LOADING);
+        mProgressDialog = ProgressDialog.show(this, SEN_CODE, AppConstants.LOADING);
         mPresenter.senEmailResetPass(email);
     }
 

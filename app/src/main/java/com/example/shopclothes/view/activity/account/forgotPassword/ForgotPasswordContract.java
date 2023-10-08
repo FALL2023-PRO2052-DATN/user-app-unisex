@@ -8,6 +8,7 @@ public interface ForgotPasswordContract {
     }
     interface Presenter {
         void senEmailResetPass(String email);
+        void senEmailResetPassFirebase(String email);
         void nextActivity(Context context);
     }
 }

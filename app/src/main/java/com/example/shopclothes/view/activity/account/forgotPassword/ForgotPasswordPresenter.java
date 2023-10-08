@@ -22,6 +22,11 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
             view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
             return;
         }
+        senEmailResetPassFirebase(emailAddress);
+    }
+
+    @Override
+    public void senEmailResetPassFirebase(String emailAddress) {
         auth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
