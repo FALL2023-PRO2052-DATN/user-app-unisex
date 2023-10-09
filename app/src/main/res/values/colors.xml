@@ -12,5 +12,6 @@
     <color name="primary">#1C1C1C</color>
     <color name="blue">#2196F3</color>
     <color name="linear">#9F9F9F</color>
-
+    <color name="main">#F5F5F5</color>
+    #F5F5F5
 </resources>
