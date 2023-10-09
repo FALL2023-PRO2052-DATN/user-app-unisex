@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btn_home"
+        android:icon="@drawable/ic_home_black"
+        android:title="@string/content_home" />
+    <item
+        android:id="@+id/btn_bill"
+        android:icon="@drawable/ic_bill"
+        android:title="@string/content_bill" />
+    <item
+        android:id="@+id/btn_bell"
+        android:icon="@drawable/ic_bell_ringing"
+        android:title="@string/content_bell" />
+    <item
+        android:id="@+id/btn_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/content_settings" />
+</menu>
