@@ -20,4 +20,8 @@
     <string name="content_button_register">Đăng ký</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_product_new">Sản phẩm mới nhất</string>
+    <string name="title_product_outstanding">Sản phẩm nổi bật</string>
+
+    <string name="price_sales"><strike>369.000đ</strike> </string>
 </resources>
