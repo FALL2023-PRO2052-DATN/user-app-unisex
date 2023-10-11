@@ -15,4 +15,6 @@
     <color name="text1">#333333</color>
     <color name="text3">#99333333</color>
     <color name="main">#F5F5F5</color>
+    <color name="text4">#66333333</color>
+    <color name="gray1">#66DBDBDB</color>
 </resources>

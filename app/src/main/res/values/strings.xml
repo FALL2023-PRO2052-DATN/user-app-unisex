@@ -20,10 +20,6 @@
     <string name="content_button_register">Đăng ký</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_product_new">Sản phẩm mới nhất</string>
-    <string name="title_product_outstanding">Sản phẩm nổi bật</string>
-
-    <string name="price_sales"><strike>369.000đ</strike> </string>
 
     <!-- TODO: home -->
     <string name="content_home">Trang chủ</string>
@@ -37,4 +33,12 @@
     <string name="content_product_hint">GỢI Ý SẢN PHẨM</string>
     <string name="content_see_all">Xem tất cả</string>
 >>>>>>> 072e924902a6332413bed9531a7b7ccda97069f5
+
+    <!-- TODO: product -->
+    <string name="title_product_new">Sản phẩm mới nhất</string>
+    <string name="title_product_outstanding">Sản phẩm nổi bật</string>
+    <string name="price_sales"><strike>369.000đ</strike> </string>
+    <string name="text_size">Size</string>
+    <string name="text_quantity">Số lượng</string>
+    <string name="text_add_product">Thêm vào giỏ hàng</string>
 </resources>
