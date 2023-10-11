@@ -23,8 +23,14 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 
     public void onClick() {
         mBinding.btnRegister.setOnClickListener(view -> register());
-        mBinding.btnBackRegister.setOnClickListener(view -> mPresenter.nextActivity(this));
-        mBinding.tvLogin.setOnClickListener(view -> mPresenter.nextActivity(this));
+        mBinding.btnBackRegister.setOnClickListener(view -> {
+            mPresenter.nextActivity(this);
+            finish();
+        });
+        mBinding.tvLogin.setOnClickListener(view -> {
+            mPresenter.nextActivity(this);
+            finish();
+        });
     }
 
     public void register() {

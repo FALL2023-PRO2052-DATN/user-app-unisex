@@ -5,6 +5,8 @@ import android.content.Context;
 public interface LoginContract {
     interface View{
         void onMessage(String message);
+        void onMessageSuccess(String message);
+        void onMessageFailure(String message);
     }
 
     interface Presenter{

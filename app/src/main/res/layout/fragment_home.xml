@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main"
-    tools:context=".view.fragment.HomeFragment">
+    tools:context=".view.fragment.homeFragment.HomeFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -95,7 +95,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_banner"
                 android:layout_width="match_parent"
-                android:layout_height="163dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -158,7 +158,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_product_new"
                 android:layout_width="match_parent"
-                android:layout_height="275dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -218,7 +218,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_product_outstanding"
                 android:layout_width="match_parent"
-                android:layout_height="275dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"

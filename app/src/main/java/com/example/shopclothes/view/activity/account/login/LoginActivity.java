@@ -43,6 +43,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mProgressDialog.dismiss();
         UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
         UIUtils.showMessage(mBinding.getRoot(), message);
+    }
+
+    @Override
+    public void onMessageSuccess(String message) {
+        mProgressDialog.dismiss();
+        UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
+        UIUtils.showMessage(mBinding.getRoot(), message);
         mPresenter.nextActivity(this);
+        finish();
+    }
+
+    @Override
+    public void onMessageFailure(String message) {
+        mProgressDialog.dismiss();
+        UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
+        UIUtils.showMessage(mBinding.getRoot(), message);
     }
 }
