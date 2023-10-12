@@ -1,7 +1,9 @@
 package com.example.shopclothes.network;
 
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
+import com.example.shopclothes.view.activity.product.ResponseProduct;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
+import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -26,4 +28,15 @@ public interface ApiService {
     // banner
     @GET(ManagerUrl.READ_BANNER)
     Call<ResponseBanner> readBanner();
+
+    // product
+    @GET(ManagerUrl.READ_PRODUCT_NEW)
+    Call<ResponseProduct> readProductNew();
+    @GET(ManagerUrl.READ_PRODUCT_OUTSTANDING)
+    Call<ResponseProduct> readProductOutstanding();
+    @GET(ManagerUrl.READ_PRODUCT_ALL)
+    Call<ResponseProduct> readProductAll();
+    // type product
+    @GET(ManagerUrl.READ_TYPE_PRODUCT)
+    Call<ResponseTypeProduct> readTypeProduct();
 }

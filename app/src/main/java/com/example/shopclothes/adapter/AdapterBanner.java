@@ -1,5 +1,6 @@
 package com.example.shopclothes.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -12,8 +13,10 @@ import java.util.List;
 
 public class AdapterBanner extends RecyclerView.Adapter<AdapterBanner.viewHolder> {
     private final List<Banner> mList;
+    @SuppressLint("NotifyDataSetChanged")
     public AdapterBanner(List<Banner> list) {
         this.mList = list;
+        notifyDataSetChanged();
     }
 
     @NonNull

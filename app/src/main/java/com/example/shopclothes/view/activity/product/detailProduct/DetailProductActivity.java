@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.detailProduct;
+package com.example.shopclothes.view.activity.product.detailProduct;
 
 import androidx.appcompat.app.AppCompatActivity;
 
