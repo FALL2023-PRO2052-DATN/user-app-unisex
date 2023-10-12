@@ -13,8 +13,10 @@
     <color name="blue">#2196F3</color>
     <color name="linear">#9F9F9F</color>
     <color name="text1">#333333</color>
+    <color name="text2">#CC333333</color>
     <color name="text3">#99333333</color>
     <color name="main">#F5F5F5</color>
     <color name="text4">#66333333</color>
     <color name="gray1">#66DBDBDB</color>
+    <color name="bgr">#F5F5F5</color>
 </resources>

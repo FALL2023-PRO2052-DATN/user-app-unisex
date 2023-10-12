@@ -41,4 +41,14 @@
     <string name="text_size">Size</string>
     <string name="text_quantity">Số lượng</string>
     <string name="text_add_product">Thêm vào giỏ hàng</string>
+    <string name="title_detail_product">Chi tiết sản phẩm</string>
+    <string name="text_name_product">ONTOP TEE OPTICS</string>
+    <string name="text_price_product">295.999đ</string>
+    <string name="text_type_product">Unisex - Aothun</string>
+    <string name="text_type_detail_product">Unisex-Aothun-UNI_01</string>
+    <string name="text_percent">20%</string>
+    <string name="text_describe_product">Mô tả sản phẩm</string>
+    <string name="text_describ1_line1">Màu sắc chủ đạo của áo khoác là màu đen, tạo nên sự tinh tế và đẳng cấp. Thiết kế cổ áo đứng và khóa kéo phía trước giúp bạn dễ dàng mặc và tháo ra. Bạn cũng có thể điều chỉnh cổ áo bằng nút bấm, tạo nên sự linh hoạt trong việc tạo kiểu.</string>
+    <string name="text_see_more">Xem thêm</string>
+    <string name="text_evalute_product">Đánh giá sản phẩm</string>
 </resources>
