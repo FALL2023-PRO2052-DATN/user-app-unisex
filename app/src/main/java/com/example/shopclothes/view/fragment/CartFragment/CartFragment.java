@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.fragment.BillFragment;
+package com.example.shopclothes.view.fragment.CartFragment;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.shopclothes.R;
 
-public class BillFragment extends Fragment {
+public class CartFragment extends Fragment {
 
 
 
@@ -24,6 +24,6 @@ public class BillFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bill, container, false);
+        return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 }
