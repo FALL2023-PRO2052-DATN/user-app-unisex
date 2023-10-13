@@ -1,6 +1,7 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -9,7 +10,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.network.ApiService;
+import com.example.shopclothes.view.activity.product.ResponseProduct;
+import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
+import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,13 +36,80 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
                 assert response.body() != null;
                 if (response.body().getStatus().equals(AppConstants.SUCCESS)){
                     view.onListBanner(response.body().getBanner());
-                    Log.d("L", response.body().getBanner().toString());
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBanner> call, @NonNull Throwable t) {
                 Log.d("ER", t.toString());
+            }
+        });
+    }
+    @Override
+    public void getListProductNew() {
+        ApiService.API_SERVICE.readProductNew().enqueue(new Callback<ResponseProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseProduct> call,@NonNull Response<ResponseProduct> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())) {
+                    view.onListProductNew(response.body().getProductList());
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ResponseProduct> call,@NonNull Throwable t) {
+
+            }
+        });
+    }
+    @Override
+    public void getListProductOutstanding() {
+        ApiService.API_SERVICE.readProductOutstanding().enqueue(new Callback<ResponseProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseProduct> call,@NonNull Response<ResponseProduct> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())) {
+                    view.onListProductOutstanding(response.body().getProductList());
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ResponseProduct> call,@NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getListProductAll() {
+        ApiService.API_SERVICE.readProductAll().enqueue(new Callback<ResponseProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseProduct> call,@NonNull Response<ResponseProduct> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())) {
+                    view.onListProductAll(response.body().getProductList());
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ResponseProduct> call,@NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getListTypeProduct() {
+        ApiService.API_SERVICE.readTypeProduct().enqueue(new Callback<ResponseTypeProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseTypeProduct> call, @NonNull Response<ResponseTypeProduct> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())) {
+                    Log.d("L", response.body().getTypeProductList().toString());
+                    view.onListTypeProduct(response.body().getTypeProductList());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseTypeProduct> call, @NonNull Throwable t) {
+
             }
         });
     }
@@ -61,12 +133,10 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
         mHandler.postDelayed(runnable, 2000); // Chạy lần đầu sau 2 giây
 
     }
-
     @Override
-    public void nextActivity(Context context) {
-
+    public void nextActivityProductNew(Context context) {
+        context.startActivity(new Intent(context, ProductNewActivity.class));
     }
-
     @Override
     public boolean handleMessage(@NonNull Message message) {
         return true;

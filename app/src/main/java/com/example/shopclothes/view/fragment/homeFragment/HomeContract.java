@@ -5,16 +5,26 @@ import android.content.Context;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.shopclothes.model.Banner;
+import com.example.shopclothes.model.Product;
+import com.example.shopclothes.model.TypeProduct;
 
 import java.util.List;
 
-public class HomeContract {
+public interface HomeContract {
     interface View {
         void onListBanner(List<Banner> list);
+        void onListProductNew(List<Product> list);
+        void onListProductOutstanding(List<Product> list);
+        void onListProductAll(List<Product> list);
+        void onListTypeProduct(List<TypeProduct> list);
     }
     interface Presenter {
         void getListBanner();
+        void getListProductNew();
+        void getListProductOutstanding();
+        void getListProductAll();
+        void getListTypeProduct();
         void autoNextBanner(ViewPager2 pager2,  List<Banner> list);
-        void nextActivity(Context context);
+        void nextActivityProductNew(Context context);
     }
 }

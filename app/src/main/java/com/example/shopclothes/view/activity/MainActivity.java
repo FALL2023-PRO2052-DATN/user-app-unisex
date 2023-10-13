@@ -12,18 +12,17 @@ import com.example.shopclothes.R;
 import com.example.shopclothes.databinding.ActivityMainBinding;
 import com.example.shopclothes.view.fragment.BillFragment.BillFragment;
 import com.example.shopclothes.view.fragment.homeFragment.HomeFragment;
+import com.example.shopclothes.view.fragment.notificationFragment.NotificationFragment;
 import com.example.shopclothes.view.fragment.settingsFragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
-    private Fragment home, bill, bell, settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        initFragment();
-        switchFragment(home);
+        switchFragment(new HomeFragment());
         onClick();
     }
 
@@ -32,33 +31,25 @@ public class MainActivity extends AppCompatActivity {
         mBinding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.btn_home:
-                    switchFragment(home);
+                    switchFragment(new HomeFragment());
                     switchIcon(R.id.btn_home);
                     break;
                 case R.id.btn_bill:
-                    switchFragment(bill);
+                    switchFragment(new BillFragment());
                     switchIcon(R.id.btn_bill);
                     break;
                 case R.id.btn_bell:
-                    switchFragment(bell);
+                    switchFragment(new NotificationFragment());
                     switchIcon(R.id.btn_bell);
                     break;
                 case R.id.btn_settings:
-                    switchFragment(settings);
+                    switchFragment(new SettingsFragment());
                     switchIcon(R.id.btn_settings);
                     break;
             }
             return false;
         });
     }
-
-    public void initFragment() {
-        home = new HomeFragment();
-        bill = new BillFragment();
-        bell = new BillFragment();
-        settings = new SettingsFragment();
-    }
-
     public void switchFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -1,10 +1,17 @@
 package com.example.shopclothes.network;
 
 public class ManagerUrl {
-    public static final String BASE_URL = "http://192.168.1.14:3000/api/";
+    public static final String BASE_URL = "http://172.16.49.201:3000/api/";
 
     // user
     public static final String INSERT_USER = "insert-user";
     // banner
     public static final String READ_BANNER = "read-banner";
+    // product
+    public static final String READ_PRODUCT_NEW = "read-new-product";
+    public static final String READ_PRODUCT_OUTSTANDING = "read-outstanding-product";
+    public static final String READ_PRODUCT_ALL = "read-all-product";
+
+    // type product
+    public static final String READ_TYPE_PRODUCT = "read-type-product";
 }
