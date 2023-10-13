@@ -51,4 +51,12 @@
     <string name="text_describ1_line1">Màu sắc chủ đạo của áo khoác là màu đen, tạo nên sự tinh tế và đẳng cấp. Thiết kế cổ áo đứng và khóa kéo phía trước giúp bạn dễ dàng mặc và tháo ra. Bạn cũng có thể điều chỉnh cổ áo bằng nút bấm, tạo nên sự linh hoạt trong việc tạo kiểu.</string>
     <string name="text_see_more">Xem thêm</string>
     <string name="text_evalute_product">Đánh giá sản phẩm</string>
+    <string name="text_rating">4.5/5</string>
+    <string name="text_number_feedback">(10 đánh giá)</string>
+    <string name="text_name_feedback">Nguyễn Văn A</string>
+    <string name="text_checkin_feedback">Đã mua hàng tại Unisex Store</string>
+    <string name="text_content_feedback">Áo khoác có thiết kế hiện đại, chất liệu chất lượng cao, và sự tỉ mỉ trong từng đường kim mũi chỉ.</string>
+    <string name="text_datetime_feedback">20/11/2023 - 21:12</string>
+    <string name="text_see_all">Xem tất cả</string>
+    <string name="text_product_relate">Sản phẩm liên quan</string>
 </resources>
