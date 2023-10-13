@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_product"
+                android:id="@+id/iv_product_grid"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:src="@drawable/demo_product" />
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layoutImg">
 
         <TextView
-            android:id="@+id/tv_name_product"
+            android:id="@+id/tv_name_product_grid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
@@ -57,23 +57,23 @@
             android:textSize="15sp"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintEnd_toEndOf="@+id/tv_price_product"
+            app:layout_constraintEnd_toEndOf="@+id/tv_price_product_grid"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_price_sales_product"
+            android:id="@+id/tv_price_sales_product_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_bold"
             android:text="295.999đ"
             android:textColor="@color/primary"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_name_product"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_product" />
+            app:layout_constraintStart_toStartOf="@+id/tv_name_product_grid"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_product_grid" />
 
         <TextView
-            android:id="@+id/tv_type_product"
+            android:id="@+id/tv_type_product_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -82,11 +82,11 @@
             android:textColor="@color/primary"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_price_sales_product"
-            app:layout_constraintTop_toBottomOf="@+id/tv_price_sales_product" />
+            app:layout_constraintStart_toStartOf="@+id/tv_price_sales_product_grid"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price_sales_product_grid" />
 
         <TextView
-            android:id="@+id/tv_price_product"
+            android:id="@+id/tv_price_product_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -94,13 +94,13 @@
             android:text="@string/price_sales"
             android:textColor="@color/text3"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_price_sales_product"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price_sales_product_grid"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_price_sales_product" />
+            app:layout_constraintTop_toTopOf="@+id/tv_price_sales_product_grid" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_number_sales"
+        android:id="@+id/tv_number_sales_grid"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_sales"

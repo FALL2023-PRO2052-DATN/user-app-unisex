@@ -7,13 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.shopclothes.adapter.AdapterBanner;
-import com.example.shopclothes.adapter.AdapterProductHome;
+import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.AdapterTypeProduct;
 import com.example.shopclothes.databinding.FragmentHomeBinding;
 import com.example.shopclothes.model.Banner;
@@ -59,7 +57,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductNew(List<Product> list) {
-        AdapterProductHome adapter= new AdapterProductHome(list);
+        AdapterProduct adapter= new AdapterProduct(list, 1);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         mBinding.rcvProductNew.setLayoutManager(layoutManager);
@@ -68,7 +66,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductOutstanding(List<Product> list) {
-        AdapterProductHome adapter = new AdapterProductHome(list);
+        AdapterProduct adapter = new AdapterProduct(list, 1);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         mBinding.rcvProductOutstanding.setLayoutManager(layoutManager);
@@ -77,7 +75,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductAll(List<Product> list) {
-        AdapterProductHome adapter = new AdapterProductHome(list);
+        AdapterProduct adapter = new AdapterProduct(list, 2);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mBinding.rcvProductAll.setLayoutManager(layoutManager);
         mBinding.rcvProductAll.setAdapter(adapter);

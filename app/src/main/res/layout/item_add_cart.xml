@@ -36,7 +36,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_name_product"
+        android:id="@+id/tv_name_product_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -57,15 +57,14 @@
         android:layout_marginTop="6dp"
         android:textColor="@color/primary"
         android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_name_product"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name_product" />
+        app:layout_constraintStart_toStartOf="@+id/tv_name_product_linear"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_product_linear" />
 
     <TextView
         android:id="@+id/tv_price_sales_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_display_regular"
-        android:strikethrough="true"
         android:text="@string/price_sales"
         android:layout_marginTop="6dp"
         android:textColor="@color/text3"

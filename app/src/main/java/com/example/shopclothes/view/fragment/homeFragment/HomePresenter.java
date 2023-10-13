@@ -35,6 +35,7 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
             public void onResponse(@NonNull Call<ResponseBanner> call, @NonNull Response<ResponseBanner> response) {
                 assert response.body() != null;
                 if (response.body().getStatus().equals(AppConstants.SUCCESS)){
+                    Log.d("BA", response.body().getBanner().toString());
                     view.onListBanner(response.body().getBanner());
                 }
             }
