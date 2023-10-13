@@ -34,9 +34,9 @@ public class LoginPresenter implements LoginContract.Presenter{
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(executor, task -> {
                     if (task.isSuccessful()) {
-                        view.onMessage(AppConstants.ON_SUCCESS);
+                        view.onMessageSuccess(AppConstants.ON_SUCCESS);
                     } else {
-                        view.onMessage(AppConstants.ON_FAILURE);
+                        view.onMessageFailure(AppConstants.ON_FAILURE);
                     }
                 });
     }

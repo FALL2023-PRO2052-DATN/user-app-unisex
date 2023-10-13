@@ -10,9 +10,9 @@ import android.os.Bundle;
 
 import com.example.shopclothes.R;
 import com.example.shopclothes.databinding.ActivityMainBinding;
-import com.example.shopclothes.view.fragment.BillFragment;
-import com.example.shopclothes.view.fragment.HomeFragment;
-import com.example.shopclothes.view.fragment.SettingsFragment;
+import com.example.shopclothes.view.fragment.BillFragment.BillFragment;
+import com.example.shopclothes.view.fragment.homeFragment.HomeFragment;
+import com.example.shopclothes.view.fragment.settingsFragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;

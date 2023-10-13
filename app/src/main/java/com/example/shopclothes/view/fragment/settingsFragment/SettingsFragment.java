@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.fragment;
+package com.example.shopclothes.view.fragment.settingsFragment;
 
 import android.os.Bundle;
 

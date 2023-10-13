@@ -1,7 +1,9 @@
 package com.example.shopclothes.utils;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;

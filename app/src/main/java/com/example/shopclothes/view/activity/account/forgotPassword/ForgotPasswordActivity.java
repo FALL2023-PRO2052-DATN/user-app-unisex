@@ -23,7 +23,10 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     private void onClick() {
         mBinding.btnSenForgotPass.setOnClickListener(view -> senEmail());
-        mBinding.btnBackForgot.setOnClickListener(view -> mPresenter.nextActivity(this));
+        mBinding.btnBackForgot.setOnClickListener(view -> {
+            mPresenter.nextActivity(this);
+            finish();
+        });
     }
 
     private void senEmail() {
