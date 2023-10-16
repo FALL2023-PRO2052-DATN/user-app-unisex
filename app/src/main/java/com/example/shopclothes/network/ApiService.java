@@ -36,6 +36,9 @@ public interface ApiService {
     Call<ResponseProduct> readProductOutstanding();
     @GET(ManagerUrl.READ_PRODUCT_ALL)
     Call<ResponseProduct> readProductAll();
+    @POST(ManagerUrl.READ_PRODUCT_ID)
+    @FormUrlEncoded
+    Call<ResponseProduct> readProductById(@Field("id") int id);
     // type product
     @GET(ManagerUrl.READ_TYPE_PRODUCT)
     Call<ResponseTypeProduct> readTypeProduct();

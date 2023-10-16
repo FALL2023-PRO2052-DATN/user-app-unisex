@@ -14,14 +14,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Handler handler = new Handler();
-        handler.postDelayed(this::nextActivity,2000);
+        handler.postDelayed(this::nextActivity,3000);
         finish();
     }
 

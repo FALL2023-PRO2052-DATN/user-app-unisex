@@ -11,6 +11,7 @@ public class ManagerUrl {
     public static final String READ_PRODUCT_NEW = "read-new-product";
     public static final String READ_PRODUCT_OUTSTANDING = "read-outstanding-product";
     public static final String READ_PRODUCT_ALL = "read-all-product";
+    public static final String READ_PRODUCT_ID = "read-byId-product";
 
     // type product
     public static final String READ_TYPE_PRODUCT = "read-type-product";

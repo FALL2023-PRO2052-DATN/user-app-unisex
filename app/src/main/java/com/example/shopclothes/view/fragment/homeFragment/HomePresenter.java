@@ -1,5 +1,6 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -35,7 +36,6 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
             public void onResponse(@NonNull Call<ResponseBanner> call, @NonNull Response<ResponseBanner> response) {
                 assert response.body() != null;
                 if (response.body().getStatus().equals(AppConstants.SUCCESS)){
-                    Log.d("BA", response.body().getBanner().toString());
                     view.onListBanner(response.body().getBanner());
                 }
             }
@@ -103,13 +103,30 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
             public void onResponse(@NonNull Call<ResponseTypeProduct> call, @NonNull Response<ResponseTypeProduct> response) {
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())) {
-                    Log.d("L", response.body().getTypeProductList().toString());
                     view.onListTypeProduct(response.body().getTypeProductList());
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseTypeProduct> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getListProductById(int id) {
+        ApiService.API_SERVICE.readProductById(id).enqueue(new Callback<ResponseProduct>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseProduct> call, @NonNull Response<ResponseProduct> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())) {
+                    view.onListProductById(response.body().getProductList());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseProduct> call, @NonNull Throwable t) {
 
             }
         });
@@ -135,8 +152,8 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
 
     }
     @Override
-    public void nextActivityProductNew(Context context) {
-        context.startActivity(new Intent(context, ProductNewActivity.class));
+    public void nextActivity(Context context, Class<?> activity) {
+        context.startActivity(new Intent(context, activity));
     }
     @Override
     public boolean handleMessage(@NonNull Message message) {

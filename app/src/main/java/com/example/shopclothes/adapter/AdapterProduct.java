@@ -14,11 +14,12 @@ import com.example.shopclothes.databinding.ItemProductLinearBinding;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.utils.FormatUtils;
 
+
 import java.util.List;
 
 public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static int TYPE_LINEAR = 1;
-    private static int TYPE_GRID = 2;
+    private static final int TYPE_LINEAR = 1;
+    private static final int TYPE_GRID = 2;
     private final List<Product> mList;
     private final int type;
     @SuppressLint("NotifyDataSetChanged")
