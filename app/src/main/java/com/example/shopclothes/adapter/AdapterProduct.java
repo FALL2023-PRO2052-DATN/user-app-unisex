@@ -1,6 +1,8 @@
 package com.example.shopclothes.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.example.shopclothes.databinding.ItemProductGridBinding;
 import com.example.shopclothes.databinding.ItemProductLinearBinding;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.view.activity.product.detailProduct.DetailProductActivity;
 
 
 import java.util.List;
@@ -22,10 +25,14 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_GRID = 2;
     private final List<Product> mList;
     private final int type;
+    private final Context mContext;
+    private ItemProductLinearBinding mBindingLinear;
+    private ItemProductGridBinding mBindingGrid;
     @SuppressLint("NotifyDataSetChanged")
-    public AdapterProduct(List<Product> list, int type) {
+    public AdapterProduct(List<Product> list, int type, Context context) {
         this.mList = list;
         this.type = type;
+        this.mContext = context;
         notifyDataSetChanged();
     }
 
@@ -34,11 +41,11 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (TYPE_LINEAR == viewType){
-            ItemProductLinearBinding binding = ItemProductLinearBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-            return new LinearViewHolder(binding);
+            mBindingLinear = ItemProductLinearBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new LinearViewHolder(mBindingLinear);
         } else  if (TYPE_GRID == viewType){
-            ItemProductGridBinding binding = ItemProductGridBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-            return new GridViewHolder(binding);
+            mBindingGrid = ItemProductGridBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new GridViewHolder(mBindingGrid);
         }
 
         return null;
@@ -53,9 +60,20 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (TYPE_LINEAR == holder.getItemViewType()){
             LinearViewHolder linearViewHolder = (LinearViewHolder) holder;
             linearViewHolder.bind(product);
+            mBindingLinear.layoutProductLinear.setOnClickListener(view -> {
+                Intent intent = new Intent(mContext, DetailProductActivity.class);
+                intent.putExtra("id", product.getId());
+                mContext.startActivity(intent);
+            });
+
         } else if (TYPE_GRID == holder.getItemViewType()){
             GridViewHolder gridViewHolder = (GridViewHolder) holder;
             gridViewHolder.bind(product);
+            mBindingGrid.layoutProductGrid.setOnClickListener(view -> {
+                Intent intent = new Intent(mContext, DetailProductActivity.class);
+                intent.putExtra("id", product.getId());
+                mContext.startActivity(intent);
+            });
         }
     }
 

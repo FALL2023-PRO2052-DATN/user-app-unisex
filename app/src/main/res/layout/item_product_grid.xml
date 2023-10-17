@@ -7,7 +7,9 @@
     android:layout_marginBottom="5dp"
     android:layout_marginTop="10dp"
     android:layout_marginStart="5dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/layout_product_grid"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutImg"

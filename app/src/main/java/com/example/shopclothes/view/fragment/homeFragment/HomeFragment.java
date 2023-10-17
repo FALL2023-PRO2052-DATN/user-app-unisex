@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductNew(List<Product> list) {
-        AdapterProduct adapter= new AdapterProduct(list, 1);
+        AdapterProduct adapter= new AdapterProduct(list, 1, getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         mBinding.rcvProductNew.setLayoutManager(layoutManager);
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductOutstanding(List<Product> list) {
-        AdapterProduct adapter = new AdapterProduct(list, 1);
+        AdapterProduct adapter = new AdapterProduct(list, 1, getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         mBinding.rcvProductOutstanding.setLayoutManager(layoutManager);
@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductAll(List<Product> list) {
-        AdapterProduct adapter = new AdapterProduct(list, 2);
+        AdapterProduct adapter = new AdapterProduct(list, 2, getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mBinding.rcvProductAll.setLayoutManager(layoutManager);
         mBinding.rcvProductAll.setAdapter(adapter);
@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductById(List<Product> list) {
-        AdapterProduct adapter = new AdapterProduct(list, 2);
+        AdapterProduct adapter = new AdapterProduct(list, 2, getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mBinding.rcvProductAll.setLayoutManager(layoutManager);
         mBinding.rcvProductAll.setAdapter(adapter);

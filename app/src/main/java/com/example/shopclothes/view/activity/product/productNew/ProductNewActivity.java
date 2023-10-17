@@ -35,7 +35,7 @@ public class ProductNewActivity extends AppCompatActivity implements ProductNewC
     @Override
     public void onList(List<Product> list) {
         mProgressDialog.dismiss();
-        AdapterProduct adapter= new AdapterProduct(list, 2);
+        AdapterProduct adapter= new AdapterProduct(list, 2, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mBinding.rcvProductNewActivity.setLayoutManager(layoutManager);
         mBinding.rcvProductNewActivity.setAdapter(adapter);

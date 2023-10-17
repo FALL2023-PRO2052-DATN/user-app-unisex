@@ -40,7 +40,7 @@ public class ProductOutstandingActivity extends AppCompatActivity implements Pro
     @Override
     public void onList(List<Product> list) {
         mProgressDialog.dismiss();
-        AdapterProduct adapter= new AdapterProduct(list, 2);
+        AdapterProduct adapter= new AdapterProduct(list, 2, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mBinding.rcvProductOutstandingActivity.setLayoutManager(layoutManager);
         mBinding.rcvProductOutstandingActivity.setAdapter(adapter);
