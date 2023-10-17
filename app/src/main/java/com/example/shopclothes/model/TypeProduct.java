@@ -7,6 +7,11 @@ public class TypeProduct {
     @SerializedName("ten_danh_muc")
     private String nameTypeProduct;
 
+    public TypeProduct(int id, String nameTypeProduct) {
+        this.id = id;
+        this.nameTypeProduct = nameTypeProduct;
+    }
+
     public int getId() {
         return id;
     }

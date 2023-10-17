@@ -1,27 +1,19 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterBanner;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.AdapterTypeProduct;
-import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentHomeBinding;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.model.Product;
@@ -35,7 +27,6 @@ import java.util.List;
 public class HomeFragment extends Fragment implements HomeContract.View {
     private FragmentHomeBinding mBinding;
     private HomeContract.Presenter mPresenter;
-    private AdapterTypeProduct adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,8 +49,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mPresenter.getListProductOutstanding();
         mPresenter.getListProductAll();
         mPresenter.getListTypeProduct();
-        mBinding.btnAllTypeProduct.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.primary));
-        mBinding.btnAllTypeProduct.setOnClickListener(view1 -> getAllProduct());
         onClick();
     }
 
@@ -67,12 +56,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mBinding.btnSeeProuctNew.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductNewActivity.class));
         mBinding.btnSeeAllProductOutstanding.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductOutstandingActivity.class));}
 
-    private void getAllProduct() {
-        mBinding.btnAllTypeProduct.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.primary));
-        mBinding.tvAllTypeProduct.setTextColor(ContextCompat.getColor(getContext(),R.color.white));
-        adapter.setSelectedItem(RecyclerView.NO_POSITION);
-        mPresenter.getListProductAll();
-    }
 
     @Override
     public void onListBanner(List<Banner> list) {
@@ -109,7 +92,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListTypeProduct(List<TypeProduct> list) {
-        adapter = new AdapterTypeProduct(list, this, getContext());
+        AdapterTypeProduct adapter = new AdapterTypeProduct(list, this, getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         mBinding.rcvProductCategory.setLayoutManager(layoutManager);
@@ -118,9 +101,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onItemClickListener(int id) {
-       mPresenter.getListProductById(id);
-       mBinding.btnAllTypeProduct.setCardBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
-       mBinding.tvAllTypeProduct.setTextColor(ContextCompat.getColor(getContext(),R.color.linear));
+      if (id == 0){
+          mPresenter.getListProductAll();
+      }else {
+          mPresenter.getListProductByIdCategory(id);
+      }
     }
 
     @Override

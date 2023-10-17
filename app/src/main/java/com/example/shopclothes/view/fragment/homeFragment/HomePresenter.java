@@ -115,8 +115,8 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
     }
 
     @Override
-    public void getListProductById(int id) {
-        ApiService.API_SERVICE.readProductById(id).enqueue(new Callback<ResponseProduct>() {
+    public void getListProductByIdCategory(int id) {
+        ApiService.API_SERVICE.readProductByIdCategory(id).enqueue(new Callback<ResponseProduct>() {
             @Override
             public void onResponse(@NonNull Call<ResponseProduct> call, @NonNull Response<ResponseProduct> response) {
                 assert response.body() != null;
