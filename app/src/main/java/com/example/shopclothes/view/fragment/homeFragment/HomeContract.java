@@ -27,7 +27,7 @@ public interface HomeContract {
         void getListProductOutstanding();
         void getListProductAll();
         void getListTypeProduct();
-        void getListProductById(int id);
+        void getListProductByIdCategory(int id);
         void autoNextBanner(ViewPager2 pager2,  List<Banner> list);
         void nextActivity(Context context, Class<?> activity);
     }
