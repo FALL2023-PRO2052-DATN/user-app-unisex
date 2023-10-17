@@ -32,7 +32,7 @@
     <string name="content_product_outstanding">SẢN PHẨM NỔI BẬT</string>
     <string name="content_product_hint">GỢI Ý SẢN PHẨM</string>
     <string name="content_see_all">Xem tất cả</string>
->>>>>>> 072e924902a6332413bed9531a7b7ccda97069f5
+    >>>>>>> 072e924902a6332413bed9531a7b7ccda97069f5
 
     <!-- TODO: product -->
     <string name="title_product_new">Sản phẩm mới nhất</string>
@@ -59,4 +59,52 @@
     <string name="text_datetime_feedback">20/11/2023 - 21:12</string>
     <string name="text_see_all">Xem tất cả</string>
     <string name="text_product_relate">Sản phẩm liên quan</string>
+
+    <!-- TODO: cart -->
+    <string name="title_cart">Giỏ hàng</string>
+    <string name="text_price">Tiền cần thanh toán</string>
+    <string name="number_price">295.000đ</string>
+    <string name="text_oder">Đặt hàng</string>
+    <string name="number_oder">(2)</string>
+    <string name="text_size_cart">Size-M</string>
+    <string name="clear_product_cart">Bỏ sản phẩm</string>
+    <string name="text_number_inven">SL: 20</string>
+
+    <!-- TODO: other -->
+    <string name="title_oder">Đặt hàng</string>
+    <string name="text_name_other">Nguyễn Văn A</string>
+    <string name="text_phone_other">(+84) 0907645271</string>
+    <string name="text_mail_other">nguyenvana@gmail.com</string>
+    <string name="text_address_other">137 Nguyễn Thị Thập - 123 Đường Nguyễn Văn Linh, Phường Hòa Minh, Quận Liên Chiểu, Đà Nẵng</string>
+    <string name="text_content_other">Thời trang cho mọi người</string>
+    <string name="text_note_other">Ghi chú nhận hàng</string>
+    <string name="text_content_note_other">Gửi đến shop...</string>
+    <string name="text_total_pay_other">Tổng số tiền (2 sản phẩm):</string>
+    <string name="number_total_pay_other">590.000đ</string>
+    <string name="text_method_pay_other">Phương thức thanh toán</string>
+    <string name="text_pay_off_other">Thanh toán khi nhận hàng</string>
+    <string name="text_pay_onl_other">Thanh toán trực tuyến</string>
+    <string name="text_code_sales_other">Mã giảm giá</string>
+    <string name="text_number_other">X1</string>
+
+    <!-- TODO: address -->
+    <string name="title_address">Địa chỉ của bạn</string>
+    <string name="text_add_address">Thêm địa chỉ mới</string>
+    <string name="name_address">Nguyễn Văn A</string>
+    <string name="phone_address">(+84) 0907645271</string>
+    <string name="mail_address">nguyenvana@gmail.com</string>
+    <string name="text_address">137 Nguyễn Thị Thập - 123 Đường Nguyễn Văn Linh, Phường Hòa Minh, Quận Liên Chiểu, Đà Nẵng</string>
+    <string name="text_default">Mặc định</string>
+    <string name="text_udpate_address">Chỉnh sửa</string>
+    <string name="title_add_address">Thêm địa chỉ</string>
+    <string name="text_fullname_add_address">Họ và tên người nhận</string>
+    <string name="text_email_add_address">Email</string>
+    <string name="text_phone_add_address">Số điện thoại</string>
+    <string name="text_infor_add_address">Thông tin địa chỉ</string>
+    <string name="text_default_add_address">Đặt địa chỉ mặc định</string>
+    <string name="text_save_add_address">Lưu</string>
+    <string name="hint_name_add_address">nguyenvanax</string>
+    <string name="hint_email_add_address">example@gmail.com</string>
+    <string name="hint_phone_add_address">0000xxxx</string>
+    <string name="hint_infor_add_address">Số, đường, quận, huyện, thành phố</string>
 </resources>
