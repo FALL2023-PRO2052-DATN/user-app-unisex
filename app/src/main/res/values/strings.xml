@@ -107,4 +107,8 @@
     <string name="hint_email_add_address">example@gmail.com</string>
     <string name="hint_phone_add_address">0000xxxx</string>
     <string name="hint_infor_add_address">Số, đường, quận, huyện, thành phố</string>
+
+    <!-- TODO: search -->
+    <string name="hint_content_search">Nội dung tìm kiếm</string>
+    <string name="text_detail">Chi tiết</string>
 </resources>
