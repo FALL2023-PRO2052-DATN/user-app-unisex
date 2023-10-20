@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import com.example.shopclothes.R;
 import com.example.shopclothes.databinding.ActivityMainBinding;
-import com.example.shopclothes.view.fragment.CartFragment.CartFragment;
+import com.example.shopclothes.view.fragment.billFragment.BillFragment;
 import com.example.shopclothes.view.fragment.homeFragment.HomeFragment;
 import com.example.shopclothes.view.fragment.notificationFragment.NotificationFragment;
 import com.example.shopclothes.view.fragment.settingsFragment.SettingsFragment;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     switchIcon(R.id.btn_home);
                     break;
                 case R.id.btn_bill:
-                    switchFragment(new CartFragment());
+                    switchFragment(new BillFragment());
                     switchIcon(R.id.btn_bill);
                     break;
                 case R.id.btn_bell:

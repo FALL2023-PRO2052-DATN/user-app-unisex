@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.fragment.CartFragment;
+package com.example.shopclothes.view.fragment.billFragment;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.shopclothes.R;
 
-public class CartFragment extends Fragment {
+public class BillFragment extends Fragment {
 
 
 
