@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.address.addAddress.AddAddressActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        app:cardElevation="6dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:src="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/textView_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:text="@string/title_address"
+                android:textColor="@color/primary"
+                android:textSize="19sp" />
+        </androidx.appcompat.widget.Toolbar>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_fullname_add_address"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <EditText
+        android:id="@+id/et_fullname_address"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/edittext_bottom_line"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:hint="@string/hint_name_add_address"
+        android:inputType="textPersonName"
+        android:paddingStart="14dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        tools:ignore="RtlSymmetry,TextFields" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_email_add_address"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/et_fullname_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_fullname_address" />
+
+    <EditText
+        android:id="@+id/et_email_address"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_bottom_line"
+        android:drawablePadding="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:hint="@string/hint_email_add_address"
+        android:inputType="textPersonName"
+        android:paddingStart="14dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        tools:ignore="RtlSymmetry,TextFields" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_phone_add_address"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/et_email_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_email_address" />
+
+    <EditText
+        android:id="@+id/et_phone_address"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_bottom_line"
+        android:drawablePadding="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:hint="@string/hint_phone_add_address"
+        android:inputType="textPersonName"
+        android:paddingStart="14dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24"
+        tools:ignore="RtlSymmetry,TextFields" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_infor_add_address"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/et_phone_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_phone_address" />
+
+    <EditText
+        android:id="@+id/et_infor_address"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_bottom_line"
+        android:drawablePadding="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:hint="@string/hint_infor_add_address"
+        android:inputType="textPersonName"
+        android:paddingStart="14dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25"
+        tools:ignore="RtlSymmetry,TextFields" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_infor_address">
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/text_default_add_address"
+            android:textColor="@color/text2"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:thumb="@drawable/button_switch"
+            android:track="@drawable/custom_switch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_save_address"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_button_login"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+        <TextView
+            android:id="@+id/tv11111"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:gravity="center"
+            android:text="@string/text_save_add_address"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

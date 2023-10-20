@@ -8,6 +8,7 @@
     tools:context=".view.activity.product.productNew.ProductNewActivity">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        app:cardElevation="6dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +32,7 @@
                 android:src="@drawable/arrow_left" />
 
             <TextView
-                android:id="@+id/registerText"
+                android:id="@+id/textView0000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
