@@ -8,9 +8,7 @@ import androidx.annotation.NonNull;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.view.activity.MainActivity;
-import com.example.shopclothes.view.activity.account.login.LoginActivity;
-import com.example.shopclothes.view.activity.product.ResponseProduct;
-import com.example.shopclothes.view.fragment.homeFragment.HomeFragment;
+import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 
 import retrofit2.Call;
 import retrofit2.Callback;

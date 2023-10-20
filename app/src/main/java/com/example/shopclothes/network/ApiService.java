@@ -1,7 +1,9 @@
 package com.example.shopclothes.network;
 
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
-import com.example.shopclothes.view.activity.product.ResponseProduct;
+import com.example.shopclothes.view.activity.product.response.ResponseComment;
+import com.example.shopclothes.view.activity.product.response.ResponseProduct;
+import com.example.shopclothes.view.activity.product.response.ResponseSize;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
 
@@ -45,4 +47,12 @@ public interface ApiService {
     // type product
     @GET(ManagerUrl.READ_TYPE_PRODUCT)
     Call<ResponseTypeProduct> readTypeProduct();
+    // comment
+    @POST(ManagerUrl.READ_COMMENT_ID)
+    @FormUrlEncoded
+    Call<ResponseComment> readCommentById(@Field("id") int id);
+    // size
+    @POST(ManagerUrl.READ_SIZE_ID_PRODUCT)
+    @FormUrlEncoded
+    Call<ResponseSize> readSizeByIdProduct(@Field("id") int id);
 }

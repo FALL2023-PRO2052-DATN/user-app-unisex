@@ -1,9 +1,9 @@
 package com.example.shopclothes.model;
-
-import com.example.shopclothes.view.fragment.homeFragment.HomeContract;
 import com.google.gson.annotations.SerializedName;
 
-public class Product implements HomeContract {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int id;
     @SerializedName("ten_san_pham")
     private String nameProduct;
@@ -17,6 +17,8 @@ public class Product implements HomeContract {
     private String note;
     @SerializedName("ten_danh_muc")
     private String nameTypeProduct;
+    @SerializedName("danh_muc_id")
+    private int idCategory;
 
     public String getNameTypeProduct() {
         return nameTypeProduct;
@@ -72,6 +74,14 @@ public class Product implements HomeContract {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
     @Override

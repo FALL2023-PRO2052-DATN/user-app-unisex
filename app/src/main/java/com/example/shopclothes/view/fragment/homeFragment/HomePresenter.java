@@ -1,6 +1,5 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -11,8 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.network.ApiService;
-import com.example.shopclothes.view.activity.product.ResponseProduct;
-import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
+import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
 

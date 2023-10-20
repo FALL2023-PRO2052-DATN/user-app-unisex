@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.product;
+package com.example.shopclothes.view.activity.product.response;
 
 import com.example.shopclothes.model.Product;
 import com.google.gson.annotations.SerializedName;
