@@ -1,8 +1,10 @@
 package com.example.shopclothes.adapter;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
@@ -14,23 +16,37 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
+import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemAddCartBinding;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.Size;
+import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.utils.UIUtils;
+import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyBottomSheet extends BottomSheetDialogFragment {
     private ItemAddCartBinding mBinding;
     private final Product mProduct;
     private final List<Size> mListSize;
+    private String mSize = "";
+    private final FirebaseUser mUser;
+    private  ProgressDialog mProgressDialog;
 
     public MyBottomSheet(Product mProduct, List<Size> listSize) {
         this.mProduct = mProduct;
         this.mListSize = listSize;
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @NonNull
@@ -41,11 +57,20 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
         mBottomSheetDialog.setContentView(mBinding.getRoot());
         setData();
         setAdapter(mListSize);
-        onClick(-1, 1);
+        onClickItem(-1, 1);
+        onClick();
         return mBottomSheetDialog;
     }
 
-
+    private void onClick() {
+        mBinding.btnAddCartProduct.setEnabled(false);
+        mBinding.btnAddCartProduct.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.linear));
+       if (mBinding.btnAddQuantity.isEnabled()){
+           mBinding.btnAddCartProduct.setEnabled(true);
+           mBinding.btnAddCartProduct.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary));
+           mBinding.btnAddCartProduct.setOnClickListener(view -> addCart());
+       }
+    }
 
 
     public void setData() {
@@ -61,9 +86,11 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
         mBinding.tvPriceSalesProductAddCart.setText(FormatUtils.formatCurrency(mProduct.getPrice() * mProduct.getSale() / 100));
     }
     public void setAdapter(List<Size> mListSize) {
-        AdapterSize adapterSize = new AdapterSize(mListSize, getContext(), (quantitySize, position) -> {
+        AdapterSize adapterSize = new AdapterSize(mListSize, getContext(), (quantitySize, position, size) -> {
             mBinding.tvIntenvoryNumbersAddCart.setText(String.valueOf(quantitySize));
-            onClick(position, quantitySize);
+            onClickItem(position, quantitySize);
+            mSize = size;
+            onClick();
         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -72,7 +99,7 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
         mBinding.recyclerSize.setAdapter(adapterSize);
     }
 
-    public void onClick(int position, int sizeNumber) {
+    public void onClickItem(int position, int sizeNumber) {
 
         if (position != -1){
             mBinding.tvQuantity.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary));
@@ -120,6 +147,31 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
             mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity_1);
             mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity_1);
         }
+    }
+
+    public void addCart(){
+        mProgressDialog = ProgressDialog.show(getContext(), "", "Đang đặt hàng");
+        int quantity = Integer.parseInt(mBinding.tvQuantity.getText().toString());
+        double price = mProduct.getPrice() * mProduct.getSale() / 100;
+
+        ApiService.API_SERVICE.insertCart(quantity , price, mSize,  mUser.getUid(), mProduct.getId()).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    Toast.makeText(getContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.dismiss();
+                    dismiss();
+                }else {
+                    Toast.makeText(getContext(), "Thêm vào giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
 }

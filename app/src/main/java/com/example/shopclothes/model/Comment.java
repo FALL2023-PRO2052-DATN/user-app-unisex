@@ -2,13 +2,15 @@ package com.example.shopclothes.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class Comment {
     @SerializedName("ho_va_ten")
     private String nameUser;
     @SerializedName("anh_dai_dien")
     private String avatarUser;
     @SerializedName("ngay_danh_gia")
-    private String dateComment;
+    private Date dateComment;
     @SerializedName("diem_danh_gia")
     private Float pointComment;
     @SerializedName("noi_dung")
@@ -30,11 +32,11 @@ public class Comment {
         this.avatarUser = avatarUser;
     }
 
-    public String getDateComment() {
+    public Date getDateComment() {
         return dateComment;
     }
 
-    public void setDateComment(String dateComment) {
+    public void setDateComment(Date dateComment) {
         this.dateComment = dateComment;
     }
 

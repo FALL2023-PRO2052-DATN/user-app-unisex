@@ -18,6 +18,7 @@ import com.example.shopclothes.databinding.FragmentHomeBinding;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.TypeProduct;
+import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
 import com.example.shopclothes.view.activity.product.productOutstanding.ProductOutstandingActivity;
 
@@ -54,7 +55,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     private void onClick() {
         mBinding.btnSeeProuctNew.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductNewActivity.class));
-        mBinding.btnSeeAllProductOutstanding.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductOutstandingActivity.class));}
+        mBinding.btnSeeAllProductOutstanding.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductOutstandingActivity.class));
+        mBinding.btnCartHome.setOnClickListener(view -> mPresenter.nextActivity(getContext(), CartActivity.class));
+    }
 
 
     @Override

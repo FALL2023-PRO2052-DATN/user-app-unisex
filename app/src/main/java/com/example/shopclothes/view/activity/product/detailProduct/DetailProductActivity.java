@@ -125,7 +125,6 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     public void openBottomSheetDialogFragment(Product product, List<Size> list) {
         MyBottomSheet myBottomSheet = new MyBottomSheet(product, list);
         myBottomSheet.show(getSupportFragmentManager(), myBottomSheet.getTag());
-
     }
 
 }

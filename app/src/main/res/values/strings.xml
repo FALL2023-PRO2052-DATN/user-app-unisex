@@ -62,9 +62,9 @@
     <!-- TODO: cart -->
     <string name="title_cart">Giỏ hàng</string>
     <string name="text_price">Tiền cần thanh toán</string>
-    <string name="number_price">295.000đ</string>
+    <string name="number_price">0đ</string>
     <string name="text_oder">Đặt hàng</string>
-    <string name="number_oder">(2)</string>
+    <string name="number_oder">(0)</string>
     <string name="text_size_cart">Size-M</string>
     <string name="clear_product_cart">Bỏ sản phẩm</string>
     <string name="text_number_inven">SL: 20</string>

@@ -1,6 +1,7 @@
 package com.example.shopclothes.network;
 
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
+import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.example.shopclothes.view.activity.product.response.ResponseComment;
 import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 import com.example.shopclothes.view.activity.product.response.ResponseSize;
@@ -55,4 +56,14 @@ public interface ApiService {
     @POST(ManagerUrl.READ_SIZE_ID_PRODUCT)
     @FormUrlEncoded
     Call<ResponseSize> readSizeByIdProduct(@Field("id") int id);
+    // cart
+    @GET(ManagerUrl.READ_CART)
+    Call<ResponseCart> readCart();
+    @POST(ManagerUrl.INSERT_CART)
+    @FormUrlEncoded
+    Call<ResponseCart> insertCart(@Field("quantity") int quantity,
+                                  @Field("price") double price,
+                                  @Field("size") String size,
+                                  @Field("userId") String userId,
+                                  @Field("productId") int productId);
 }

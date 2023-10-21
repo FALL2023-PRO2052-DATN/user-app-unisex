@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.databinding.ItemCommentBinding;
 import com.example.shopclothes.model.Comment;
+import com.example.shopclothes.utils.FormatUtils;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class AdapterComment extends RecyclerView.Adapter<AdapterComment.ViewHold
             mBinding.tvNameComment.setText(comment.getNameUser());
             mBinding.ratingComment.setRating(comment.getPointComment());
             mBinding.tvContentComment.setText(comment.getContentComment());
-            mBinding.tvDatetimeComment.setText(comment.getDateComment());
+            mBinding.tvDatetimeComment.setText(FormatUtils.formatDate(comment.getDateComment()));
         }
     }
 }

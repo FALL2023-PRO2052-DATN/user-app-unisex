@@ -19,6 +19,9 @@ public class ManagerUrl {
     // comment
     public static final String READ_COMMENT_ID = "read-byId-product-comment";
     // size
-    public static final String READ_SIZE_ID_PRODUCT = " read-byId-product-size";
+    public static final String READ_SIZE_ID_PRODUCT = "read-byId-product-size";
+    // cart
+    public static final String READ_CART = "read-cart";
+    public static final String INSERT_CART = "insert-cart";
 
 }

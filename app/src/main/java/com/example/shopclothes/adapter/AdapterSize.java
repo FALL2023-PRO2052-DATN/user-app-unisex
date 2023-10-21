@@ -47,7 +47,7 @@ public class AdapterSize extends RecyclerView.Adapter<AdapterSize.ViewHolder> {
             selectedItem = holder.getAdapterPosition();
             notifyDataSetChanged();
 
-            itemClickUtils.onItemClickListener(size.getQuantity(), selectedItem);
+            itemClickUtils.onItemClickListener(size.getQuantity(), selectedItem, holder.mBinding.tvSizeProduct.getText().toString());
         });
         holder.mBinding.btnSizeProduct.setBackgroundColor(ContextCompat.getColor(mContext,
                 position == selectedItem ? R.color.linear : R.color.gray1
