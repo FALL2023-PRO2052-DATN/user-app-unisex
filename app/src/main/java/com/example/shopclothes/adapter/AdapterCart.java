@@ -109,6 +109,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         }
     }
 
+
     public void checkBox(ItemCartBinding mBinding, Cart cart){
         mListNew = new ArrayList<>();
        mBinding.checkBoxCart.setOnClickListener(view -> {
