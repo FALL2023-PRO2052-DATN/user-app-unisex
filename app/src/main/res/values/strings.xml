@@ -110,4 +110,5 @@
     <!-- TODO: search -->
     <string name="hint_content_search">Nội dung tìm kiếm</string>
     <string name="text_detail">Chi tiết</string>
+    <string name="text_empty">Không tìm thấy nội dung tìm kiếm</string>
 </resources>

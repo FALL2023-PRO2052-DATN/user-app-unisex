@@ -28,14 +28,14 @@
 
             <ImageView
                 android:id="@+id/iv_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/demo_product_search" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/nameProductSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -47,13 +47,14 @@
         app:layout_constraintTop_toTopOf="@+id/layoutImg" />
 
     <TextView
+        android:id="@+id/detailProductSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_display_regular"
         android:text="@string/text_detail"
         android:textColor="@color/text2"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        app:layout_constraintStart_toStartOf="@+id/nameProductSearch"
+        app:layout_constraintTop_toBottomOf="@+id/nameProductSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

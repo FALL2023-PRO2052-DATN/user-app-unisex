@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.shopclothes.adapter.AdapterBanner;
@@ -21,6 +22,7 @@ import com.example.shopclothes.model.TypeProduct;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
 import com.example.shopclothes.view.activity.product.productOutstanding.ProductOutstandingActivity;
+import com.example.shopclothes.view.activity.search.SearchActivity;
 
 import java.util.List;
 
@@ -57,6 +59,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mBinding.btnSeeProuctNew.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductNewActivity.class));
         mBinding.btnSeeAllProductOutstanding.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductOutstandingActivity.class));
         mBinding.btnCartHome.setOnClickListener(view -> mPresenter.nextActivity(getContext(), CartActivity.class));
+        mBinding.etSearch.setOnTouchListener((view1, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                mPresenter.nextActivity(getContext(), SearchActivity.class);
+            }
+            return false;
+        });
+
     }
 
 

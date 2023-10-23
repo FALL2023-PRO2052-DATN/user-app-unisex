@@ -63,6 +63,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
+                    android:text=""
                     android:id="@+id/et_search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     android:paddingStart="14dp"
-                    android:text="@string/content_search"
+                    android:hint="@string/content_search"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView8"

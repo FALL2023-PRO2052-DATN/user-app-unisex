@@ -8,4 +8,5 @@ public class AppConstants {
     public static final String TAG = "ERROR";
     public static final String PASS_NOT_DUPLICATES = "Mật khẩu không trùng lặp";
     public static final String LOADING = "Loading...";
+
 }
