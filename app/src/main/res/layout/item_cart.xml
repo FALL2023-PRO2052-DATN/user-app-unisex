@@ -44,16 +44,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutImg" />
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkBox_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="-10dp"
+
         android:button="@drawable/bg_checkbox"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/layoutImg"
         app:layout_constraintEnd_toStartOf="@+id/layoutImg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/layoutImg"
-        />
+        app:layout_constraintTop_toTopOf="@+id/layoutImg" />
 
     <TextView
         android:id="@+id/tv_name_product_cart"

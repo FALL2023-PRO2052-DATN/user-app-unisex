@@ -12,23 +12,20 @@ import java.util.List;
 
 public class ProductNewActivity extends AppCompatActivity implements ProductNewContract.View {
     private ActivityProductNewBinding mBinding;
-    private ProductNewContract.Presenter mPresenter;
     private ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityProductNewBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        mPresenter = new ProductNewPresenter(this);
+        ProductNewContract.Presenter mPresenter = new ProductNewPresenter(this);
         mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
         mPresenter.getListProductNew();
         onClick();
     }
 
     private void onClick() {
-        mBinding.btnBackProductNew.setOnClickListener(view -> {
-            mPresenter.nextActivity(this);
-        });
+        mBinding.btnBackProductNew.setOnClickListener(view -> onBackPressed());
     }
 
 

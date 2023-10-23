@@ -106,7 +106,7 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             binding.tvPriceProductLinear.setPaintFlags(binding.tvPriceProductLinear.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             binding.tvPriceProductLinear.setText(FormatUtils.formatCurrency(product.getPrice()));
             binding.tvTypeProductLinear.setText(TYPE+product.getNameTypeProduct());
-            binding.tvPriceSalesProductLinear.setText(FormatUtils.formatCurrency(product.getPrice() * product.getSale() / 100));
+            binding.tvPriceSalesProductLinear.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
             binding.tvNumberSalesLinear.setText(product.getSale() + phanTram);
         }
     }
@@ -126,7 +126,7 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             binding.tvPriceProductGrid.setPaintFlags(binding.tvPriceProductGrid.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             binding.tvPriceProductGrid.setText(FormatUtils.formatCurrency(product.getPrice()));
             binding.tvTypeProductGrid.setText(TYPE+product.getNameTypeProduct());
-            binding.tvPriceSalesProductGrid.setText(FormatUtils.formatCurrency(product.getPrice() * product.getSale() / 100));
+            binding.tvPriceSalesProductGrid.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
             binding.tvNumberSalesGrid.setText(product.getSale() + phanTram);
         }
     }

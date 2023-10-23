@@ -24,7 +24,7 @@
             android:name=".view.activity.address.addAddress.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.other.OtherActivity"
+            android:name=".view.activity.order.OrderActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.product.detailProduct.DetailProductActivity"

@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
@@ -22,8 +21,8 @@ import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.Size;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.utils.FormatUtils;
-import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.cart.ResponseCart;
+import com.example.shopclothes.view.activity.product.detailProduct.DetailProductContract;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,10 +41,12 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
     private String mSize = "";
     private final FirebaseUser mUser;
     private  ProgressDialog mProgressDialog;
-
-    public MyBottomSheet(Product mProduct, List<Size> listSize) {
+    private final DetailProductContract.Presenter mPresenter;
+    private  FirebaseUser user;
+    public MyBottomSheet(Product mProduct, List<Size> listSize, DetailProductContract.Presenter presenter) {
         this.mProduct = mProduct;
         this.mListSize = listSize;
+        this.mPresenter = presenter;
         mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -83,7 +84,7 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
         mBinding.tvNameProductAddCart.setText(mProduct.getNameProduct());
         mBinding.tvPriceProductAddCart.setPaintFlags(mBinding.tvPriceProductAddCart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         mBinding.tvPriceProductAddCart.setText(FormatUtils.formatCurrency(mProduct.getPrice()));
-        mBinding.tvPriceSalesProductAddCart.setText(FormatUtils.formatCurrency(mProduct.getPrice() * mProduct.getSale() / 100));
+        mBinding.tvPriceSalesProductAddCart.setText(FormatUtils.formatCurrency(mProduct.getPrice() - (mProduct.getPrice() * mProduct.getSale() / 100)));
     }
     public void setAdapter(List<Size> mListSize) {
         AdapterSize adapterSize = new AdapterSize(mListSize, getContext(), (quantitySize, position, size) -> {
@@ -152,14 +153,16 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
     public void addCart(){
         mProgressDialog = ProgressDialog.show(getContext(), "", "Đang đặt hàng");
         int quantity = Integer.parseInt(mBinding.tvQuantity.getText().toString());
-        double price = mProduct.getPrice() * mProduct.getSale() / 100;
 
-        ApiService.API_SERVICE.insertCart(quantity , price, mSize,  mUser.getUid(), mProduct.getId()).enqueue(new Callback<ResponseCart>() {
+        ApiService.API_SERVICE.insertCart(quantity , mProduct.getPrice(), mSize,  mUser.getUid(), mProduct.getId()).enqueue(new Callback<ResponseCart>() {
             @Override
             public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     Toast.makeText(getContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                    user = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user != null;
+                    mPresenter.getListCartByIdUser(user.getUid());
                     mProgressDialog.dismiss();
                     dismiss();
                 }else {

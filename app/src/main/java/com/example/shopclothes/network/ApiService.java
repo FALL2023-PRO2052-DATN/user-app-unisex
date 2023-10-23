@@ -57,8 +57,13 @@ public interface ApiService {
     @FormUrlEncoded
     Call<ResponseSize> readSizeByIdProduct(@Field("id") int id);
     // cart
+    @POST(ManagerUrl.READ_CART_BY_ID_USER)
+    @FormUrlEncoded
+    Call<ResponseCart> readCartById(@Field("id") String id);
+
     @GET(ManagerUrl.READ_CART)
     Call<ResponseCart> readCart();
+
     @POST(ManagerUrl.INSERT_CART)
     @FormUrlEncoded
     Call<ResponseCart> insertCart(@Field("quantity") int quantity,
@@ -66,4 +71,16 @@ public interface ApiService {
                                   @Field("size") String size,
                                   @Field("userId") String userId,
                                   @Field("productId") int productId);
+    @POST(ManagerUrl.DELETE_CART)
+    @FormUrlEncoded
+    Call<ResponseCart> deleteCart(@Field("id") int id);
+    @POST(ManagerUrl.UPDATE_CART)
+    @FormUrlEncoded
+    Call<ResponseCart> updateCart(@Field("id") int id,
+                                  @Field("quantity") int quantity);
+
+    // address
+    @POST(ManagerUrl.READ_ADDRESS)
+    @FormUrlEncoded
+    Call<ResponseCart> readAddress(@Field("userId") String userId);
 }

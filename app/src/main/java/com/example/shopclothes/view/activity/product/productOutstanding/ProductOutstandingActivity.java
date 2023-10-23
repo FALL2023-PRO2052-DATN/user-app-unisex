@@ -18,7 +18,6 @@ import java.util.List;
 
 public class ProductOutstandingActivity extends AppCompatActivity implements ProductOutstandingContract.View {
     private ActivityProductOutstandingBinding mBinding;
-    private ProductOutstandingContract.Presenter mPresenter;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -26,16 +25,13 @@ public class ProductOutstandingActivity extends AppCompatActivity implements Pro
         super.onCreate(savedInstanceState);
         mBinding = ActivityProductOutstandingBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        mPresenter = new ProductOutstandingPresenter(this);
+        ProductOutstandingContract.Presenter mPresenter = new ProductOutstandingPresenter(this);
         mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
         mPresenter.getListProductOutstanding();
         onClick();
     }
     private void onClick() {
-        mBinding.btnBackProductOutstanding.setOnClickListener(view -> {
-            mPresenter.nextActivity(getApplicationContext());
-            finish();
-        });
+        mBinding.btnBackProductOutstanding.setOnClickListener(view -> onBackPressed());
     }
     @Override
     public void onList(List<Product> list) {

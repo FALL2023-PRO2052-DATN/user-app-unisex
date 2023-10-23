@@ -1,5 +1,7 @@
 package com.example.shopclothes.view.activity.cart;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.shopclothes.constant.AppConstants;
@@ -18,13 +20,52 @@ public class CartPresenter implements CartContract.Presenter{
     }
 
     @Override
-    public void readListCart() {
-        ApiService.API_SERVICE.readCart().enqueue(new Callback<ResponseCart>() {
+    public void readListCartByIdUser(String id) {
+        ApiService.API_SERVICE.readCartById(id).enqueue(new Callback<ResponseCart>() {
             @Override
             public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
-                    view.onListCart(response.body().getCartList());
+                    view.onListCartByIdUser(response.body().getCartList());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void deleteCart(int id) {
+        ApiService.API_SERVICE.deleteCart(id).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onMessage(AppConstants.ON_SUCCESS);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void updateCart(int id, int quantity) {
+        ApiService.API_SERVICE.updateCart(id, quantity).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                assert response.body() != null;
+                Log.d("L", "ABC");
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onListUpdate(response.body().getCartList());
+                    Log.d("L", response.body().getCartList().toString());
+                    Log.d("L", "ABC");
                 }
             }
 

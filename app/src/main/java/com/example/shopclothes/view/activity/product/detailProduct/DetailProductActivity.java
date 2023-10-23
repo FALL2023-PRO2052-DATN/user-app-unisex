@@ -16,10 +16,14 @@ import com.example.shopclothes.adapter.AdapterComment;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.MyBottomSheet;
 import com.example.shopclothes.databinding.ActivityDetailProductBinding;
+import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Comment;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.Size;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.view.activity.cart.CartActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -36,15 +40,25 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mPresenter = new DetailProductPresenter(this);
         initPresenter();
         seeMore();
+        onClick();
+    }
+
+    @Override
+    public void onClick() {
+        mBinding.btnCartDetailProduct.setOnClickListener(view -> startActivity(new Intent(this, CartActivity.class)));
+        mBinding.ivBackDetail.setOnClickListener(view -> onBackPressed());
     }
 
     @Override
     public void initPresenter() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
         mPresenter.getProduct(id);
         mPresenter.getListCommentById(id);
         mPresenter.getListSizeByIdProduct(id);
+        assert user != null;
+        mPresenter.getListCartByIdUser(user.getUid());
     }
 
     @SuppressLint("SetTextI18n")
@@ -56,7 +70,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         Glide.with(this).load(product.getImageProduct()).into(mBinding.ivDetailProduct);
         mBinding.tvNameProductDetail.setText(product.getNameProduct());
         mBinding.tvTypeProductDetail.setText(TYPE + product.getNameTypeProduct() + UNI + product.getId());
-        mBinding.tvPriceSalesProductDetail.setText(FormatUtils.formatCurrency(product.getPrice() * product.getSale() / 100));
+        mBinding.tvPriceSalesProductDetail.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
         mBinding.tvPriceProductDetail.setText(FormatUtils.formatCurrency(product.getPrice()));
         mBinding.tvPriceProductDetail.setPaintFlags(mBinding.tvPriceProductDetail.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         mBinding.tvNumberSalesDetail.setText(product.getSale() + phanTram);
@@ -88,6 +102,11 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mBinding.recyclerViewProductRelate.setLayoutManager(layoutManager);
         mBinding.recyclerViewProductRelate.setAdapter(adapter);
+    }
+
+    @Override
+    public void onListCartByIdUser(List<Cart> list) {
+        mBinding.tvQuatityDetail.setText(String.valueOf(list.size()));
     }
 
     @Override
@@ -123,7 +142,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
 
     @Override
     public void openBottomSheetDialogFragment(Product product, List<Size> list) {
-        MyBottomSheet myBottomSheet = new MyBottomSheet(product, list);
+        MyBottomSheet myBottomSheet = new MyBottomSheet(product, list, new DetailProductPresenter(this));
         myBottomSheet.show(getSupportFragmentManager(), myBottomSheet.getTag());
     }
 

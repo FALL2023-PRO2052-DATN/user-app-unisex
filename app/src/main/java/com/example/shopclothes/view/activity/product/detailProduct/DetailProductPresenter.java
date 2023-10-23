@@ -1,15 +1,12 @@
 package com.example.shopclothes.view.activity.product.detailProduct;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
+import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.example.shopclothes.view.activity.product.response.ResponseComment;
 import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 import com.example.shopclothes.view.activity.product.response.ResponseSize;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -88,6 +85,23 @@ public class DetailProductPresenter implements DetailProductContract.Presenter {
 
             @Override
             public void onFailure(@NonNull Call<ResponseProduct> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getListCartByIdUser(String id) {
+        ApiService.API_SERVICE.readCartById(id).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onListCartByIdUser(response.body().getCartList());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
 
             }
         });

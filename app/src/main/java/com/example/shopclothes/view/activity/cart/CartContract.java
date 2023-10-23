@@ -6,11 +6,18 @@ import java.util.List;
 
 public interface CartContract {
     interface View{
-        void onListCart(List<Cart> cartList);
-        void itemCartClick(double sumPrice, boolean check);
+        void onClick();
+        void onListCartByIdUser(List<Cart> cartList);
+        void itemCartClick(double sumPrice, boolean check, boolean checkItem);
+        void listCartClick(List<Cart> cartList);
+        void onMessage(String message);
+        void onListUpdate(List<Cart> cartList);
+        void selectedItemsCount(int selectedItemsCount);
     }
 
     interface Presenter{
-        void readListCart();
+        void readListCartByIdUser(String id);
+        void deleteCart(int id);
+        void updateCart(int id, int quantity);
     }
 }
