@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/logo_other"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_code_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_code_bill"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/text2"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+        app:layout_constraintStart_toEndOf="@+id/imageView18"
+        app:layout_constraintTop_toTopOf="@+id/imageView18" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_img_product"
+        android:padding="1dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView18"
+        app:layout_constraintTop_toBottomOf="@+id/imageView18">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_product_bill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/demo_item_other" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_name_product_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:text="@string/text_name_product"
+        android:textColor="@color/text1"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/layoutImg"
+        app:layout_constraintTop_toTopOf="@+id/layoutImg" />
+
+    <TextView
+        android:id="@+id/tv_size_product_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_size_cart"
+        android:textColor="@color/text2"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_product_bill"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_product_bill" />
+
+    <TextView
+        android:id="@+id/tv_price_product_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="@string/number_price"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_size_product_bill"
+        app:layout_constraintTop_toBottomOf="@+id/tv_size_product_bill" />
+
+    <TextView
+        android:id="@+id/tv_status_product_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_car_red"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_wait_confirm"
+        android:textColor="@color/red2"
+        android:textSize="13sp"
+        android:drawablePadding="4dp"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView18" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/line_item_add_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutImg" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="@string/text_total_price"
+        android:textColor="@color/text1"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+
+    <TextView
+        android:id="@+id/tv_total_price_product_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="@string/number_total_price"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        android:src="@drawable/line_item_add_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <LinearLayout
+        android:id="@+id/btn_cancel_bill"
+        android:layout_width="129dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/bg_button_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:gravity="center"
+            android:text="@string/content_btn_bill"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_evaluate_bill"
+        android:layout_width="129dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/bg_button_login"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_cancel_bill"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancel_bill"
+        app:layout_constraintTop_toTopOf="@+id/btn_cancel_bill">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:gravity="center"
+            android:text="@string/text_evaluate"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
