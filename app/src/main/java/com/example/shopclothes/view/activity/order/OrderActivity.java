@@ -147,4 +147,5 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
            UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_FAILURE);
        }
     }
+
 }
