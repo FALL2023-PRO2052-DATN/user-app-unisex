@@ -28,4 +28,9 @@ public class ManagerUrl {
 
     // address
     public static final String READ_ADDRESS = "read-address";
+    // discount
+    public static final String READ_DISCOUNT_BY_ID = "read-byId-discount";
+    // order
+    public static final String INSERT_ORDER = "insert-order";
+    public static final String INSERT_DETAIL_ORDER = "insert-detail-order";
 }

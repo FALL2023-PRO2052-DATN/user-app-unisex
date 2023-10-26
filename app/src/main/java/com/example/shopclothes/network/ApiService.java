@@ -2,6 +2,9 @@ package com.example.shopclothes.network;
 
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
 import com.example.shopclothes.view.activity.cart.ResponseCart;
+import com.example.shopclothes.view.activity.order.response.ResponseAddress;
+import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
+import com.example.shopclothes.view.activity.order.response.ResponseOrder;
 import com.example.shopclothes.view.activity.product.response.ResponseComment;
 import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 import com.example.shopclothes.view.activity.product.response.ResponseSize;
@@ -82,5 +85,32 @@ public interface ApiService {
     // address
     @POST(ManagerUrl.READ_ADDRESS)
     @FormUrlEncoded
-    Call<ResponseCart> readAddress(@Field("userId") String userId);
+    Call<ResponseAddress> readAddress(@Field("userId") String userId);
+
+    // discount
+    @POST(ManagerUrl.READ_DISCOUNT_BY_ID)
+    @FormUrlEncoded
+    Call<ResponseDiscount> readDiscountById(@Field("code") String code);
+
+    // order
+    @POST(ManagerUrl.INSERT_ORDER)
+    @FormUrlEncoded
+    Call<ResponseOrder> insertOrder(@Field("id") String id,
+                                    @Field("ghi_chu") String note,
+                                    @Field("hinh_thuc_thanh_toan") String payments,
+                                    @Field("tinh_trang_giao_hang") String deliveryStatus,
+                                    @Field("ly_do_huy") String reasonCancel,
+                                    @Field("thanh_tien") double price,
+                                    @Field("giam_gia_id") String idDiscount,
+                                    @Field("dia_chi_id") int idAddress,
+                                    @Field("trang_thai_thanh_toan") String peacefulState);
+
+    @POST(ManagerUrl.INSERT_DETAIL_ORDER)
+    @FormUrlEncoded
+    Call<ResponseOrder> insertOrderDetail(@Field("kich_thuoc") String size,
+                                    @Field("so_luong") int quantity,
+                                    @Field("don_gia") double price,
+                                    @Field("don_hang_id") String idDonHang,
+                                    @Field("san_pham_id") int idProduct);
+
 }

@@ -21,6 +21,8 @@ public class Cart implements Parcelable {
     private double price;
     @SerializedName("kich_thuoc")
     private String size;
+    @SerializedName("san_pham_id")
+    private int idProduct;
 
     public int getId() {
         return id;
@@ -78,6 +80,15 @@ public class Cart implements Parcelable {
         this.size = size;
     }
 
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
+
+
     @Override
     public String toString() {
         return "Cart{" +
@@ -88,6 +99,7 @@ public class Cart implements Parcelable {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", size='" + size + '\'' +
+                ", idProduct=" + idProduct +
                 '}';
     }
 
@@ -105,6 +117,7 @@ public class Cart implements Parcelable {
         parcel.writeInt(quantity);
         parcel.writeDouble(price);
         parcel.writeString(size);
+        parcel.writeInt(idProduct);
     }
 
     protected Cart(Parcel in) {
@@ -115,6 +128,7 @@ public class Cart implements Parcelable {
         quantity = in.readInt();
         price = in.readDouble();
         size = in.readString();
+        idProduct = in.readInt();
     }
 
     public static final Creator<Cart> CREATOR = new Creator<Cart>() {

@@ -51,6 +51,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rcvCart.setLayoutManager(layoutManager);
         mBinding.rcvCart.setAdapter(adapterCart);
+        Log.d("LIST", cartList.toString());
     }
     @SuppressLint("SetTextI18n")
     @Override

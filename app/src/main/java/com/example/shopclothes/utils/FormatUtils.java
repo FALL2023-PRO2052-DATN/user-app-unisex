@@ -1,5 +1,7 @@
 package com.example.shopclothes.utils;
 
+import android.annotation.SuppressLint;
+
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,5 +36,12 @@ public class FormatUtils {
         // Định dạng ngày theo kiểu "dd/mm/yyyy TT"
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm", new Locale("vi", "VN"));
         return dateFormat.format(date);
+    }
+
+    public static String formatID(){
+        String uni = "UNI";
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String timestamp = dateFormat.format(new Date());
+        return uni+timestamp;
     }
 }

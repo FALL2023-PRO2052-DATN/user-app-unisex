@@ -8,5 +8,8 @@ public class AppConstants {
     public static final String TAG = "ERROR";
     public static final String PASS_NOT_DUPLICATES = "Mật khẩu không trùng lặp";
     public static final String LOADING = "Loading...";
-
+    public static final String NOT_FOUND = "Không tìm thấy";
+    public static final String PEACEFUL_STATE_NOT = "Chưa thanh toán";
+    public static final String PEACEFUL_STATE_OK = "Đã thanh toán";
+    public static final String DELIVERY_STATUS = "Chờ xác nhận";
 }
