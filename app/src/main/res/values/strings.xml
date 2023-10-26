@@ -111,4 +111,38 @@
     <string name="hint_content_search">Nội dung tìm kiếm</string>
     <string name="text_detail">Chi tiết</string>
     <string name="text_empty">Không tìm thấy nội dung tìm kiếm</string>
+
+    <!-- TODO: settings -->
+    <string name="name_setting">Nguyễn Văn A</string>
+    <string name="mail_setting">nguyenvana@gmail.com</string>
+    <string name="text_update_infor_account">Cập nhật thông tin tài khoản</string>
+    <string name="text_address_receive">Địa chỉ nhận hàng</string>
+    <string name="text_change_pass">Đổi mật khẩu</string>
+    <string name="text_about_us">Về chúng tôi</string>
+    <string name="text_return_policy">Chính sách đổi trả</string>
+    <string name="text_contact">Liên hệ</string>
+    <string name="text_logout">Đăng xuất</string>
+
+    <!-- TODO: bill -->
+    <string name="title_bill">Đơn mua</string>
+    <string name="text_wait_confirm">Chờ xác nhận</string>
+    <string name="text_wait_delivery">Chờ lấy hàng</string>
+    <string name="text_delivering">Đang giao</string>
+    <string name="text_delivered">Đã giao</string>
+    <string name="text_cancel">Đơn hủy</string>
+    <string name="text_empty_bill">Không có đơn hàng nào</string>
+    <string name="text_code_bill">UNI20231021003512</string>
+    <string name="text_total_price">Tổng số tiền:</string>
+    <string name="number_total_price">590.000đ</string>
+    <string name="content_btn_bill">Hủy</string>
+    <string name="text_evaluate">Đánh giá</string>
+    <string name="text_bill_detail">Đơn hàng chi tiết</string>
+    <string name="text_content_note_oder">Ship buổi sáng giúp tôi</string>
+    <string name="text_detail_bill">Chi tiết đơn hàng</string>
+    <string name="text_total_product_bill">Tổng tiền sản phẩm</string>
+    <string name="number_total_product_bill">590.000đ</string>
+    <string name="text_price_sales_bill">Tiền giảm giá</string>
+    <string name="number_price_sales_bill">Không áp dụng</string>
+    <string name="text_total_price_bill">Tổng tiền</string>
+    <string name="number_total_price_bill">590.000đ</string>
 </resources>
