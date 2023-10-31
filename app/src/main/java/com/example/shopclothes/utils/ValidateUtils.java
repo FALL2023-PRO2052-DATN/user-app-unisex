@@ -18,13 +18,13 @@ public class ValidateUtils {
     public static boolean validateRegisterEqual(String pass, String againPass){
         return againPass.equals(pass);
     }
-        public static boolean isDataInputEmpty(String... datas) {
-            for (String str : datas) {
+    public static boolean isDataInputEmpty(String... datas) {
+        for (String str : datas) {
                 if (str == null || str.isEmpty()) {
                     return true;
                 }
-            }
-            return false;
         }
+        return false;
+    }
 
 }

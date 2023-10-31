@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.order;
+package com.example.shopclothes.view.activity.order.order;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +15,8 @@ import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Discount;
 import com.example.shopclothes.utils.FormatUtils;
 import com.example.shopclothes.utils.UIUtils;
+import com.example.shopclothes.view.activity.address.address.AddressActivity;
+import com.example.shopclothes.view.activity.order.finishOrder.FinishOrderActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -42,7 +44,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
 
     @Override
     public void onClick() {
-        mBinding.ivNextOther.setOnClickListener(view -> mPresenter.nextActivity(this));
+        mBinding.ivNextOther.setOnClickListener(view -> mPresenter.nextActivity(this, AddressActivity.class));
         mBinding.ivBackOrder.setOnClickListener(view -> onBackPressed());
         mBinding.btnApply.setOnClickListener(view ->{
             mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
@@ -95,10 +97,12 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     public void onInsertOrder(String idOrder) {
         for (int i = 0 ; i < mCartList.size(); i++){
             mPresenter.insertOrderDetail(mCartList.get(i).getSize(), mCartList.get(i).getQuantity(),
-                    mCartList.get(i).getPrice() - (mCartList.get(i).getPrice() * mCartList.get(i).getDiscount() / 100) ,  idOrder, mCartList.get(i).getIdProduct());
+                    (mCartList.get(i).getPrice() - (mCartList.get(i).getPrice() * mCartList.get(i).getDiscount() / 100)) * mCartList.get(i).getQuantity() ,  idOrder, mCartList.get(i).getIdProduct());
         }
         UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_SUCCESS);
         mProgressDialog.dismiss();
+        mPresenter.nextActivity(this, FinishOrderActivity.class);
+        finish();
     }
 
     @Override
@@ -115,14 +119,14 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
              payments = mBinding.tvOn.getText().toString();
              peacefulState = AppConstants.PEACEFUL_STATE_OK;
         }
-        String deliveryStatus = AppConstants.DELIVERY_STATUS;
+        String deliveryStatus = AppConstants.DELIVERY_STATUS_WAIT_CONFIRM;
         String reasonCancel = "";
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOrder.getText().toString());
         if (mDiscount != null){
             idDiscount = String.valueOf(mDiscount.getId());
         }
         int idAddress = mAddress.getId();
-        mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, reasonCancel ,price, idDiscount, idAddress  ,peacefulState);
+        mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, reasonCancel ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
     }
 
 

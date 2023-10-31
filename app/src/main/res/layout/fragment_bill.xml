@@ -98,29 +98,24 @@
         app:tabIndicatorColor="@color/primary">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_wait_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_wait_confirm"/>
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_wait_delivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_wait_delivery"/>
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_delivering"
-            android:id="@+id/tab_delivering"/>
+            android:text="@string/text_delivering" />
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab_delivered"
             android:text="@string/text_delivered"/>
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab_cancel"
             android:text="@string/text_cancel"/>
     </com.google.android.material.tabs.TabLayout>
 
@@ -133,36 +128,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView5">
-
-        <ImageView
-            android:id="@+id/iv_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_listandpen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/sf_pro_display_regular"
-            android:text="@string/text_empty_bill"
-            android:textColor="@color/text2"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_empty" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

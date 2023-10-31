@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.oderDetail;
+package com.example.shopclothes.view.activity.order.oderDetail;
 
 import androidx.appcompat.app.AppCompatActivity;
 

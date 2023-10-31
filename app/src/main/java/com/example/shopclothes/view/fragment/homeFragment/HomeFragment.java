@@ -1,5 +1,6 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         onClick();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void onClick() {
         mBinding.btnSeeProuctNew.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductNewActivity.class));
         mBinding.btnSeeAllProductOutstanding.setOnClickListener(view -> mPresenter.nextActivity(getContext(), ProductOutstandingActivity.class));

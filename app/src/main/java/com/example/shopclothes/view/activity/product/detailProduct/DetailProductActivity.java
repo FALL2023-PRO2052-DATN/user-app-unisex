@@ -7,14 +7,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.adapter.AdapterComment;
 import com.example.shopclothes.adapter.AdapterProduct;
-import com.example.shopclothes.adapter.MyBottomSheet;
+import com.example.shopclothes.adapter.MyBottomSheetCart;
 import com.example.shopclothes.databinding.ActivityDetailProductBinding;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Comment;
@@ -142,7 +140,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
 
     @Override
     public void openBottomSheetDialogFragment(Product product, List<Size> list) {
-        MyBottomSheet myBottomSheet = new MyBottomSheet(product, list, new DetailProductPresenter(this));
+        MyBottomSheetCart myBottomSheet = new MyBottomSheetCart(product, list, new DetailProductPresenter(this));
         myBottomSheet.show(getSupportFragmentManager(), myBottomSheet.getTag());
     }
 

@@ -3,6 +3,7 @@ package com.example.shopclothes.utils;
 import android.annotation.SuppressLint;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -17,20 +18,18 @@ public class FormatUtils {
     }
 
     public static double parseCurrency(String formattedPrice) {
-        // Loại bỏ ký tự "₫" cuối cùng
-        formattedPrice = formattedPrice.replace("₫", "");
-        // Loại bỏ tất cả các khoảng trắng
-        formattedPrice = formattedPrice.replaceAll("\\s", "");
-        // Định dạng chuỗi thành giá trị số
-        double parsedPrice = 0;
+
+        formattedPrice = formattedPrice.replace("₫", "").replaceAll("\\.", "").trim().replaceAll(",", ".");
+        double price = 0;
         try {
             NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
-            parsedPrice = numberFormat.parse(formattedPrice).doubleValue();
-        } catch (java.text.ParseException e) {
+            price = numberFormat.parse(formattedPrice).doubleValue();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
-        return parsedPrice;
+        return price;
     }
+
 
     public static String formatDate(Date date) {
         // Định dạng ngày theo kiểu "dd/mm/yyyy TT"

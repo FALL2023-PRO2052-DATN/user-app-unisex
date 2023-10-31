@@ -16,12 +16,12 @@ import com.example.shopclothes.databinding.ActivityCartBinding;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.utils.FormatUtils;
 import com.example.shopclothes.utils.UIUtils;
-import com.example.shopclothes.view.activity.order.OrderActivity;
-import com.example.shopclothes.view.activity.product.detailProduct.DetailProductActivity;
+import com.example.shopclothes.view.activity.order.order.OrderActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity implements CartContract.View {
@@ -47,19 +47,24 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     }
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
+        Collections.reverse(cartList);
         adapterCart = new AdapterCart(cartList, this, new CartPresenter(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rcvCart.setLayoutManager(layoutManager);
         mBinding.rcvCart.setAdapter(adapterCart);
-        Log.d("LIST", cartList.toString());
+
     }
     @SuppressLint("SetTextI18n")
     @Override
     public void itemCartClick(double sumPrice, boolean check, boolean checkItem) {
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOderCart.getText().toString());
+        Log.e("TAG", "itemCartClick: " + price );
+        // nếu item đc chọn
         if (checkItem){
+            // lấy tổng giá
             int number = Integer.parseInt(mBinding.tvNumberOderCart.getText().toString().substring(1, mBinding.tvNumberOderCart.getText().toString().length()-1));
             if (check){
+                // cộng
                 mBinding.tvPriceOderCart.setText(FormatUtils.formatCurrency(price + sumPrice));
                 mBinding.tvNumberOderCart.setText("(" + (number + 1) + ")");
             }else {
@@ -91,8 +96,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
 
     @Override
     public void onListUpdate(List<Cart> cartList) {
-        adapterCart.setList(cartList);
-        Log.d("l", cartList.toString());
+
     }
 
     @Override

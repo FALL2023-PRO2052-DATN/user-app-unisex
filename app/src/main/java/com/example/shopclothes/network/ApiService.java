@@ -8,6 +8,7 @@ import com.example.shopclothes.view.activity.order.response.ResponseOrder;
 import com.example.shopclothes.view.activity.product.response.ResponseComment;
 import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 import com.example.shopclothes.view.activity.product.response.ResponseSize;
+import com.example.shopclothes.view.fragment.billFragment.ResponseBill;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
 
@@ -103,7 +104,8 @@ public interface ApiService {
                                     @Field("thanh_tien") double price,
                                     @Field("giam_gia_id") String idDiscount,
                                     @Field("dia_chi_id") int idAddress,
-                                    @Field("trang_thai_thanh_toan") String peacefulState);
+                                    @Field("trang_thai_thanh_toan") String peacefulState,
+                                    @Field("so_luong_don_hang") int quantityBill);
 
     @POST(ManagerUrl.INSERT_DETAIL_ORDER)
     @FormUrlEncoded
@@ -112,5 +114,15 @@ public interface ApiService {
                                     @Field("don_gia") double price,
                                     @Field("don_hang_id") String idDonHang,
                                     @Field("san_pham_id") int idProduct);
+
+    //bill
+    @POST(ManagerUrl.READ_BILL)
+    @FormUrlEncoded
+    Call<ResponseBill> readListBill(@Field("idUser") String idUser,
+                                    @Field("deliveryStatus") String deliveryStatus);
+    @POST(ManagerUrl.CANCEL_BILL)
+    @FormUrlEncoded
+    Call<ResponseBill> cancelBill(@Field("id") String id,
+                                    @Field("reasonCancel") String reasonCancel);
 
 }
