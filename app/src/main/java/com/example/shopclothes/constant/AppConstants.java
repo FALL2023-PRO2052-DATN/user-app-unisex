@@ -12,4 +12,9 @@ public class AppConstants {
     public static final String PEACEFUL_STATE_NOT = "Chưa thanh toán";
     public static final String PEACEFUL_STATE_OK = "Đã thanh toán";
     public static final String DELIVERY_STATUS = "Chờ xác nhận";
+    public static final String MESS_DELETE_ADDRESS = "Bạn muốn xóa địa chỉ này?";
+    public static final String CANCEL= "Hủy";
+    public static final String OK = "Xóa";
+
+    public static final String EXTRA_ADDRESS= "address_object";
 }

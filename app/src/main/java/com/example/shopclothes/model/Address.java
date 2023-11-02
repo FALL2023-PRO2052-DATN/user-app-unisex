@@ -2,7 +2,9 @@ package com.example.shopclothes.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private int id;
     @SerializedName("ho_va_ten")
     private String name;
@@ -12,7 +14,26 @@ public class Address {
     private String phone;
     @SerializedName("dia_chi")
     private String address;
+    @SerializedName("mac_dinh")
+    private int defaultStatus;
+    @SerializedName("nguoi_dung_id")
+    private String userId;
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public int getDefaultStatus() {
+        return defaultStatus;
+    }
+
+    public void setDefaultStatus(int defaultStatus) {
+        this.defaultStatus = defaultStatus;
+    }
 
     public int getId() {
         return id;
@@ -58,11 +79,13 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", defaultStatus=" + defaultStatus +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }
