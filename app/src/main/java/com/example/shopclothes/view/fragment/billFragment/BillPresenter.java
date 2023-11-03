@@ -1,5 +1,8 @@
 package com.example.shopclothes.view.fragment.billFragment;
 
+import android.content.Context;
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
 
 import com.example.shopclothes.constant.AppConstants;
@@ -32,5 +35,12 @@ public class BillPresenter implements BillContract.Presenter {
 
             }
         });
+    }
+
+    @Override
+    public void nextActivity(Context context, Class<?> activity, String id) {
+        Intent intent = new Intent(context, activity);
+        intent.putExtra("id", id);
+        context.startActivity(intent);
     }
 }

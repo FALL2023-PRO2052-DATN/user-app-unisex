@@ -14,6 +14,7 @@ import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemBillBinding;
 import com.example.shopclothes.model.Bill;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.view.fragment.billFragment.BillContract;
 
 import java.util.List;
 
@@ -22,12 +23,14 @@ public class AdapterBill extends RecyclerView.Adapter<AdapterBill.ViewHolder>{
     private final int selectTab;
     private final MyBottomSheetBill myBottomSheetBill;
     private final FragmentManager fragmentManager;
+    private final BillContract.View mView;
     @SuppressLint("NotifyDataSetChanged")
-    public AdapterBill(List<Bill> mList, int selectTab, MyBottomSheetBill bottomSheet, FragmentManager fragmentManager) {
+    public AdapterBill(List<Bill> mList, int selectTab, MyBottomSheetBill bottomSheet, FragmentManager fragmentManager, BillContract.View view) {
         this.mList = mList;
         this.selectTab = selectTab;
         this.myBottomSheetBill = bottomSheet;
         this.fragmentManager = fragmentManager;
+        this.mView = view;
     }
 
     @NonNull
@@ -41,6 +44,7 @@ public class AdapterBill extends RecyclerView.Adapter<AdapterBill.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Bill bill = mList.get(position);
         holder.bind(bill);
+        // ẩn hiện đánh giá, hủy
         switch (selectTab){
             case 0:
                 holder.mBinding.btnEvaluateBill.setVisibility(View.GONE);
@@ -55,17 +59,17 @@ public class AdapterBill extends RecyclerView.Adapter<AdapterBill.ViewHolder>{
                 holder.mBinding.btnCancelBill.setVisibility(View.GONE);
                 break;
         }
-        holder.mBinding.btnCancelBill.setOnClickListener(view -> {
-            myBottomSheetBill.show(fragmentManager, myBottomSheetBill.getTag());
-            myBottomSheetBill.setId(bill.getId());
-        });
-        if (bill.getQuantityBill() == 1){
-            holder.mBinding.ivLine.setVisibility(View.GONE);
-            holder.mBinding.tvSeeAllDetailBill.setVisibility(View.GONE);
-        }else {
-            holder.mBinding.ivLine.setVisibility(View.VISIBLE);
-            holder.mBinding.tvSeeAllDetailBill.setVisibility(View.VISIBLE);
+
+        // mở buttom sheet
+        if(fragmentManager != null) {
+            holder.mBinding.btnCancelBill.setOnClickListener(view -> {
+                myBottomSheetBill.show(fragmentManager, myBottomSheetBill.getTag());
+                myBottomSheetBill.setId(bill.getId());
+            });
         }
+
+        // xem theo sản phẩm
+        holder.mBinding.tvSeeAllDetailBill.setOnClickListener(view -> mView.nextScreenDetailBill(bill.getId()));
 
     }
 

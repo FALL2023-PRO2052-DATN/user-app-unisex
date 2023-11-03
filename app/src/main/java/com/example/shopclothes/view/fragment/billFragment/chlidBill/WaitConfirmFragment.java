@@ -18,6 +18,7 @@ import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentChildBillBinding;
 import com.example.shopclothes.model.Bill;
 import com.example.shopclothes.utils.ItemClickUtils;
+import com.example.shopclothes.view.activity.billDetail.BillDetailActivity;
 import com.example.shopclothes.view.fragment.billFragment.BillContract;
 import com.example.shopclothes.view.fragment.billFragment.BillPresenter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -66,12 +67,17 @@ public class WaitConfirmFragment extends Fragment implements BillContract.View, 
         }
         myBottomSheetBill = new MyBottomSheetBill();
         myBottomSheetBill.dismissBottomSheet(this);
-        AdapterBill adapterBill = new AdapterBill(billList, 0,  myBottomSheetBill, requireActivity().getSupportFragmentManager());
+        AdapterBill adapterBill = new AdapterBill(billList, 0,  myBottomSheetBill, requireActivity().getSupportFragmentManager(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         mBinding.rcvBill.setLayoutManager(layoutManager);
         mBinding.rcvBill.setAdapter(adapterBill);
         mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void nextScreenDetailBill(String id) {
+        mPresenter.nextActivity(getContext(), BillDetailActivity.class, id);
     }
 
     @Override

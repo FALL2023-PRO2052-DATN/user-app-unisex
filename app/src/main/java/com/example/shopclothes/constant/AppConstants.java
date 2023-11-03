@@ -20,4 +20,7 @@ public class AppConstants {
     public static final String DELIVERY_STATUS_CANCELED = "Đã hủy";
     public static final String PRODUCT = " Sản phẩm";
     public static final String USER = "Người dung: ";
+    public static final String PAYMENT = "Thanh toán khi nhận hàng";
+    public static final String PHONE = "(+84) ";
+    public static final String NO_DISCOUNT = "Không áp dụng";
 }

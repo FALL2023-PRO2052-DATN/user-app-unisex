@@ -21,6 +21,7 @@ import com.example.shopclothes.adapter.MyBottomSheetCart;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentChildBillBinding;
 import com.example.shopclothes.model.Bill;
+import com.example.shopclothes.view.activity.billDetail.BillDetailActivity;
 import com.example.shopclothes.view.activity.product.detailProduct.DetailProductPresenter;
 import com.example.shopclothes.view.fragment.billFragment.BillContract;
 import com.example.shopclothes.view.fragment.billFragment.BillPresenter;
@@ -67,12 +68,17 @@ public class WaitPickupFragment extends Fragment implements BillContract.View {
             mBinding.tvBill.setVisibility(View.VISIBLE);
         }
         MyBottomSheetBill myBottomSheetBill = new MyBottomSheetBill();
-        AdapterBill adapterBill = new AdapterBill(billList, 1,  myBottomSheetBill, requireActivity().getSupportFragmentManager());
+        AdapterBill adapterBill = new AdapterBill(billList, 1,  myBottomSheetBill, null, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         mBinding.rcvBill.setLayoutManager(layoutManager);
         mBinding.rcvBill.setAdapter(adapterBill);
         mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void nextScreenDetailBill(String id) {
+        mPresenter.nextActivity(getContext(), BillDetailActivity.class, id);
     }
 
 

@@ -21,12 +21,13 @@ public class MyPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-
+            case 0 : return new WaitConfirmFragment();
             case 1 : return  new WaitPickupFragment();
             case 2 : return  new DeliveringFragment();
             case 3 : return  new DeliveredFragment();
             case 4 : return  new CanceledFragment();
-            default:  return new WaitConfirmFragment();
+
+            default: throw new RuntimeException();
         }
     }
 

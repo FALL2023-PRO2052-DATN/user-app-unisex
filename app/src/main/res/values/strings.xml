@@ -58,7 +58,7 @@
     <string name="text_datetime_feedback">20/11/2023 - 21:12</string>
     <string name="text_see_all">Xem tất cả</string>
     <string name="text_product_relate">SẢN PHẨM LIÊN QUAN</string>
-    <string name="text_see_all_bill">Xem thêm sản phẩm</string>
+    <string name="text_see_all_bill">Xem chi tiết sản phẩm</string>
 
     <!-- TODO: cart -->
     <string name="title_cart">Giỏ hàng</string>

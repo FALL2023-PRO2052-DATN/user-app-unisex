@@ -1,6 +1,7 @@
 package com.example.shopclothes.network;
 
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
+import com.example.shopclothes.view.activity.billDetail.ResponseBillDetail;
 import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.example.shopclothes.view.activity.order.response.ResponseAddress;
 import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
@@ -123,6 +124,10 @@ public interface ApiService {
     @POST(ManagerUrl.CANCEL_BILL)
     @FormUrlEncoded
     Call<ResponseBill> cancelBill(@Field("id") String id,
-                                    @Field("reasonCancel") String reasonCancel);
+                                  @Field("reasonCancel") String reasonCancel);
+
+    @POST(ManagerUrl.READ_DETAIL_BILL)
+    @FormUrlEncoded
+    Call<ResponseBillDetail> readBillDetail(@Field("id") String id);
 
 }
