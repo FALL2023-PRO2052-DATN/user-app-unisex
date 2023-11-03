@@ -88,6 +88,30 @@ public interface ApiService {
     @POST(ManagerUrl.READ_ADDRESS)
     @FormUrlEncoded
     Call<ResponseAddress> readAddress(@Field("userId") String userId);
+    @POST(ManagerUrl.GET_LIST_ADDRESS)
+    @FormUrlEncoded
+    Call<ResponseAddress> getListAddress(@Field("userId") String userId);
+    @POST(ManagerUrl.INSERT_ADDRESS)
+    @FormUrlEncoded
+    Call<ResponseAddress> insertAddress(@Field("id") int id,
+                                        @Field("fullname") String name,
+                                        @Field("email") String email,
+                                        @Field("phone") String phone,
+                                        @Field("address") String address,
+                                        @Field("defaultStatus") int defaultStatus,
+                                        @Field("userId") String userId);
+    @POST(ManagerUrl.UPDATE_ADDRESS)
+    @FormUrlEncoded
+    Call<ResponseAddress> updateAddress(@Field("id") int id,
+                                        @Field("fullname") String name,
+                                        @Field("email") String email,
+                                        @Field("phone") String phone,
+                                        @Field("address") String address,
+                                        @Field("defaultStatus") int defaultStatus,
+                                        @Field("idDefault") int idDefault);
+    @POST(ManagerUrl.DELETE_ADDRESS)
+    @FormUrlEncoded
+    Call<ResponseAddress> deleteAddress(@Field("id") int id);
 
     // discount
     @POST(ManagerUrl.READ_DISCOUNT_BY_ID)

@@ -89,6 +89,7 @@
 
     <!-- TODO: address -->
     <string name="title_address">Địa chỉ của bạn</string>
+    <string name="titel_update_address">Chỉnh sửa địa chỉ</string>
     <string name="text_add_address">Thêm địa chỉ mới</string>
     <string name="name_address">Nguyễn Văn A</string>
     <string name="phone_address">(+84) 0907645271</string>

@@ -18,6 +18,9 @@
             android:name=".view.activity.order.finishOrder.FinishOrderActivity"
             android:exported="false" />
         <activity
+            android:name=".view.activity.address.updateAddress.UpdateAddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.billDetail.BillDetailActivity"
             android:exported="false" />
         <activity

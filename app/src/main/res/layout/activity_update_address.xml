@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.address.addAddress.AddAddressActivity">
+    tools:context=".view.activity.address.updateAddress.UpdateAddressActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/sf_pro_display_medium"
-                android:text="@string/title_address"
+                android:text="@string/titel_update_address"
                 android:textColor="@color/primary"
                 android:textSize="19sp" />
         </androidx.appcompat.widget.Toolbar>
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <EditText
-        android:id="@+id/et_fullname_address"
+        android:id="@+id/et_name_update_address"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/edittext_bottom_line"
@@ -83,11 +83,11 @@
         android:text="@string/text_email_add_address"
         android:textColor="@color/primary"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/et_fullname_address"
-        app:layout_constraintTop_toBottomOf="@+id/et_fullname_address" />
+        app:layout_constraintStart_toStartOf="@+id/et_name_update_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_name_update_address" />
 
     <EditText
-        android:id="@+id/et_email_address"
+        android:id="@+id/et_email_update_address"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -113,11 +113,11 @@
         android:text="@string/text_phone_add_address"
         android:textColor="@color/primary"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/et_email_address"
-        app:layout_constraintTop_toBottomOf="@+id/et_email_address" />
+        app:layout_constraintStart_toStartOf="@+id/et_email_update_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_email_update_address" />
 
     <EditText
-        android:id="@+id/et_phone_address"
+        android:id="@+id/et_phone_update_address"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -143,11 +143,11 @@
         android:text="@string/text_infor_add_address"
         android:textColor="@color/primary"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/et_phone_address"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_address" />
+        app:layout_constraintStart_toStartOf="@+id/et_phone_update_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_phone_update_address" />
 
     <EditText
-        android:id="@+id/et_infor_address"
+        android:id="@+id/et_infor_update_address"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -175,7 +175,7 @@
         android:background="@color/gray1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_infor_address">
+        app:layout_constraintTop_toBottomOf="@+id/et_infor_update_address">
 
         <TextView
             android:id="@+id/textView26"
@@ -206,7 +206,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/btn_save_address"
+        android:id="@+id/btn_update_address"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -219,7 +219,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
         <TextView
-            android:id="@+id/tv11111"
+            android:id="@+id/tv111121"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/sf_pro_display_medium"

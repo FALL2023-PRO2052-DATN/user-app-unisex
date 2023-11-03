@@ -23,4 +23,9 @@ public class AppConstants {
     public static final String PAYMENT = "Thanh toán khi nhận hàng";
     public static final String PHONE = "(+84) ";
     public static final String NO_DISCOUNT = "Không áp dụng";
+    public static final String DELIVERY_STATUS = "Chờ xác nhận";
+    public static final String MESS_DELETE_ADDRESS = "Bạn muốn xóa địa chỉ này?";
+    public static final String CANCEL= "Hủy";
+    public static final String OK = "Xóa";
+    public static final String EXTRA_ADDRESS= "address_object";
 }
