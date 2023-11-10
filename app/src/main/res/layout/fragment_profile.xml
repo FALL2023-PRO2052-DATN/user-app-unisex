@@ -42,6 +42,7 @@
             app:layout_constraintTop_toTopOf="@+id/iv_avt_setting" />
 
         <TextView
+            android:id="@+id/tv_email_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_regular"
