@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.shopclothes'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.shopclothes"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -60,6 +60,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     // glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
+    // Stripe Android SDK
+    implementation 'com.stripe:stripe-android:20.34.4'
 
 
 }

@@ -1,6 +1,10 @@
 package com.example.shopclothes.constant;
 
 public class AppConstants {
+
+    public final static String PUBLISHABLE_KEY = "pk_test_51OBJAqKSzL2WW6juKKkdFPl3blwqGDLgX8JXwkJgVaJjHu93csOCqu3784EhKbJhTfJSuEzeA6C43SsgD9wl8OEU00GuBudnJP";
+    public final static String SECRET_KEY = "sk_test_51OBJAqKSzL2WW6juryENvZwfcn8QKlFqwFoau4n4pbt4hb9SHV9fv3FhDCFMNSqJXtkFDXA7CFBP4eiQpNuKfD2200wpPqSGMv";
+
     public static final String ON_SUCCESS = "Thành công";
     public static final String ON_FAILURE = "Thất bại";
     public static final String ENTER_COMPLETE_INFORMATION = "Bạn cần nhập đầy đủ thông tin";
@@ -30,4 +34,5 @@ public class AppConstants {
     public static final String EXTRA_ADDRESS= "address_object";
     public static final String COMMENT= " dánh giá";
     public static final String NO_INFORMATION= "Bạn cần chọn địa chỉ để gia hàng";
+    public static final String CANCEL_PAYMENT= "Hủy thanh toán";
 }

@@ -50,4 +50,8 @@ public class FormatUtils {
         return decimalFormat.format(number).replace(",", ".");
 
     }
+
+    public static int formatCurrencyForInt(double price){
+        return (int) Math.ceil(price * 0.00004111  * 100);
+    }
 }

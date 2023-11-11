@@ -4,14 +4,20 @@ package com.example.shopclothes.view.activity.order.order;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
+import com.example.shopclothes.network.ApiServiceStripe;
 import com.example.shopclothes.view.activity.order.response.ResponseAddress;
 import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
+import com.example.shopclothes.view.activity.order.response.ResponseModel;
 import com.example.shopclothes.view.activity.order.response.ResponseOrder;
+import com.example.shopclothes.view.activity.order.response.ResponsePayment;
+import com.stripe.android.paymentsheet.PaymentSheet;
+import com.stripe.android.paymentsheet.PaymentSheetResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,11 +25,14 @@ import retrofit2.Response;
 
 public class OrderPresenter implements OrderContract.Presenter {
     private final OrderContract.View mView;
+    private String customerId;
+    private String ephemeraKey;
+    private String clientSecret;
+    private int priceBill;
 
     public OrderPresenter(OrderContract.View mView) {
         this.mView = mView;
     }
-
 
     @Override
     public void readAddress(String id) {
@@ -91,6 +100,7 @@ public class OrderPresenter implements OrderContract.Presenter {
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     mView.onInsertDetailOrder(true);
                 }else {
+                    mView.onInsertDetailOrder(false);
                     Log.d("ERR", response.body().getErr());
                 }
 
@@ -106,5 +116,60 @@ public class OrderPresenter implements OrderContract.Presenter {
     @Override
     public void nextActivity(Context context, Class<?> activity) {
         context.startActivity(new Intent(context, activity));
+    }
+
+    @Override
+    public void getCustomerId(int price) {
+        ApiServiceStripe.API_SERVICE_STRIPE.getCustomer().enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseModel> call, @NonNull Response<ResponseModel> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    customerId = response.body().getId();
+                    priceBill = price;
+                    getEphemeralKey(customerId);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseModel> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getEphemeralKey(String id) {
+        ApiServiceStripe.API_SERVICE_STRIPE.getEphemeralKey(id).enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseModel> call, @NonNull Response<ResponseModel> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    ephemeraKey = response.body().getId();
+                    getPaymentIntent(id);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseModel> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getPaymentIntent(String id) {
+        ApiServiceStripe.API_SERVICE_STRIPE.getPaymentIntent(id, priceBill, "usd", "card", "alipay").enqueue(new Callback<ResponsePayment>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponsePayment> call, @NonNull Response<ResponsePayment> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    clientSecret = response.body().getClient_secret();
+                    mView.paymentFlow(customerId, ephemeraKey, clientSecret);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponsePayment> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 }

@@ -12,6 +12,8 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterOrder;
@@ -26,6 +28,9 @@ import com.example.shopclothes.view.activity.address.address.AddressActivity;
 import com.example.shopclothes.view.activity.order.finishOrder.FinishOrderActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.stripe.android.PaymentConfiguration;
+import com.stripe.android.paymentsheet.PaymentSheet;
+import com.stripe.android.paymentsheet.PaymentSheetResult;
 
 import java.util.List;
 
@@ -37,6 +42,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     private Discount mDiscount;
     private Address mAddress;
     private List<Cart> mCartList;
+    private PaymentSheet paymentSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,8 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         mBinding = ActivityOrtherBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mPresenter = new OrderPresenter(this);
+        PaymentConfiguration.init(this, AppConstants.PUBLISHABLE_KEY);
+        paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
         onListProduct();
         initPresenter();
         onClick();
@@ -60,7 +68,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
             mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
             mPresenter.readDiscountById(mBinding.etApply.getText().toString().trim());
         } );
-        mBinding.btnOrder.setOnClickListener(view -> insertOrder());
+        mBinding.btnOrder.setOnClickListener(view -> insertOrderActivity());
     }
 
     @Override
@@ -127,27 +135,28 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     }
 
     @Override
-    public void insertOrder() {
+    public void insertOrderActivity() {
         mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
         String note = mBinding.etNoteOther.getText().toString();
-        String payments;
-        String peacefulState;
         String idDiscount = null;
-        if (mBinding.radioOf.isChecked()){
-             payments = mBinding.tvOf.getText().toString();
-             peacefulState = AppConstants.PEACEFUL_STATE_NOT;
-        }else {
-             payments = mBinding.tvOn.getText().toString();
-             peacefulState = AppConstants.PEACEFUL_STATE_OK;
-        }
         String deliveryStatus = AppConstants.DELIVERY_STATUS_WAIT_CONFIRM;
-        String reasonCancel = "";
+
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOrder.getText().toString());
+
         if (mDiscount != null){
             idDiscount = String.valueOf(mDiscount.getId());
         }
         int idAddress = mAddress.getId();
-        mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, reasonCancel ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
+
+        if (mBinding.radioOf.isChecked()){
+             String payments = mBinding.tvOf.getText().toString();
+             String peacefulState = AppConstants.PEACEFUL_STATE_NOT;
+             mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, "" ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
+        }else {
+            mPresenter.getCustomerId(FormatUtils.formatCurrencyForInt(price));
+        }
+
+
     }
 
 
@@ -173,6 +182,22 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
        }
     }
 
+    @Override
+    public void paymentFlow(String customerId, String ephemeralKey, String clientSelect) {
+        PaymentSheet.CustomerConfiguration customerConfig = new PaymentSheet.CustomerConfiguration(
+                customerId,
+                ephemeralKey
+        );
+        final PaymentSheet.Configuration configuration = new PaymentSheet.Configuration.Builder("Shop Unisex")
+                .customer(customerConfig)
+                .allowsDelayedPaymentMethods(true)
+                .build();
+        paymentSheet.presentWithPaymentIntent(
+                clientSelect,
+                configuration
+        );
+    }
+
     @SuppressLint("SetTextI18n")
     private final ActivityResultLauncher<Intent> mLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -190,5 +215,28 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
                 }
 
     });
+    @Override
+    public void onPaymentSheetResult(PaymentSheetResult paymentSheetResult) {
+        // implemented in the next steps
+        if (paymentSheetResult instanceof PaymentSheetResult.Canceled) {
+            UIUtils.showMessage(mBinding.getRoot(), AppConstants.CANCEL_PAYMENT);
+            mProgressDialog.dismiss();
+        } else if (paymentSheetResult instanceof PaymentSheetResult.Failed) {
+            Log.e("TagERR", "Got error: ", ((PaymentSheetResult.Failed) paymentSheetResult).getError());
+            mProgressDialog.dismiss();
+        } else if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
 
+            String note = mBinding.etNoteOther.getText().toString();
+            String idDiscount = null;
+            String deliveryStatus = AppConstants.DELIVERY_STATUS_WAIT_CONFIRM;
+            double price = FormatUtils.parseCurrency(mBinding.tvPriceOrder.getText().toString());
+            if (mDiscount != null){
+                idDiscount = String.valueOf(mDiscount.getId());
+            }
+            int idAddress = mAddress.getId();
+            String payments = mBinding.tvOn.getText().toString();
+            String peacefulState = AppConstants.PEACEFUL_STATE_OK;
+            mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, "" ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
+        }
+    }
 }
