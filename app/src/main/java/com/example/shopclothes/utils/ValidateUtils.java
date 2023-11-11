@@ -26,5 +26,13 @@ public class ValidateUtils {
         }
         return false;
     }
+    public static boolean validateChangePasswordIsEmpty(String password, String passwordNew, String passwordNewAgain){
+         return !password.isEmpty() && !passwordNew.isEmpty() && !passwordNewAgain.isEmpty();
+    }
+
+    public static boolean validateChangePasswordEqual(String passwordNew, String passwordNewAgain){
+        return passwordNewAgain.equals(passwordNew);
+    }
+
 
 }

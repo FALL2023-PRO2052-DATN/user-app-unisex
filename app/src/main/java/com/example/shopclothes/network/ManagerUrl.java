@@ -1,6 +1,7 @@
 package com.example.shopclothes.network;
 
 public class ManagerUrl {
+
     public static final String BASE_URL = "http://172.16.49.149:3000/api/";
 
     // user
@@ -52,4 +53,7 @@ public class ManagerUrl {
     public static final String CANCEL_BILL = "cancel-bill";
     public static final String READ_DETAIL_BILL = "read-detail-bill";
 
+    //setting
+    public static final String UPDATE_INF_USER = "update-user";
+    public static final String READ_USER = "read-user";
 }

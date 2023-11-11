@@ -171,4 +171,11 @@
     <string name="text_rating_see_all">4.5</string>
     <string name="text_all">Tất cả</string>
     <string name="text_number">/5</string>
+
+    <!-- TODO: changePassWord -->
+    <string name="titel_changepass">Đổi mật khẩu</string>
+    <string name="text_passold">Mật khẩu hiện tại</string>
+    <string name="text_passnew">Mật khẩu mới</string>
+    <string name="title_up_infor">Cập nhật thông tin khách hàng</string>
+    <string name="title_name_up_infor">Họ và tên</string>
 </resources>

@@ -34,6 +34,15 @@ public interface ApiService {
     @FormUrlEncoded
     Call<ResponseUser> insertUser (@Field("id") String id);
 
+    @POST(ManagerUrl.UPDATE_INF_USER)
+    @FormUrlEncoded
+    Call<ResponseUser> updateUser (@Field("id") String id,
+                                   @Field("fullname") String fullname,
+                                   @Field("image") String image);
+    @POST(ManagerUrl.READ_USER)
+    @FormUrlEncoded
+    Call<ResponseUser> readUser (@Field("id") String id);
+
     // banner
     @GET(ManagerUrl.READ_BANNER)
     Call<ResponseBanner> readBanner();
