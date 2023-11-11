@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.network.ApiService;
+import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.example.shopclothes.view.activity.product.response.ResponseProduct;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
@@ -125,6 +126,24 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback {
 
             @Override
             public void onFailure(@NonNull Call<ResponseProduct> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void readListCartByIdUser(String id) {
+        ApiService.API_SERVICE.readCartById(id).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onListCartByIdUser(response.body().getCartList());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
 
             }
         });

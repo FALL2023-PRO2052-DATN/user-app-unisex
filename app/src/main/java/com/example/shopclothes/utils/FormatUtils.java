@@ -2,6 +2,7 @@ package com.example.shopclothes.utils;
 
 import android.annotation.SuppressLint;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,5 +43,11 @@ public class FormatUtils {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String timestamp = dateFormat.format(new Date());
         return uni+timestamp;
+    }
+
+    public static String formatRating(double number){
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        return decimalFormat.format(number).replace(",", ".");
+
     }
 }

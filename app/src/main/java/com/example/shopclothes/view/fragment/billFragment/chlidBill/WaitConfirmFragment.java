@@ -81,6 +81,11 @@ public class WaitConfirmFragment extends Fragment implements BillContract.View, 
     }
 
     @Override
+    public void nextScreenComment(String id) {
+
+    }
+
+    @Override
     public void onBottomSheetDismissed() {
         sendDataToParentFragment();
         myBottomSheetBill.dismiss();

@@ -28,4 +28,6 @@ public class AppConstants {
     public static final String CANCEL= "Hủy";
     public static final String OK = "Xóa";
     public static final String EXTRA_ADDRESS= "address_object";
+    public static final String COMMENT= " dánh giá";
+    public static final String NO_INFORMATION= "Bạn cần chọn địa chỉ để gia hàng";
 }

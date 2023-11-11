@@ -75,4 +75,9 @@ public class CanceledFragment extends Fragment implements BillContract.View {
     public void nextScreenDetailBill(String id) {
         mPresenter.nextActivity(getContext(), BillDetailActivity.class, id);
     }
+
+    @Override
+    public void nextScreenComment(String id) {
+
+    }
 }

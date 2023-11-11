@@ -20,6 +20,7 @@ import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.Size;
 import com.example.shopclothes.utils.FormatUtils;
 import com.example.shopclothes.view.activity.cart.CartActivity;
+import com.example.shopclothes.view.activity.comment.seeComment.SeeCommentActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -29,7 +30,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class DetailProductActivity extends AppCompatActivity implements DetailProductContract.View {
     private ActivityDetailProductBinding mBinding;
     private DetailProductContract.Presenter mPresenter;
-    List<Size> mListSize;
+    private List<Size> mListSize;
+    private  int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +47,18 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     public void onClick() {
         mBinding.btnCartDetailProduct.setOnClickListener(view -> startActivity(new Intent(this, CartActivity.class)));
         mBinding.ivBackDetail.setOnClickListener(view -> onBackPressed());
+        mBinding.tvSeeAll.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SeeCommentActivity.class);
+            intent.putExtra("id", id);
+            startActivity(intent);
+        });
     }
 
     @Override
     public void initPresenter() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 0);
+        id = intent.getIntExtra("id", 0);
         mPresenter.getProduct(id);
         mPresenter.getListCommentById(id);
         mPresenter.getListSizeByIdProduct(id);
@@ -80,12 +87,12 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     @SuppressLint("SetTextI18n")
     @Override
     public void onListComment(List<Comment> list) {
-        AdapterComment adapter = new AdapterComment(list);
+        AdapterComment adapter = new AdapterComment(list, 1);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rcvCommentDetail.setLayoutManager(layoutManager);
         mBinding.rcvCommentDetail.setAdapter(adapter);
         mBinding.ratringBar.setRating(averageRating(list));
-        mBinding.tvRatingComment.setText(averageRating(list) + "/5");
+        mBinding.tvRatingComment.setText(FormatUtils.formatRating(averageRating(list)) + "/5");
         mBinding.tvNumberComment.setText("("+list.size()+")");
     }
 
@@ -142,6 +149,14 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     public void openBottomSheetDialogFragment(Product product, List<Size> list) {
         MyBottomSheetCart myBottomSheet = new MyBottomSheetCart(product, list, new DetailProductPresenter(this));
         myBottomSheet.show(getSupportFragmentManager(), myBottomSheet.getTag());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        mPresenter.getListCartByIdUser(user.getUid());
     }
 
 }

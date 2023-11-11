@@ -10,14 +10,24 @@ import android.view.ViewGroup;
 import com.example.shopclothes.adapter.MyPagerAdapter;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentBillBinding;
+import com.example.shopclothes.model.Cart;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class BillFragment extends Fragment {
+import java.util.List;
+
+public class BillFragment extends Fragment implements BillContract.View.ViewParents {
 
     private FragmentBillBinding mBinding;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BillContract.Presenter mPresenter = new BillPresenter(this);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        mPresenter.readListCartByIdUser(user.getUid());
     }
 
     @Override
@@ -55,5 +65,10 @@ public class BillFragment extends Fragment {
                 mBinding.viewPager.setCurrentItem(data);
             }
         });
+    }
+
+    @Override
+    public void onListCartByIdUser(List<Cart> cartList) {
+        mBinding.tvQuantityBill.setText(String.valueOf(cartList.size()));
     }
 }

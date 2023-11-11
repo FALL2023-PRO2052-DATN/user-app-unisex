@@ -3,6 +3,7 @@ package com.example.shopclothes.network;
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
 import com.example.shopclothes.view.activity.billDetail.ResponseBillDetail;
 import com.example.shopclothes.view.activity.cart.ResponseCart;
+import com.example.shopclothes.view.activity.comment.addComment.ResponseProductComment;
 import com.example.shopclothes.view.activity.order.response.ResponseAddress;
 import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
 import com.example.shopclothes.view.activity.order.response.ResponseOrder;
@@ -50,25 +51,37 @@ public interface ApiService {
     @POST(ManagerUrl.READ_PRODUCT_ID)
     @FormUrlEncoded
     Call<ResponseProduct> readProductById(@Field("id") int id);
+    @POST(ManagerUrl.READ_PRODUCT_COMMENT)
+    @FormUrlEncoded
+    Call<ResponseProductComment> readProductByIdForComment(@Field("id") String id);
+
     // type product
     @GET(ManagerUrl.READ_TYPE_PRODUCT)
     Call<ResponseTypeProduct> readTypeProduct();
+
     // comment
     @POST(ManagerUrl.READ_COMMENT_ID)
     @FormUrlEncoded
     Call<ResponseComment> readCommentById(@Field("id") int id);
+    @POST(ManagerUrl.INSERT_COMMENT)
+    @FormUrlEncoded
+    Call<ResponseComment> insertComment(@Field("pointComment") double pointRating,
+                                        @Field("content") String content,
+                                        @Field("idUser") String idUser,
+                                        @Field("idProduct") int idProduct);
+
+
     // size
     @POST(ManagerUrl.READ_SIZE_ID_PRODUCT)
     @FormUrlEncoded
     Call<ResponseSize> readSizeByIdProduct(@Field("id") int id);
+
     // cart
     @POST(ManagerUrl.READ_CART_BY_ID_USER)
     @FormUrlEncoded
     Call<ResponseCart> readCartById(@Field("id") String id);
-
     @GET(ManagerUrl.READ_CART)
     Call<ResponseCart> readCart();
-
     @POST(ManagerUrl.INSERT_CART)
     @FormUrlEncoded
     Call<ResponseCart> insertCart(@Field("quantity") int quantity,

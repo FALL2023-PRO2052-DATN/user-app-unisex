@@ -160,4 +160,15 @@
     <string name="text_home_bill">Trang chủ</string>
     <string name="text_bill">Đơn mua</string>
     <string name="text_like">Có thể bạn cũng thích</string>
+
+    <!-- TODO: see all comment -->
+    <string name="text_title">Đánh giá sản phẩm</string>
+    <string name="text_sen">Gửi</string>
+    <string name="text_comment">Chất lượng sản phẩm</string>
+    <string name="text_comment_e">Tuyệt vời</string>
+    <string name="text_share_comment">Hãy chia sẽ nhận xét cho sản phẩm này bạn nhé!</string>
+    <string name="text_see_comment">Đánh giá</string>
+    <string name="text_rating_see_all">4.5</string>
+    <string name="text_all">Tất cả</string>
+    <string name="text_number">/5</string>
 </resources>

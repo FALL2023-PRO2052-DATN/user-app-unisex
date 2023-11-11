@@ -70,6 +70,8 @@ public class AdapterBill extends RecyclerView.Adapter<AdapterBill.ViewHolder>{
 
         // xem theo sản phẩm
         holder.mBinding.tvSeeAllDetailBill.setOnClickListener(view -> mView.nextScreenDetailBill(bill.getId()));
+        // xem theo sản phẩm
+        holder.mBinding.btnEvaluateBill.setOnClickListener(view -> mView.nextScreenComment(bill.getId()));
 
     }
 

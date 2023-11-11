@@ -17,9 +17,15 @@ import java.util.List;
 public class AdapterComment extends RecyclerView.Adapter<AdapterComment.ViewHolder> {
 
     private final List<Comment> mList;
+    /*
+       selectScreen = 1 -> màn comment của xem chi tiết sản phẩm
+       selectScreen = 0 -> màn comment của xem tất cả đánh giá
+     */
+    private final int selectedScreen;
 
-    public AdapterComment(List<Comment> mList) {
+    public AdapterComment(List<Comment> mList, int selectedScreen) {
         this.mList = mList;
+        this.selectedScreen = selectedScreen;
     }
 
     @NonNull
@@ -37,7 +43,7 @@ public class AdapterComment extends RecyclerView.Adapter<AdapterComment.ViewHold
 
     @Override
     public int getItemCount() {
-        return  mList != null ? Math.min(mList.size(), 3) : 0;
+        return (selectedScreen == 1 && mList != null) ? Math.min(mList.size(), 3) : (mList != null ? mList.size() : 0);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

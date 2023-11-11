@@ -1,12 +1,19 @@
 package com.example.shopclothes.view.activity.order.order;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterOrder;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityOrtherBinding;
@@ -44,7 +51,10 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
 
     @Override
     public void onClick() {
-        mBinding.ivNextOther.setOnClickListener(view -> mPresenter.nextActivity(this, AddressActivity.class));
+        mBinding.ivNextOther.setOnClickListener(view -> {
+           Intent intent1 = new Intent(this, AddressActivity.class);
+           mLauncher.launch(intent1);
+        });
         mBinding.ivBackOrder.setOnClickListener(view -> onBackPressed());
         mBinding.btnApply.setOnClickListener(view ->{
             mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
@@ -75,11 +85,22 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     @SuppressLint("SetTextI18n")
     @Override
     public void onAddress(Address address) {
-        mBinding.tvNameOther.setText(address.getName());
-        mBinding.tvPhoneOther.setText( "(84+) " +address.getPhone());
-        mBinding.tvEmailOther.setText(address.getEmail());
-        mBinding.tvAddressOther.setText(address.getAddress());
-        mAddress = address;
+        if (address != null){
+            mBinding.tvNameOther.setText(address.getName());
+            mBinding.tvPhoneOther.setText( "(84+) " +address.getPhone());
+            mBinding.tvEmailOther.setText(address.getEmail());
+            mBinding.tvAddressOther.setText(address.getAddress());
+            mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
+            mBinding.btnOrder.setEnabled(true);
+            mAddress = address;
+        }else {
+            mBinding.tvNameOther.setText(AppConstants.NO_INFORMATION);
+            mBinding.tvPhoneOther.setText("");
+            mBinding.tvEmailOther.setText("");
+            mBinding.tvAddressOther.setText("");
+            mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.linear));
+            mBinding.btnOrder.setEnabled(false);
+        }
     }
 
     @Override
@@ -151,5 +172,23 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
            UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_FAILURE);
        }
     }
+
+    @SuppressLint("SetTextI18n")
+    private final ActivityResultLauncher<Intent> mLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                if (result.getResultCode() == RESULT_OK){
+                    Intent intent = result.getData();
+                    assert intent != null;
+                    Address address = (Address) intent.getSerializableExtra("data_address");
+                    mBinding.tvNameOther.setText(address.getName());
+                    mBinding.tvPhoneOther.setText( "(84+) " +address.getPhone());
+                    mBinding.tvEmailOther.setText(address.getEmail());
+                    mBinding.tvAddressOther.setText(address.getAddress());
+                    mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
+                    mBinding.btnOrder.setEnabled(true);
+                }
+
+    });
 
 }

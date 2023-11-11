@@ -118,13 +118,11 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
            if (mBinding.checkBoxCart.isChecked()){
                mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, true, true);
                mListNew.add(cart);
-               Log.e("TAG", "checkBox: " + (cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity);
                mView.listCartClick(mListNew);
                selectedItemsCount++;
            }else {
                mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true);
                mListNew.remove(cart);
-               Log.e("TAG", "checkBox: " + (cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity);
                mView.listCartClick(mListNew);
                selectedItemsCount--;
            }

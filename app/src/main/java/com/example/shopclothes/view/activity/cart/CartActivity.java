@@ -26,14 +26,14 @@ import java.util.List;
 
 public class CartActivity extends AppCompatActivity implements CartContract.View {
     private ActivityCartBinding mBinding;
-    private AdapterCart adapterCart;
+    private CartContract.Presenter mPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         onClick();
-        CartContract.Presenter mPresenter = new CartPresenter(this);
+        mPresenter = new CartPresenter(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         mPresenter.readListCartByIdUser(user.getUid());
@@ -48,7 +48,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
         Collections.reverse(cartList);
-        adapterCart = new AdapterCart(cartList, this, new CartPresenter(this));
+        AdapterCart adapterCart = new AdapterCart(cartList, this, new CartPresenter(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rcvCart.setLayoutManager(layoutManager);
         mBinding.rcvCart.setAdapter(adapterCart);
@@ -94,9 +94,15 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         UIUtils.showMessage(mBinding.getRoot(), message);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onListUpdate(List<Cart> cartList) {
-
+    public void onListUpdate() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        mPresenter.readListCartByIdUser(user.getUid());
+        mBinding.tvPriceOderCart.setText(FormatUtils.formatCurrency(0));
+        mBinding.tvNumberOderCart.setText("(" + 0 + ")");
+        selectedItemsCount(0);
     }
 
     @Override
@@ -109,4 +115,5 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
             mBinding.btnOtherCart.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
         }
     }
+
 }

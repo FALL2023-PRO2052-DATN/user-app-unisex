@@ -2,6 +2,7 @@ package com.example.shopclothes.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -17,14 +18,15 @@ import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemAddressBinding;
 import com.example.shopclothes.model.Address;
 import com.example.shopclothes.view.activity.address.address.AddressContract;
+import com.example.shopclothes.view.activity.order.order.OrderActivity;
 
 import java.util.List;
 
 public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.AdapterViewHolder> {
     private List<Address> addressList;
-    private AddressContract.View view;
-    private AddressContract.Presenter mPresenter;
-    private Context context;
+    private final AddressContract.View view;
+    private final AddressContract.Presenter mPresenter;
+    private final Context context;
 
     public AdapterAddress(AddressContract.View view, AddressContract.Presenter mPresenter, Context context) {
         this.view = view;
@@ -46,6 +48,7 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.AdapterV
         return new AdapterViewHolder(addressBinding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
         Address address = addressList.get(position);
@@ -63,8 +66,11 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.AdapterV
             holder.itemAddressBinding.tvDefaultStatus.setVisibility(View.GONE);
         }
         holder.itemAddressBinding.ivMenu.setOnClickListener(view -> showPopupEdit(holder, address));
+        holder.itemAddressBinding.layoutAddress.setOnClickListener(view1 -> view.launchResultOrderActivity(address));
     }
 
+
+    @SuppressLint("NonConstantResourceId")
     private void showPopupEdit(@NonNull AdapterViewHolder holder, Address address){
         PopupMenu popupMenu = new PopupMenu(holder.itemView.getContext(), holder.itemAddressBinding.ivMenu);
         MenuInflater menuInflater = popupMenu.getMenuInflater();

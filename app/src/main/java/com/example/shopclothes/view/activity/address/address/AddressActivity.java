@@ -19,6 +19,7 @@ import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.address.addAddress.AddAddressActivity;
 import com.example.shopclothes.view.activity.address.updateAddress.UpdateAddressActivity;
+import com.example.shopclothes.view.activity.order.order.OrderActivity;
 import com.example.shopclothes.view.activity.product.detailProduct.DetailProductActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -96,6 +97,14 @@ public class AddressActivity extends AppCompatActivity implements AddressContrac
         intent.putExtra("address", address);
         intent.putExtra("idDefault", idDefault);
         startActivity(intent);
+    }
+
+    @Override
+    public void launchResultOrderActivity(Address address) {
+        Intent intent = new Intent(this, OrderActivity.class);
+        intent.putExtra("data_address", address);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

@@ -43,7 +43,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/textView3"
+                            android:id="@+id/tv_quantity_home"
                             android:layout_width="19dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"

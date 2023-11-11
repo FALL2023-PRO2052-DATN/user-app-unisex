@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.shopclothes.model.Banner;
+import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.TypeProduct;
 
@@ -20,6 +21,7 @@ public interface HomeContract {
         void onListTypeProduct(List<TypeProduct> list);
         void onItemClickListener(int id);
         void onListProductById(List<Product> list);
+        void onListCartByIdUser(List<Cart> cartList);
     }
     interface Presenter {
         void getListBanner();
@@ -28,6 +30,7 @@ public interface HomeContract {
         void getListProductAll();
         void getListTypeProduct();
         void getListProductByIdCategory(int id);
+        void readListCartByIdUser(String id);
         void autoNextBanner(ViewPager2 pager2,  List<Banner> list);
         void nextActivity(Context context, Class<?> activity);
     }

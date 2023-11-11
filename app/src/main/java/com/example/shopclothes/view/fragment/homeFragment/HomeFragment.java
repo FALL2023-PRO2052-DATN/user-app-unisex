@@ -18,12 +18,15 @@ import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.AdapterTypeProduct;
 import com.example.shopclothes.databinding.FragmentHomeBinding;
 import com.example.shopclothes.model.Banner;
+import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.TypeProduct;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
 import com.example.shopclothes.view.activity.product.productOutstanding.ProductOutstandingActivity;
 import com.example.shopclothes.view.activity.search.SearchActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -48,6 +51,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        mPresenter.readListCartByIdUser(user.getUid());
         mPresenter.getListBanner();
         mPresenter.getListProductNew();
         mPresenter.getListProductOutstanding();
@@ -130,4 +136,16 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mBinding.rcvProductAll.setAdapter(adapter);
     }
 
+    @Override
+    public void onListCartByIdUser(List<Cart> cartList) {
+        mBinding.tvQuantityHome.setText(String.valueOf(cartList.size()));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        mPresenter.readListCartByIdUser(user.getUid());
+    }
 }

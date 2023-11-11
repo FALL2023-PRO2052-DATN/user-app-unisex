@@ -8,6 +8,7 @@ public interface AddressContract {
     interface View{
         void onListAddressAll(List<Address> list);
         void launchAddressUpdateActivity(Address address);
+        void launchResultOrderActivity(Address address);
         void onMessage(String message);
     }
     interface Presenter{
