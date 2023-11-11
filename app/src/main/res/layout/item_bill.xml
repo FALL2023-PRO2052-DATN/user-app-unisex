@@ -3,7 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView231312"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/line_item_add_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutImg" />
 
     <ImageView
         android:id="@+id/imageView18"
@@ -16,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_code_bill"
+        android:id="@+id/tv_id_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_display_regular"
@@ -48,21 +60,23 @@
 
             <ImageView
                 android:id="@+id/iv_product_bill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@drawable/demo_item_other" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_name_product_bill"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/sf_pro_display_medium"
         android:text="@string/text_name_product"
         android:textColor="@color/text1"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/layoutImg"
         app:layout_constraintTop_toTopOf="@+id/layoutImg" />
 
@@ -103,28 +117,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
+    <TextView
+        android:id="@+id/tv_quantity_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textColor="@color/linear"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_price_product_bill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_size_product_bill" />
+
+    <TextView
+        android:id="@+id/tv_see_all_detail_bill"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:gravity="center"
+        android:text="@string/text_see_all_bill"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView231312" />
+
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/iv_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/line_item_add_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutImg" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_see_all_detail_bill" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
         android:layout_marginTop="14dp"
-        android:fontFamily="@font/sf_pro_display_regular"
+        android:layout_marginEnd="14dp"
+        android:fontFamily="@font/sf_pro_display_medium"
         android:text="@string/text_total_price"
-        android:textColor="@color/text1"
+        android:textColor="@color/primary"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+        app:layout_constraintEnd_toStartOf="@+id/tv_total_price_product_bill"
+        app:layout_constraintTop_toBottomOf="@+id/iv_line" />
 
     <TextView
         android:id="@+id/tv_total_price_product_bill"
@@ -137,6 +176,18 @@
         android:layout_marginEnd="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView29"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+    <TextView
+        android:id="@+id/tv_quantity_cart_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textColor="@color/linear"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView29"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView29" />
 
     <ImageView
@@ -176,11 +227,13 @@
         android:id="@+id/btn_evaluate_bill"
         android:layout_width="129dp"
         android:layout_height="43dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="14dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_button_login"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_cancel_bill"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancel_bill"
-        app:layout_constraintTop_toTopOf="@+id/btn_cancel_bill">
+        app:layout_constraintTop_toBottomOf="@+id/imageView20">
 
         <TextView
             android:layout_width="match_parent"

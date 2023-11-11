@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.shopclothes.R;
@@ -24,8 +25,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mBinding.getRoot());
         switchFragment(new HomeFragment());
         onClick();
+        getSelectIntent();
     }
 
+    public void getSelectIntent(){
+        Intent intent = getIntent();
+        if (intent != null){
+            int selectFragment = intent.getIntExtra("BILL", 0);
+           if (selectFragment == 2){
+               switchFragment(new BillFragment());
+           }
+
+        }
+    }
     @SuppressLint("NonConstantResourceId")
     public void onClick() {
         mBinding.bottomNavigationView.setOnItemSelectedListener(item -> {

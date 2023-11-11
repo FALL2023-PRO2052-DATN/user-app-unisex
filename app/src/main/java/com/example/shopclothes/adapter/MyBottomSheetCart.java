@@ -34,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyBottomSheet extends BottomSheetDialogFragment {
+public class MyBottomSheetCart extends BottomSheetDialogFragment {
     private ItemAddCartBinding mBinding;
     private final Product mProduct;
     private final List<Size> mListSize;
@@ -43,7 +43,7 @@ public class MyBottomSheet extends BottomSheetDialogFragment {
     private  ProgressDialog mProgressDialog;
     private final DetailProductContract.Presenter mPresenter;
     private  FirebaseUser user;
-    public MyBottomSheet(Product mProduct, List<Size> listSize, DetailProductContract.Presenter presenter) {
+    public MyBottomSheetCart(Product mProduct, List<Size> listSize, DetailProductContract.Presenter presenter) {
         this.mProduct = mProduct;
         this.mListSize = listSize;
         this.mPresenter = presenter;

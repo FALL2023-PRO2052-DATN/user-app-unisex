@@ -14,7 +14,6 @@ public class ManagerUrl {
     public static final String READ_PRODUCT_ID = "read-byId-product";
     // type product
     public static final String READ_TYPE_PRODUCT = "read-type-product";
-
     // comment
     public static final String READ_COMMENT_ID = "read-byId-product-comment";
     // size
@@ -28,12 +27,25 @@ public class ManagerUrl {
 
     // address
     public static final String READ_ADDRESS = "read-address";
+    public static final String GET_LIST_ADDRESS = "get-list-address";
+    public static final String INSERT_ADDRESS = "insert-address";
+    public static final String UPDATE_ADDRESS = "update-address";
+    public static final String DELETE_ADDRESS = "delete-address";
     // discount
     public static final String READ_DISCOUNT_BY_ID = "read-byId-discount";
     // order
     public static final String INSERT_ORDER = "insert-order";
     public static final String INSERT_DETAIL_ORDER = "insert-detail-order";
+
     //setting
     public static final String UPDATE_INF_USER = "update-user";
     public static final String READ_USER = "read-user";
+
+
+    // bill
+    public static final String READ_BILL = "read-byId-status-bill";
+    public static final String CANCEL_BILL = "cancel-bill";
+    public static final String READ_DETAIL_BILL = "read-detail-bill";
+
+
 }

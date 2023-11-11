@@ -95,6 +95,7 @@ public class DetailProductPresenter implements DetailProductContract.Presenter {
         ApiService.API_SERVICE.readCartById(id).enqueue(new Callback<ResponseCart>() {
             @Override
             public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     view.onListCartByIdUser(response.body().getCartList());
                 }

@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true"
         android:state_enabled="false"
-        android:drawable="@drawable/bgr_switch"/>
+        android:drawable="@drawable/bgr_switch_red"/>
 
     <item android:state_checked="false"
         android:state_enabled="false"
@@ -10,7 +10,7 @@
 
     <item android:state_checked="true"
         android:state_enabled="true"
-        android:drawable="@drawable/bgr_switch"/>
+        android:drawable="@drawable/bgr_switch_red"/>
 
     <item android:state_checked="false"
         android:state_enabled="true"

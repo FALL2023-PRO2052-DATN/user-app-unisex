@@ -61,11 +61,7 @@ public class CartPresenter implements CartContract.Presenter{
             @Override
             public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
                 assert response.body() != null;
-                Log.d("L", "ABC");
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
-                    view.onListUpdate(response.body().getCartList());
-                    Log.d("L", response.body().getCartList().toString());
-                    Log.d("L", "ABC");
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.order;
+package com.example.shopclothes.view.activity.order.order;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +25,9 @@ public class OrderContract {
     interface Presenter{
         void readAddress(String id);
         void readDiscountById(String code);
-        void insertOrder(String id, String note, String payments, String deliveryStatus, String reasonCancel, double price, String discount, int idAddress, String peacefulState);
+        void insertOrder(String id, String note, String payments, String deliveryStatus,
+                         String reasonCancel, double price, String discount, int idAddress, String peacefulState, int quantityCart);
         void insertOrderDetail(String size, int quantity, double price, String idDonHang, int idProduct);
-        void nextActivity(Context context);
+        void nextActivity(Context context, Class<?> activity);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.shopclothes.view.activity.order;
+package com.example.shopclothes.view.activity.order.order;
 
 
 import android.content.Context;
@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
-import com.example.shopclothes.view.activity.address.address.AddressActivity;
 import com.example.shopclothes.view.activity.order.response.ResponseAddress;
 import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
 import com.example.shopclothes.view.activity.order.response.ResponseOrder;
@@ -65,8 +64,8 @@ public class OrderPresenter implements OrderContract.Presenter {
     }
 
     @Override
-    public void insertOrder(String id, String note, String payments, String deliveryStatus, String reasonCancel, double price, String discount, int idAddress, String peacefulState) {
-        ApiService.API_SERVICE.insertOrder(id, note, payments, deliveryStatus, reasonCancel, price, discount, idAddress, peacefulState).enqueue(new Callback<ResponseOrder>() {
+    public void insertOrder(String id, String note, String payments, String deliveryStatus, String reasonCancel, double price, String discount, int idAddress, String peacefulState, int quantityBill) {
+        ApiService.API_SERVICE.insertOrder(id, note, payments, deliveryStatus, reasonCancel, price, discount, idAddress, peacefulState, quantityBill).enqueue(new Callback<ResponseOrder>() {
             @Override
             public void onResponse(@NonNull Call<ResponseOrder> call, @NonNull Response<ResponseOrder> response) {
                 assert response.body() != null;
@@ -105,7 +104,7 @@ public class OrderPresenter implements OrderContract.Presenter {
     }
 
     @Override
-    public void nextActivity(Context context) {
-        context.startActivity(new Intent(context, AddressActivity.class));
+    public void nextActivity(Context context, Class<?> activity) {
+        context.startActivity(new Intent(context, activity));
     }
 }

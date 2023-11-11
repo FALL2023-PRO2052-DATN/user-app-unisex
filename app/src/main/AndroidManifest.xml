@@ -25,6 +25,16 @@
         <activity
             android:name=".view.activity.oderDetail.OderDetailActivity"
             android:exported="false" />
+         <activity
+            android:name=".view.activity.order.finishOrder.FinishOrderActivity"
+            android:exported="false" />
+      
+        <activity
+            android:name=".view.activity.address.updateAddress.UpdateAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.billDetail.BillDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".view.activity.cart.CartActivity"
             android:exported="false" />
@@ -35,7 +45,7 @@
             android:name=".view.activity.address.addAddress.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.order.OrderActivity"
+            android:name=".view.activity.order.order.OrderActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.product.detailProduct.DetailProductActivity"

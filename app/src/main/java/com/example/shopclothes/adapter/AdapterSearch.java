@@ -1,15 +1,11 @@
 package com.example.shopclothes.adapter;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.example.shopclothes.R;
 import com.example.shopclothes.databinding.ItemSearchBinding;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.view.activity.search.SearchContract;
@@ -18,7 +14,8 @@ import java.util.List;
 
 public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.SearchViewHolder> {
     private List<Product> productList;
-    SearchContract.View mView;
+    private SearchContract.View mView;
+    @SuppressLint("NotifyDataSetChanged")
     public void setProductSearchList(List<Product> productList, SearchContract.View mView){
         this.productList = productList;
         this.mView = mView;

@@ -18,14 +18,13 @@ public class ValidateUtils {
     public static boolean validateRegisterEqual(String pass, String againPass){
         return againPass.equals(pass);
     }
-        public static boolean isDataInputEmpty(String... datas) {
-            for (String str : datas) {
+    public static boolean isDataInputEmpty(String... datas) {
+        for (String str : datas) {
                 if (str == null || str.isEmpty()) {
                     return true;
                 }
-            }
-            return false;
         }
+
         public static boolean validateChangePasswordIsEmpty(String password, String passwordNew, String passwordNewAgain){
         return !password.isEmpty() && !passwordNew.isEmpty() && !passwordNewAgain.isEmpty();
         }
@@ -34,5 +33,7 @@ public class ValidateUtils {
         return passwordNewAgain.equals(passwordNew);
         }
 
+        return false;
+    }
 
 }

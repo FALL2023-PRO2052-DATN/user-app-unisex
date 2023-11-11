@@ -13,10 +13,8 @@ import java.util.List;
 
 public class AdapterBanner extends RecyclerView.Adapter<AdapterBanner.viewHolder> {
     private final List<Banner> mList;
-    @SuppressLint("NotifyDataSetChanged")
     public AdapterBanner(List<Banner> list) {
         this.mList = list;
-        notifyDataSetChanged();
     }
 
     @NonNull
