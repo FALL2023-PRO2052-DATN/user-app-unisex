@@ -35,4 +35,5 @@ public class AppConstants {
     public static final String COMMENT= " dánh giá";
     public static final String NO_INFORMATION= "Bạn cần chọn địa chỉ để gia hàng";
     public static final String CANCEL_PAYMENT= "Hủy thanh toán";
+    public static final String PICK_IMAGE= "Đã chọn ảnh";
 }

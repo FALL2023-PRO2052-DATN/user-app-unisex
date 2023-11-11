@@ -1,5 +1,6 @@
 package com.example.shopclothes.view.fragment.settingsFragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,15 +11,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
+import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentProfileBinding;
 import com.example.shopclothes.model.User;
 import com.example.shopclothes.view.activity.account.login.LoginActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.changePassword.ChangePasswordActivity;
-import com.example.shopclothes.view.fragment.settingsFragment.updateInforAccount.UpdateInforAccountActivity;
+import com.example.shopclothes.view.fragment.settingsFragment.updateInforAccount.UpdateAccountActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,7 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class SettingsFragment extends Fragment implements SettingContract.View {
     private FragmentProfileBinding mBinding;
     private SettingContract.Presenter mPresenter;
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private ProgressDialog mProgressDialog;
+    private User mUserUpdate;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         mBinding = FragmentProfileBinding.inflate(inflater, container, false);
+        mBinding = FragmentProfileBinding.inflate(inflater, container, false);
         mPresenter = new SettingPresenter(this);
         return mBinding.getRoot();
     }
@@ -44,28 +47,37 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mProgressDialog = ProgressDialog.show(getContext(), "", AppConstants.LOADING);
+        assert user != null;
         mPresenter.getUser(user.getUid());
-        mBinding.btnOut.setOnClickListener(view1 -> onClick());
+        onClick();
+    }
+
+    private void onClick() {
+        mBinding.btnOut.setOnClickListener(view1 -> logOut());
         mBinding.layoutChangePass.setOnClickListener(view1 -> nextChange());
         mBinding.layoutUpdateInfor.setOnClickListener(view1 -> nextUpdateUser());
     }
+
     public void nextChange(){
         Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
         startActivity(intent);
     }
 
     public void nextUpdateUser(){
-        Intent intent = new Intent(getContext(), UpdateInforAccountActivity.class);
+        Intent intent = new Intent(getContext(), UpdateAccountActivity.class);
+        intent.putExtra("user", mUserUpdate);
         startActivity(intent);
     }
 
-    private void onClick() {
+    private void logOut() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getContext(), LoginActivity.class));
     }
 
     @Override
     public void updateUI(User mUser) {
+        mUserUpdate = mUser;
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Glide.with(mBinding.getRoot().getContext())
                 .load(mUser.getAnh())
@@ -73,11 +85,15 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
                 .placeholder(R.drawable.pick_image)
                 .into(mBinding.ivAvtSetting);
         mBinding.tvNameSetting.setText(mUser.getName());
+        assert firebaseUser != null;
         mBinding.tvEmailSetting.setText(firebaseUser.getEmail());
+        mProgressDialog.dismiss();
     }
 
     @Override
-    public void onMessage(String message) {
-
+    public void onStart() {
+        super.onStart();
+        assert user != null;
+        mPresenter.getUser(user.getUid());
     }
 }

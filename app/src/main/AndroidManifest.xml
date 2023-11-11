@@ -33,15 +33,13 @@
             android:exported="false" />
 
         <activity
-            android:name=".view.fragment.settingsFragment.updateInforAccount.UpdateInforAccountActivity"
+            android:name=".view.fragment.settingsFragment.updateInforAccount.UpdateAccountActivity"
             android:exported="false" />
 
         <activity
             android:name=".view.fragment.settingsFragment.changePassword.ChangePasswordActivity"
             android:exported="false" />
-        <activity
-            android:name=".view.activity.oderDetail.OderDetailActivity"
-            android:exported="false" />
+
         <activity
             android:name=".view.activity.cart.CartActivity"
             android:exported="false" />

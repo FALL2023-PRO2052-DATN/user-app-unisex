@@ -37,7 +37,7 @@ public interface ApiService {
     @POST(ManagerUrl.UPDATE_INF_USER)
     @FormUrlEncoded
     Call<ResponseUser> updateUser (@Field("id") String id,
-                                   @Field("fullname") String fullname,
+                                   @Field("fullName") String fullName,
                                    @Field("image") String image);
     @POST(ManagerUrl.READ_USER)
     @FormUrlEncoded

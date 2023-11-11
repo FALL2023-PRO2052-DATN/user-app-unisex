@@ -2,6 +2,8 @@ package com.example.shopclothes.view.fragment.settingsFragment;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
@@ -22,10 +24,9 @@ public class SettingPresenter implements SettingContract.Presenter{
     public void getUser(String id) {
         ApiService.API_SERVICE.readUser(id).enqueue(new Callback<ResponseUser>() {
             @Override
-            public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
+            public void onResponse(@NonNull Call<ResponseUser> call, @NonNull Response<ResponseUser> response) {
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
-                    view.onMessage(AppConstants.ON_SUCCESS);
                     view.updateUI(response.body().getUser());
                 }
             }
