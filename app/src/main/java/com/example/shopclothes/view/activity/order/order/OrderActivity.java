@@ -155,6 +155,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         }else {
             mPresenter.getCustomerId(FormatUtils.formatCurrencyForInt(price));
         }
+
     }
 
 
