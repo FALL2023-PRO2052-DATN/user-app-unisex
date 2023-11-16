@@ -8,26 +8,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterBill;
 import com.example.shopclothes.adapter.MyBottomSheetBill;
-import com.example.shopclothes.adapter.MyBottomSheetCart;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentChildBillBinding;
 import com.example.shopclothes.model.Bill;
 import com.example.shopclothes.view.activity.billDetail.BillDetailActivity;
-import com.example.shopclothes.view.activity.product.detailProduct.DetailProductPresenter;
 import com.example.shopclothes.view.fragment.billFragment.BillContract;
 import com.example.shopclothes.view.fragment.billFragment.BillPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.Collections;
 import java.util.List;
 

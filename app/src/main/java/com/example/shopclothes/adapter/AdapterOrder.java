@@ -1,23 +1,19 @@
 package com.example.shopclothes.adapter;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
+import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemOtherBinding;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.utils.FormatUtils;
-
 import java.util.List;
 
 public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.ViewHolder> {
-    private List<Cart> mList;
+    private final List<Cart> mList;
 
     public AdapterOrder(List<Cart> mList) {
         this.mList = mList;
@@ -52,9 +48,9 @@ public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.ViewHolder> 
         public void bind(Cart cart){
             Glide.with(mBinding.getRoot()).load(cart.getImage()).into(mBinding.ivProductCartOrder);
             mBinding.tvNameProductCartOrder.setText(cart.getName());
-            mBinding.tvSizeCartOrder.setText("Size - " + cart.getSize());
+            mBinding.tvSizeCartOrder.setText(AppConstants.SIZE + cart.getSize());
             mBinding.tvPriceCartOrder.setText(FormatUtils.formatCurrency(cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100)));
-            mBinding.tvQuantityOrder.setText("x"+cart.getQuantity());
+            mBinding.tvQuantityOrder.setText(AppConstants.X + cart.getQuantity());
         }
     }
 }

@@ -41,6 +41,7 @@ public class BillFragment extends Fragment implements BillContract.View.ViewPare
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // gán tab
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(requireActivity());
         mBinding.viewPager.setAdapter(pagerAdapter);
         new TabLayoutMediator(mBinding.tabLayout, mBinding.viewPager, (tab, position) -> {

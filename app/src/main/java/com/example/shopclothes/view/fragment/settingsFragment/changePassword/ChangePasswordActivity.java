@@ -1,16 +1,10 @@
 package com.example.shopclothes.view.fragment.settingsFragment.changePassword;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.icu.util.ULocale;
 import android.os.Bundle;
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityChangePasswordBinding;
-import com.example.shopclothes.model.Product;
-import com.example.shopclothes.model.User;
 import com.example.shopclothes.utils.UIUtils;
 
 public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View {
@@ -36,8 +30,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         String password = mBinding.etPasswordOld.getText().toString();
         String passwordNew = mBinding.etPasswordNew.getText().toString();
         String passwordAgain = mBinding.etPasswordNewAgain.getText().toString();
-        String CHANGEPASS = "Đổi mật khẩu";
-        progressDialog = ProgressDialog.show(this, CHANGEPASS, AppConstants.LOADING);
+        String changePass = "Đổi mật khẩu";
+        progressDialog = ProgressDialog.show(this, changePass, AppConstants.LOADING);
         mPresenter.doChange(password, passwordNew, passwordAgain);
     }
 

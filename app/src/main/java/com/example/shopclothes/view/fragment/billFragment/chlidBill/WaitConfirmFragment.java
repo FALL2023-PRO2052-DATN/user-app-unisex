@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.shopclothes.adapter.AdapterBill;
 import com.example.shopclothes.adapter.MyBottomSheetBill;
 import com.example.shopclothes.constant.AppConstants;
@@ -66,7 +64,7 @@ public class WaitConfirmFragment extends Fragment implements BillContract.View, 
             mBinding.tvBill.setVisibility(View.VISIBLE);
         }
         myBottomSheetBill = new MyBottomSheetBill();
-        myBottomSheetBill.dismissBottomSheet(this);
+        myBottomSheetBill.cancelBottomSheet(this); // nhận interface để gọi lại hàm onBottomSheetDismissed
         AdapterBill adapterBill = new AdapterBill(billList, 0,  myBottomSheetBill, requireActivity().getSupportFragmentManager(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -91,6 +89,7 @@ public class WaitConfirmFragment extends Fragment implements BillContract.View, 
         myBottomSheetBill.dismiss();
     }
 
+    // chuyển dữ liệu qua fragment cha
     private void sendDataToParentFragment() {
         Bundle args = new Bundle();
         args.putInt("DISMISS", 4);

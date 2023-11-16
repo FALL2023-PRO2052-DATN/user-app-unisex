@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class FormatUtils {
     public static String formatCurrency(double price) {
@@ -24,7 +25,7 @@ public class FormatUtils {
         double price = 0;
         try {
             NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
-            price = numberFormat.parse(formattedPrice).doubleValue();
+            price = Objects.requireNonNull(numberFormat.parse(formattedPrice)).doubleValue();
         } catch (ParseException e) {
             e.printStackTrace();
         }

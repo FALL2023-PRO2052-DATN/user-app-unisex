@@ -58,7 +58,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void itemCartClick(double sumPrice, boolean check, boolean checkItem) {
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOderCart.getText().toString());
-        Log.e("TAG", "itemCartClick: " + price );
+
         // nếu item đc chọn
         if (checkItem){
             // lấy tổng giá
@@ -84,9 +84,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         Intent intent = new Intent(this, OrderActivity.class);
         intent.putParcelableArrayListExtra("listCart", (ArrayList<? extends Parcelable>) cartList);
         intent.putExtra("sumPrice", mBinding.tvPriceOderCart.getText().toString());
-        mBinding.btnOtherCart.setOnClickListener(view -> {
-            startActivity(intent);
-        });
+        mBinding.btnOtherCart.setOnClickListener(view -> startActivity(intent));
     }
 
     @Override

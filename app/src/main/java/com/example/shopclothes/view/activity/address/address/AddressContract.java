@@ -12,7 +12,6 @@ public interface AddressContract {
         void onMessage(String message);
     }
     interface Presenter{
-        void readAddress(String userId);
         void getListAddressAll(String userId);
         void deleteAddress(int id);
     }

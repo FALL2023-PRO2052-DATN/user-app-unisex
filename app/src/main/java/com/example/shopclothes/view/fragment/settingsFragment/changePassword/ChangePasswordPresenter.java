@@ -5,16 +5,12 @@ import com.example.shopclothes.utils.ValidateUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class ChangePasswordPresenter implements ChangePasswordContract.Presenter{
     private final ChangePasswordContract.View view;
-    private final FirebaseAuth mAuth;
 
     public ChangePasswordPresenter(ChangePasswordContract.View view) {
         this.view = view;
-         mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -32,7 +28,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
 
     @Override
     public void updateUserFirebase(String passwordNew) {
-       FirebaseUser user = mAuth.getInstance().getCurrentUser();
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
        if (user != null){
            user.updatePassword(passwordNew).addOnCompleteListener(task -> {
                if (task.isSuccessful()){

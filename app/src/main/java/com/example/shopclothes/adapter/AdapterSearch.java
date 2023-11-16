@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.example.shopclothes.databinding.ItemSearchBinding;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.view.activity.search.SearchContract;
-
 import java.util.List;
 
 public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.SearchViewHolder> {
@@ -33,14 +32,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.SearchView
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
         Product product = productList.get(position);
-
-        Glide.with(holder.itemView.getContext())
-                .load(product.getImageProduct())
-                .into(holder.searchBinding.ivProduct);
-
-        holder.searchBinding.nameProductSearch.setText(product.getNameProduct());
-
-        // chuyển id sản phẩm qua màn hình chi tiết
+        holder.bind(product);
         holder.searchBinding.detailProductSearch.setOnClickListener(view -> mView.nextDetailActivity(product.getId()));
     }
 
@@ -51,10 +43,16 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.SearchView
 
     public static class SearchViewHolder extends RecyclerView.ViewHolder{
         ItemSearchBinding searchBinding;
-
         public SearchViewHolder(@NonNull ItemSearchBinding searchBinding) {
             super(searchBinding.getRoot());
             this.searchBinding = searchBinding;
+        }
+        public void bind(Product product){
+            Glide.with(itemView.getContext())
+                    .load(product.getImageProduct())
+                    .into(searchBinding.ivProduct);
+            searchBinding.nameProductSearch.setText(product.getNameProduct());
+
         }
     }
 }

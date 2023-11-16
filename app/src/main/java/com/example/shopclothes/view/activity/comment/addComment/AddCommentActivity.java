@@ -49,6 +49,8 @@ public class AddCommentActivity extends AppCompatActivity implements AddCommentC
             UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_SUCCESS);
             UIUtils.clearText(mBinding.etComment2);
         });
+
+        mBinding.btnBackAddComment.setOnClickListener(view -> onBackPressed());
     }
 
     @Override

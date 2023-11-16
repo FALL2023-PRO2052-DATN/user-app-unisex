@@ -6,8 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
-
 import com.example.shopclothes.R;
 import com.example.shopclothes.view.activity.account.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;

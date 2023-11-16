@@ -20,7 +20,6 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
     private ActivitySearchBinding binding;
-    private SearchContract.Presenter mPresenter;
     private List<Product> products;
     private AdapterSearch adapterSearch;
 
@@ -30,23 +29,24 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         super.onCreate(savedInstanceState);
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        mPresenter = new SearchPresenter(this);
+        SearchContract.Presenter mPresenter = new SearchPresenter(this);
         mPresenter.getListProductAll();
-        setListeners();
+        onClick();
     }
 
-    private void setListeners(){
+    private void onClick(){
         binding.ivBack.setOnClickListener(view -> onBackPressed());
         binding.ivSearch.setOnClickListener(view -> performSearch());
     }
 
     private void performSearch() {
-        String searchText =binding.etSearch.getText().toString().trim();
+        String searchText = binding.etSearch.getText().toString().trim();
         if (ValidateUtils.isDataInputEmpty(searchText)){
             showUI(View.GONE, View.VISIBLE);
         }else{
             List<Product> filteredListProduct = new ArrayList<>();
             for (Product product : products){
+                // trùng tên thì thêm vào filteredListProduct
                 if (product.getNameProduct().toLowerCase().contains(searchText.toLowerCase())){
                     filteredListProduct.add(product);
 
@@ -62,6 +62,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         }
     }
 
+    // ẩn hiện rcv, tv
     private void showUI(int visibleRecyclerView, int visibleEmptyText){
         binding.recyclerView.setVisibility(visibleRecyclerView);
         binding.tvEmpty.setVisibility(visibleEmptyText);

@@ -3,7 +3,6 @@ package com.example.shopclothes.view.fragment.settingsFragment.updateInforAccoun
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,8 +10,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
 import com.example.shopclothes.constant.AppConstants;
@@ -47,8 +44,10 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
         mBinding.btnSaveUpInfor.setOnClickListener(view -> {
             mProgressDialog = ProgressDialog.show(this,"",AppConstants.LOADING);
            if (mUri != null){
+               // nếu đường dẫn ko rỗng thì update theo đường dẫn ảnh
                mPresenter.uploadImageToFirebaseStorage(mUri, Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString());
            }else {
+               // nêu rỗng update ảnh có sẵn
                mPresenter.updateUserInformation(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString(), mUser.getAnh());
            }
         });
@@ -81,6 +80,7 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
         mActivityResultLauncher.launch(Intent.createChooser(intent, AppConstants.PICK_IMAGE));
     }
 
+    // nhận uri khi chọn ảnh từ thư viện
     private final ActivityResultLauncher<Intent> mActivityResultLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {

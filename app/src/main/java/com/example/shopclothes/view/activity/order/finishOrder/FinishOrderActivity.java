@@ -2,12 +2,9 @@ package com.example.shopclothes.view.activity.order.finishOrder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityFinishOrderBinding;
@@ -15,7 +12,6 @@ import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.view.activity.MainActivity;
 import com.example.shopclothes.view.activity.cart.CartActivity;
-import com.example.shopclothes.view.fragment.billFragment.BillFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

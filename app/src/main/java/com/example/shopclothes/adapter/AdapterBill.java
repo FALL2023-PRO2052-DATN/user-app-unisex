@@ -4,11 +4,9 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemBillBinding;
@@ -70,7 +68,7 @@ public class AdapterBill extends RecyclerView.Adapter<AdapterBill.ViewHolder>{
 
         // xem theo sản phẩm
         holder.mBinding.tvSeeAllDetailBill.setOnClickListener(view -> mView.nextScreenDetailBill(bill.getId()));
-        // xem theo sản phẩm
+        // đánh giá
         holder.mBinding.btnEvaluateBill.setOnClickListener(view -> mView.nextScreenComment(bill.getId()));
 
     }

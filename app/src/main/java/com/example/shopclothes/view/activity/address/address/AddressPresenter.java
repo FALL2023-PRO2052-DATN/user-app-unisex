@@ -1,11 +1,10 @@
 package com.example.shopclothes.view.activity.address.address;
 
+import androidx.annotation.NonNull;
+
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
-import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.order.response.ResponseAddress;
-import com.google.android.gms.common.api.Api;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,7 +20,7 @@ public class AddressPresenter implements AddressContract.Presenter {
     public void getListAddressAll(String userId) {
         ApiService.API_SERVICE.getListAddress(userId).enqueue(new Callback<ResponseAddress>() {
             @Override
-            public void onResponse(Call<ResponseAddress> call, Response<ResponseAddress> response) {
+            public void onResponse(@NonNull Call<ResponseAddress> call, @NonNull Response<ResponseAddress> response) {
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     view.onListAddressAll(response.body().getAddressList());
@@ -29,21 +28,17 @@ public class AddressPresenter implements AddressContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<ResponseAddress> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseAddress> call, @NonNull Throwable t) {
 
             }
         });
     }
 
     @Override
-    public void readAddress(String userId) {
-    }
-
-    @Override
     public void deleteAddress(int id) {
         ApiService.API_SERVICE.deleteAddress(id).enqueue(new Callback<ResponseAddress>() {
             @Override
-            public void onResponse(Call<ResponseAddress> call, Response<ResponseAddress> response) {
+            public void onResponse(@NonNull Call<ResponseAddress> call, @NonNull Response<ResponseAddress> response) {
                 assert  response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     view.onMessage(AppConstants.ON_SUCCESS);
@@ -51,7 +46,7 @@ public class AddressPresenter implements AddressContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<ResponseAddress> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseAddress> call, @NonNull Throwable t) {
 
             }
         });

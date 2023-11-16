@@ -48,7 +48,7 @@
                     android:textColor="@color/primary"
                     android:textSize="19sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_cart1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_add_comment"
                     app:layout_constraintStart_toEndOf="@+id/btn_back_add_comment"
                     app:layout_constraintTop_toTopOf="parent" />
 

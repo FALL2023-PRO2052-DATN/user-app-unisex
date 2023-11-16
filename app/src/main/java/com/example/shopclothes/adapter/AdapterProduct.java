@@ -6,17 +6,15 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
+import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemProductGridBinding;
 import com.example.shopclothes.databinding.ItemProductLinearBinding;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.utils.FormatUtils;
 import com.example.shopclothes.view.activity.product.detailProduct.DetailProductActivity;
-
 
 import java.util.List;
 
@@ -28,14 +26,11 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final Context mContext;
     private ItemProductLinearBinding mBindingLinear;
     private ItemProductGridBinding mBindingGrid;
-    @SuppressLint("NotifyDataSetChanged")
     public AdapterProduct(List<Product> list, int type, Context context) {
         this.mList = list;
         this.type = type;
         this.mContext = context;
-        notifyDataSetChanged();
     }
-
 
     @NonNull
     @Override
@@ -47,7 +42,6 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             mBindingGrid = ItemProductGridBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
             return new GridViewHolder(mBindingGrid);
         }
-
         return null;
     }
 
@@ -93,8 +87,6 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class LinearViewHolder extends RecyclerView.ViewHolder{
         ItemProductLinearBinding binding;
-        String phanTram = "%";
-        String TYPE = "Unisex-";
         public LinearViewHolder(ItemProductLinearBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
@@ -105,16 +97,14 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             binding.tvNameProductLinear.setText(product.getNameProduct());
             binding.tvPriceProductLinear.setPaintFlags(binding.tvPriceProductLinear.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             binding.tvPriceProductLinear.setText(FormatUtils.formatCurrency(product.getPrice()));
-            binding.tvTypeProductLinear.setText(TYPE+product.getNameTypeProduct());
+            binding.tvTypeProductLinear.setText(AppConstants.UNISEX + product.getNameTypeProduct());
             binding.tvPriceSalesProductLinear.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
-            binding.tvNumberSalesLinear.setText(product.getSale() + phanTram);
+            binding.tvNumberSalesLinear.setText(product.getSale() + AppConstants.PERCENT);
         }
     }
 
     public static class GridViewHolder extends RecyclerView.ViewHolder{
         ItemProductGridBinding binding;
-        String phanTram = "%";
-        String TYPE = "Unisex-";
         public GridViewHolder(ItemProductGridBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
@@ -125,9 +115,9 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             binding.tvNameProductGrid.setText(product.getNameProduct());
             binding.tvPriceProductGrid.setPaintFlags(binding.tvPriceProductGrid.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             binding.tvPriceProductGrid.setText(FormatUtils.formatCurrency(product.getPrice()));
-            binding.tvTypeProductGrid.setText(TYPE+product.getNameTypeProduct());
+            binding.tvTypeProductGrid.setText(AppConstants.UNISEX + product.getNameTypeProduct());
             binding.tvPriceSalesProductGrid.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
-            binding.tvNumberSalesGrid.setText(product.getSale() + phanTram);
+            binding.tvNumberSalesGrid.setText(product.getSale() + AppConstants.PERCENT);
         }
     }
 }

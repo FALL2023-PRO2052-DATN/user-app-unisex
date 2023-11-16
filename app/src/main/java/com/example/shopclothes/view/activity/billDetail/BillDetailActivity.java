@@ -2,13 +2,9 @@ package com.example.shopclothes.view.activity.billDetail;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterBillDetail;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityBillDetailBinding;

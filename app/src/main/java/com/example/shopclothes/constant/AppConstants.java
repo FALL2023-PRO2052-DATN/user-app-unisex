@@ -27,13 +27,16 @@ public class AppConstants {
     public static final String PAYMENT = "Thanh toán khi nhận hàng";
     public static final String PHONE = "(+84) ";
     public static final String NO_DISCOUNT = "Không áp dụng";
-    public static final String DELIVERY_STATUS = "Chờ xác nhận";
     public static final String MESS_DELETE_ADDRESS = "Bạn muốn xóa địa chỉ này?";
-    public static final String CANCEL= "Hủy";
+    public static final String CANCEL = "Hủy";
     public static final String OK = "Xóa";
-    public static final String EXTRA_ADDRESS= "address_object";
-    public static final String COMMENT= " dánh giá";
-    public static final String NO_INFORMATION= "Bạn cần chọn địa chỉ để gia hàng";
-    public static final String CANCEL_PAYMENT= "Hủy thanh toán";
-    public static final String PICK_IMAGE= "Đã chọn ảnh";
+    public static final String EXTRA_ADDRESS = "address_object";
+    public static final String COMMENT = " dánh giá";
+    public static final String NO_INFORMATION = "Bạn cần chọn địa chỉ để gia hàng";
+    public static final String CANCEL_PAYMENT = "Hủy thanh toán";
+    public static final String PICK_IMAGE = "Đã chọn ảnh";
+    public static final String DEFAULT = "Mặc định";
+    public static final String UNISEX = "Unisex-";
+    public static final String PERCENT = "%";
+    public static final String UNI = "-UNI_";
 }

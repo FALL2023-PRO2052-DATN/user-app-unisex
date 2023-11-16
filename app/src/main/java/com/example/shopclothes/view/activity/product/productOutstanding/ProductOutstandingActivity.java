@@ -2,13 +2,8 @@ package com.example.shopclothes.view.activity.product.productOutstanding;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityProductOutstandingBinding;

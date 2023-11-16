@@ -5,18 +5,14 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemProductCommentBinding;
 import com.example.shopclothes.model.ProductComment;
-
 import java.util.List;
 
 public class AdapterProductComment extends RecyclerView.Adapter<AdapterProductComment.ViewHolder> {
-
     private final List<ProductComment> mList;
-
     public AdapterProductComment(List<ProductComment> mList) {
         this.mList = mList;
     }

@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.shopclothes.adapter.AdapterComment;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.MyBottomSheetCart;
+import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityDetailProductBinding;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Comment;
@@ -69,16 +70,13 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     @SuppressLint("SetTextI18n")
     @Override
     public void onProduct(Product product) {
-        String phanTram = "%";
-        String TYPE = "Unisex-";
-        String UNI = "-UNI_";
         Glide.with(this).load(product.getImageProduct()).into(mBinding.ivDetailProduct);
         mBinding.tvNameProductDetail.setText(product.getNameProduct());
-        mBinding.tvTypeProductDetail.setText(TYPE + product.getNameTypeProduct() + UNI + product.getId());
+        mBinding.tvTypeProductDetail.setText(AppConstants.UNISEX + product.getNameTypeProduct() + AppConstants.UNI + product.getId());
         mBinding.tvPriceSalesProductDetail.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
         mBinding.tvPriceProductDetail.setText(FormatUtils.formatCurrency(product.getPrice()));
         mBinding.tvPriceProductDetail.setPaintFlags(mBinding.tvPriceProductDetail.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        mBinding.tvNumberSalesDetail.setText(product.getSale() + phanTram);
+        mBinding.tvNumberSalesDetail.setText(product.getSale() + AppConstants.PERCENT);
         mBinding.tvDescriptionProduct.setText(product.getNote());
         mPresenter.getListProductByIdCategory(product.getIdCategory());
         mBinding.btnAddCart.setOnClickListener(view -> openBottomSheetDialogFragment(product, mListSize));

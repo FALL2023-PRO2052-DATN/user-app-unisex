@@ -1,20 +1,15 @@
 package com.example.shopclothes.view.activity.order.order;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterOrder;
 import com.example.shopclothes.constant.AppConstants;
@@ -123,37 +118,35 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     }
 
     @Override
-    public void onInsertOrder(String idOrder) {
+    public void onInsertOrder(String idOrder) { // dc gọi khi hàm insertOrder gọi thành công
+        // thêm đơn hàng chi tiết
         for (int i = 0 ; i < mCartList.size(); i++){
             mPresenter.insertOrderDetail(mCartList.get(i).getSize(), mCartList.get(i).getQuantity(),
                     (mCartList.get(i).getPrice() - (mCartList.get(i).getPrice() * mCartList.get(i).getDiscount() / 100)) * mCartList.get(i).getQuantity() ,  idOrder, mCartList.get(i).getIdProduct());
         }
-        UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_SUCCESS);
         mProgressDialog.dismiss();
         mPresenter.nextActivity(this, FinishOrderActivity.class);
         finish();
     }
 
     @Override
-    public void insertOrderActivity() {
+    public void insertOrderActivity() { // bắt sự kiện khi click nút thanh toán
         mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
-        String note = mBinding.etNoteOther.getText().toString();
-        String idDiscount = null;
-        String deliveryStatus = AppConstants.DELIVERY_STATUS_WAIT_CONFIRM;
-
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOrder.getText().toString());
-
-        if (mDiscount != null){
-            idDiscount = String.valueOf(mDiscount.getId());
-        }
-        int idAddress = mAddress.getId();
-
+        // nếu radio check là thanh toán khi giao hàng
         if (mBinding.radioOf.isChecked()){
+            String note = mBinding.etNoteOther.getText().toString();
+            String idDiscount = null;
+            String deliveryStatus = AppConstants.DELIVERY_STATUS_WAIT_CONFIRM;
+            if (mDiscount != null){
+                idDiscount = String.valueOf(mDiscount.getId());
+            }
+            int idAddress = mAddress.getId();
              String payments = mBinding.tvOf.getText().toString();
              String peacefulState = AppConstants.PEACEFUL_STATE_NOT;
              mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, "" ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
         }else {
-            mPresenter.getCustomerId(FormatUtils.formatCurrencyForInt(price));
+            mPresenter.getCustomerId(FormatUtils.formatCurrencyForInt(price)); // lấy id người dùng thanh toán để mở giao diện thanh toán
         }
 
     }
@@ -197,6 +190,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         );
     }
 
+    // nhận địa chỉ trả về
     @SuppressLint("SetTextI18n")
     private final ActivityResultLauncher<Intent> mLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),

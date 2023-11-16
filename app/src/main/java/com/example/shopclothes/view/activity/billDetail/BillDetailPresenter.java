@@ -21,14 +21,15 @@ public class BillDetailPresenter implements BillDetailContract.Presenter{
     public void readListBillDetail(String id) {
         ApiService.API_SERVICE.readBillDetail(id).enqueue(new Callback<ResponseBillDetail>() {
             @Override
-            public void onResponse(Call<ResponseBillDetail> call, Response<ResponseBillDetail> response) {
+            public void onResponse(@NonNull Call<ResponseBillDetail> call, @NonNull Response<ResponseBillDetail> response) {
+                assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     mView.onListBillDetail(response.body().getBillDetailList());
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBillDetail> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBillDetail> call, @NonNull Throwable t) {
                 Log.d("ER", t.toString());
             }
         });

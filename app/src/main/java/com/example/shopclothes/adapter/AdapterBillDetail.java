@@ -3,17 +3,13 @@ package com.example.shopclothes.adapter;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemOtherBinding;
 import com.example.shopclothes.model.BillDetail;
-import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.utils.FormatUtils;
-
 import java.util.List;
 
 public class AdapterBillDetail extends RecyclerView.Adapter<AdapterBillDetail.ViewHolder> {

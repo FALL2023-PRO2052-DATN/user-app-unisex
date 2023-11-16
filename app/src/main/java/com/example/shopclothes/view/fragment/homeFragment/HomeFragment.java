@@ -119,6 +119,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mBinding.rcvProductCategory.setAdapter(adapter);
     }
 
+    // khi click vào loại sản phẩm thì gọi hàm và trả ra id của loại sản phẩm
     @Override
     public void onItemClickListener(int id) {
       if (id == 0){

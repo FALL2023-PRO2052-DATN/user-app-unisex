@@ -1,10 +1,6 @@
 package com.example.shopclothes.view.fragment.settingsFragment;
 
-import android.net.Uri;
-
 import androidx.annotation.NonNull;
-
-import com.bumptech.glide.Glide;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
@@ -32,7 +28,7 @@ public class SettingPresenter implements SettingContract.Presenter{
             }
 
             @Override
-            public void onFailure(Call<ResponseUser> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseUser> call, @NonNull Throwable t) {
 
             }
         });

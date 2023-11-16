@@ -1,13 +1,11 @@
 package com.example.shopclothes.view.fragment.settingsFragment.updateInforAccount;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.shopclothes.constant.AppConstants;
-import com.example.shopclothes.model.User;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.view.activity.account.register.ResponseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -52,9 +50,7 @@ public class UpdateAccountPresenter implements UpdateAccountContract.Presenter{
     public void uploadImageToFirebaseStorage(Uri mUri, String id, String name){
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("profile_images/" + mUri.getLastPathSegment());
         storageReference.putFile(mUri)
-                .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
-                    updateUserInformation(id, name, uri.toString());
-                }))
+                .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(uri -> updateUserInformation(id, name, uri.toString())))
                 .addOnFailureListener(e -> view.onMessage(AppConstants.ON_FAILURE));
     }
 

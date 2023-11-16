@@ -3,6 +3,8 @@ package com.example.shopclothes.view.activity.search;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.view.activity.MainActivity;
@@ -23,7 +25,7 @@ public class SearchPresenter implements SearchContract.Presenter{
     public void getListProductAll() {
         ApiService.API_SERVICE.readProductAll().enqueue(new Callback<ResponseProduct>() {
             @Override
-            public void onResponse(Call<ResponseProduct> call, Response<ResponseProduct> response) {
+            public void onResponse(@NonNull Call<ResponseProduct> call, @NonNull Response<ResponseProduct> response) {
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                     view.onListProductAll(response.body().getProductList());
@@ -31,7 +33,7 @@ public class SearchPresenter implements SearchContract.Presenter{
             }
 
             @Override
-            public void onFailure(Call<ResponseProduct> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseProduct> call, @NonNull Throwable t) {
 
             }
         });
