@@ -1,26 +1,16 @@
 package com.example.shopclothes.view.activity.address.address;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.LinearLayout;
-
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterAddress;
-import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityAddressBinding;
 import com.example.shopclothes.model.Address;
-import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.address.addAddress.AddAddressActivity;
 import com.example.shopclothes.view.activity.address.updateAddress.UpdateAddressActivity;
 import com.example.shopclothes.view.activity.order.order.OrderActivity;
-import com.example.shopclothes.view.activity.product.detailProduct.DetailProductActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,17 +20,14 @@ import java.util.List;
 public class AddressActivity extends AppCompatActivity implements AddressContract.View {
     private ActivityAddressBinding addressBinding;
     private AddressContract.Presenter mPresenter;
-    private AdapterAddress adapterAddress;
     private int idDefault = 0;
-
-    private ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addressBinding = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(addressBinding.getRoot());
+        UIUtils.openLayout(addressBinding.ivLoadingAddressActivity, addressBinding.layoutAddressActivity, false, this);
         mPresenter = new AddressPresenter(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -60,7 +47,7 @@ public class AddressActivity extends AppCompatActivity implements AddressContrac
 
     @Override
     public void onListAddressAll(List<Address> list) {
-        adapterAddress = new AdapterAddress(this, mPresenter, this);
+        AdapterAddress adapterAddress = new AdapterAddress(this, mPresenter, this);
         adapterAddress.setAddressList(list);
         List<Address> addressListWithDefaultStatus1 = new ArrayList<>();
         List<Address> addressListWithOtherStatus = new ArrayList<>();
@@ -81,6 +68,7 @@ public class AddressActivity extends AppCompatActivity implements AddressContrac
         addressBinding.rcvAddress.setLayoutManager(layoutManager);
         addressBinding.rcvAddress.setAdapter(adapterAddress);
         getDefaultStatus(list);
+        UIUtils.openLayout(addressBinding.ivLoadingAddressActivity, addressBinding.layoutAddressActivity, true, this);
     }
 
     public void getDefaultStatus(List<Address> listAddress){

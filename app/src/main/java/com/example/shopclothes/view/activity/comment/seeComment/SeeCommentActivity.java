@@ -10,6 +10,7 @@ import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivitySeeCommentBinding;
 import com.example.shopclothes.model.Comment;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.utils.UIUtils;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class SeeCommentActivity extends AppCompatActivity implements SeeCommentC
         mBinding = ActivitySeeCommentBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mPresenter = new SeeAllPresenter(this);
+        UIUtils.openLayout(mBinding.ivLoadingSeeCommentActivity, mBinding.layoutSeeCommentActivity, false, this);
         onClick();
         initPresenter();
     }
@@ -49,6 +51,8 @@ public class SeeCommentActivity extends AppCompatActivity implements SeeCommentC
         mBinding.ratingBarSeeComment.setRating(averageRating(list));
         mBinding.tvRatingSeeAllComment.setText(FormatUtils.formatRating(averageRating(list)));
         mBinding.tvNumberSeeAllComment.setText("("+list.size()+ AppConstants.COMMENT +")");
+
+        UIUtils.openLayout(mBinding.ivLoadingSeeCommentActivity, mBinding.layoutSeeCommentActivity, true, this);
     }
 
     @Override

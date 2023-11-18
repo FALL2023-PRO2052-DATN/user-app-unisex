@@ -1,9 +1,11 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,14 +15,19 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.bumptech.glide.Glide;
+import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterBanner;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.AdapterTypeProduct;
 import com.example.shopclothes.databinding.FragmentHomeBinding;
+import com.example.shopclothes.databinding.ItemDialogBinding;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.TypeProduct;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
 import com.example.shopclothes.view.activity.product.productOutstanding.ProductOutstandingActivity;
@@ -45,6 +52,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         // Inflate the layout for this fragment
         mBinding = FragmentHomeBinding.inflate(inflater, container, false);
         mPresenter = new HomePresenter(this);
+        UIUtils.openLayout(mBinding.ivLoadingHomeFragment, mBinding.layoutHomeFragment, false, getContext());
         return mBinding.getRoot();
     }
 
@@ -53,12 +61,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         super.onViewCreated(view, savedInstanceState);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
-        mPresenter.readListCartByIdUser(user.getUid());
         mPresenter.getListBanner();
         mPresenter.getListProductNew();
         mPresenter.getListProductOutstanding();
         mPresenter.getListProductAll();
         mPresenter.getListTypeProduct();
+        mPresenter.readListCartByIdUser(user.getUid());
         onClick();
     }
 
@@ -140,6 +148,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
         mBinding.tvQuantityHome.setText(String.valueOf(cartList.size()));
+        UIUtils.openLayout(mBinding.ivLoadingHomeFragment, mBinding.layoutHomeFragment, true, getContext());
+
     }
 
     @Override
@@ -149,4 +159,5 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         assert user != null;
         mPresenter.readListCartByIdUser(user.getUid());
     }
+
 }

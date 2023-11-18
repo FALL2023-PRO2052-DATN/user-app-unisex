@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterCart;
 import com.example.shopclothes.databinding.ActivityCartBinding;
@@ -32,6 +34,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         super.onCreate(savedInstanceState);
         mBinding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        UIUtils.openLayout(mBinding.ivLoadingCartActivity, mBinding.layoutCartActivity, false, this);
         onClick();
         mPresenter = new CartPresenter(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -53,6 +56,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         mBinding.rcvCart.setLayoutManager(layoutManager);
         mBinding.rcvCart.setAdapter(adapterCart);
 
+        UIUtils.openLayout(mBinding.ivLoadingCartActivity, mBinding.layoutCartActivity, true, this);
     }
     @SuppressLint("SetTextI18n")
     @Override

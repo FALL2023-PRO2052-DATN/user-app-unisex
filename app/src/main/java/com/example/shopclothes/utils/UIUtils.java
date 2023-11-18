@@ -1,11 +1,23 @@
 package com.example.shopclothes.utils;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
+import androidx.core.content.ContextCompat;
+
+import com.bumptech.glide.Glide;
+import com.example.shopclothes.R;
+import com.example.shopclothes.databinding.FragmentHomeBinding;
+import com.example.shopclothes.databinding.ItemDialogBinding;
+import com.example.shopclothes.view.fragment.homeFragment.HomeFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 public class UIUtils {
@@ -17,4 +29,15 @@ public class UIUtils {
             edt.setText(null);
         }
     }
+
+    public static void openLayout(ImageView imageView, FrameLayout frameLayout, boolean check, Context context){
+        if (check){
+            imageView.setVisibility(View.GONE);
+            frameLayout.setVisibility(View.GONE);
+        }else {
+            Glide.with(context).load("https://i.gifer.com/ZKZg.gif").into(imageView);
+            frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.main));
+        }
+    }
+
 }

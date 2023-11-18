@@ -1,22 +1,21 @@
 package com.example.shopclothes.view.fragment.settingsFragment;
 
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
-import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentProfileBinding;
 import com.example.shopclothes.model.User;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.account.login.LoginActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.changePassword.ChangePasswordActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.updateInforAccount.UpdateAccountActivity;
@@ -28,7 +27,7 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
     private FragmentProfileBinding mBinding;
     private SettingContract.Presenter mPresenter;
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private ProgressDialog mProgressDialog;
+
     private User mUserUpdate;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,13 +40,14 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
         // Inflate the layout for this fragment
         mBinding = FragmentProfileBinding.inflate(inflater, container, false);
         mPresenter = new SettingPresenter(this);
+        UIUtils.openLayout(mBinding.ivLoadingSettingsFragment, mBinding.layoutSettingsFragment, false, getContext());
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mProgressDialog = ProgressDialog.show(getContext(), "", AppConstants.LOADING);
+
         assert user != null;
         mPresenter.getUser(user.getUid());
         onClick();
@@ -87,7 +87,8 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
         mBinding.tvNameSetting.setText(mUser.getName());
         assert firebaseUser != null;
         mBinding.tvEmailSetting.setText(firebaseUser.getEmail());
-        mProgressDialog.dismiss();
+
+        UIUtils.openLayout(mBinding.ivLoadingSettingsFragment, mBinding.layoutSettingsFragment, true, getContext());
     }
 
     @Override

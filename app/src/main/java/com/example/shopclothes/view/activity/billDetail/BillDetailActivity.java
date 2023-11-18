@@ -10,6 +10,7 @@ import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityBillDetailBinding;
 import com.example.shopclothes.model.BillDetail;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.utils.UIUtils;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class BillDetailActivity extends AppCompatActivity implements BillDetailC
         super.onCreate(savedInstanceState);
         mBinding = ActivityBillDetailBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        UIUtils.openLayout(mBinding.ivLoadingBillDetailActivity, mBinding.layoutBillDetailActivity, false, this);
         mPresenter = new BillDetailPresenter(this);
         initPresenter();
         onClick();
@@ -45,6 +47,7 @@ public class BillDetailActivity extends AppCompatActivity implements BillDetailC
         mBinding.rcvBillDetail.setLayoutManager(layoutManager);
         mBinding.rcvBillDetail.setAdapter(adapter);
         setValuesBillDetail(list.get(0));
+        UIUtils.openLayout(mBinding.ivLoadingBillDetailActivity, mBinding.layoutBillDetailActivity, true, this);
     }
 
     @SuppressLint("SetTextI18n")

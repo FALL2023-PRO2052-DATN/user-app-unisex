@@ -44,6 +44,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         super.onCreate(savedInstanceState);
         mBinding = ActivityOrtherBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, false, this);
         mPresenter = new OrderPresenter(this);
         PaymentConfiguration.init(this, AppConstants.PUBLISHABLE_KEY);
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
@@ -104,6 +105,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
             mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.linear));
             mBinding.btnOrder.setEnabled(false);
         }
+        UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, true, this);
     }
 
     @Override
@@ -188,6 +190,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
                 clientSelect,
                 configuration
         );
+        mProgressDialog.dismiss();
     }
 
     // nhận địa chỉ trả về

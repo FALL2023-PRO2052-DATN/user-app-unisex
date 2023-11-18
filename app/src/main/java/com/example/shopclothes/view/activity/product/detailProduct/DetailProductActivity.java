@@ -1,15 +1,18 @@
 package com.example.shopclothes.view.activity.product.detailProduct;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterComment;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.MyBottomSheetCart;
@@ -20,6 +23,7 @@ import com.example.shopclothes.model.Comment;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.Size;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.activity.comment.seeComment.SeeCommentActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +43,8 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mBinding = ActivityDetailProductBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mPresenter = new DetailProductPresenter(this);
+
+        UIUtils.openLayout(mBinding.ivLoadingDetailProductActivity, mBinding.layoutDetailProductActivity, false, this);
         initPresenter();
         seeMore();
         onClick();
@@ -80,6 +86,8 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mBinding.tvDescriptionProduct.setText(product.getNote());
         mPresenter.getListProductByIdCategory(product.getIdCategory());
         mBinding.btnAddCart.setOnClickListener(view -> openBottomSheetDialogFragment(product, mListSize));
+
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -92,6 +100,8 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mBinding.ratringBar.setRating(averageRating(list));
         mBinding.tvRatingComment.setText(FormatUtils.formatRating(averageRating(list)) + "/5");
         mBinding.tvNumberComment.setText("("+list.size()+")");
+
+
     }
 
     @Override
@@ -110,6 +120,9 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     @Override
     public void onListCartByIdUser(List<Cart> list) {
         mBinding.tvQuatityDetail.setText(String.valueOf(list.size()));
+
+        UIUtils.openLayout(mBinding.ivLoadingDetailProductActivity, mBinding.layoutDetailProductActivity, true, this);
+
     }
 
     @Override
