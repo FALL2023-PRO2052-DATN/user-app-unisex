@@ -197,7 +197,6 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     }
 
     // nhận địa chỉ trả về
-    @SuppressLint("SetTextI18n")
     private final ActivityResultLauncher<Intent> mLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
@@ -205,16 +204,23 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
                     Intent intent = result.getData();
                     assert intent != null;
                     Address address = (Address) intent.getSerializableExtra("data_address");
-                    mBinding.tvNameOther.setText(address.getName());
-                    mBinding.tvPhoneOther.setText( "(84+) " +address.getPhone());
-                    mBinding.tvEmailOther.setText(address.getEmail());
-                    mBinding.tvAddressOther.setText(address.getAddress());
-                    mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
-                    mBinding.btnOrder.setEnabled(true);
-                    mAddress = address;
+                    if (address != null){
+                        updateUIWithAddress(address);
+                    }
                 }
 
     });
+    @SuppressLint("SetTextI18n")
+    private void updateUIWithAddress(Address address) {
+        mBinding.tvNameOther.setText(address.getName());
+        mBinding.tvPhoneOther.setText(AppConstants.PHONE + address.getPhone());
+        mBinding.tvEmailOther.setText(address.getEmail());
+        mBinding.tvAddressOther.setText(address.getAddress());
+        mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
+        mBinding.btnOrder.setEnabled(true);
+        mAddress = address;
+    }
+
     @Override
     public void onPaymentSheetResult(PaymentSheetResult paymentSheetResult) {
         // implemented in the next steps
@@ -239,4 +245,5 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
             mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, "" ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
         }
     }
+
 }

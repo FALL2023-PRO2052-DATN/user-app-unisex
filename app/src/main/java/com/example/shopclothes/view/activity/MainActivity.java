@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.example.shopclothes.R;
 import com.example.shopclothes.databinding.ActivityMainBinding;
 import com.example.shopclothes.view.fragment.billFragment.BillFragment;
@@ -28,16 +26,19 @@ public class MainActivity extends AppCompatActivity {
         getSelectIntent();
     }
 
+    // chuyển từ màn finish order sang home -> xét lại fragment bill
     public void getSelectIntent(){
         Intent intent = getIntent();
         if (intent != null){
             int selectFragment = intent.getIntExtra("BILL", 0);
            if (selectFragment == 2){
                switchFragment(new BillFragment());
+               switchIcon(R.id.btn_bill);
            }
 
         }
     }
+
     @SuppressLint("NonConstantResourceId")
     public void onClick() {
         mBinding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
                     switchIcon(R.id.btn_settings);
                     break;
             }
-            return false;
+
+            return true;
         });
     }
     public void switchFragment(Fragment fragment){
@@ -83,5 +85,4 @@ public class MainActivity extends AppCompatActivity {
                 id == R.id.btn_settings ? R.drawable.ic_black_setting : R.drawable.ic_settings
         );
     }
-
 }

@@ -12,6 +12,7 @@ import com.example.shopclothes.adapter.MyPagerAdapter;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentBillBinding;
 import com.example.shopclothes.model.Cart;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ public class BillFragment extends Fragment implements BillContract.View.ViewPare
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentBillBinding.inflate(inflater, container, false);
+        UIUtils.openLayout(mBinding.ivLoadingBillFragment, mBinding.layoutBillFragment, false, getContext());
         return mBinding.getRoot();
     }
 
@@ -79,5 +81,6 @@ public class BillFragment extends Fragment implements BillContract.View.ViewPare
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
         mBinding.tvBagBill.setText(String.valueOf(cartList.size()));
+        UIUtils.openLayout(mBinding.ivLoadingBillFragment, mBinding.layoutBillFragment, true, getContext());
     }
 }

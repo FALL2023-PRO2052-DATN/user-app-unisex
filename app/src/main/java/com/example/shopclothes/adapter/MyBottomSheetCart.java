@@ -103,7 +103,7 @@ public class MyBottomSheetCart extends BottomSheetDialogFragment {
 
     public void onClickItem(int position, int sizeNumber) {
 
-        if (position != -1){ // size đã dc chọn
+        if (position != -1 && sizeNumber != 0){ // size đã dc chọn
             mBinding.tvQuantity.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary));
             mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity);
             mBinding.btnMinusQuantity.setEnabled(true);
@@ -113,39 +113,10 @@ public class MyBottomSheetCart extends BottomSheetDialogFragment {
                 mBinding.tvQuantity.setText(String.valueOf(sizeNumber)); // xét lại số lượng tồn kho lên tv
                 mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity_1);
             }
-
             // thêm số lượng
-            mBinding.btnAddQuantity.setOnClickListener(view -> {
-                int num = Integer.parseInt(mBinding.tvQuantity.getText().toString());
-
-                if (num >= sizeNumber){
-                    mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity_1);
-                }else {
-                    if(num == sizeNumber -1){
-                        // khi click tăng số lượng lên = tồn khô -> số lượng lúc chưa tăng sẽ == tồn kho - 1 ,tăng lên = tồn kho sẽ xét bgr thành xám
-                        mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity_1);
-                    }
-                    mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity);
-                    mBinding.tvQuantity.setText(String.valueOf(num + 1));
-                }
-
-            });
-
+            mBinding.btnAddQuantity.setOnClickListener(view -> addQuantity(sizeNumber));
             // giảm số lượng
-            mBinding.btnMinusQuantity.setOnClickListener(view -> {
-                int num = Integer.parseInt(mBinding.tvQuantity.getText().toString());
-
-                if (num <= 1){
-                    mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity_1);
-                }else {
-                    if (num == 2){
-                        // khi click giảm số lượng = 1 -> số lượng lúc chưa giảm = 2 ,giảm = 1 sẽ xét bgr thành xám
-                        mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity_1);
-                    }
-                    mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity);
-                    mBinding.tvQuantity.setText(String.valueOf(num - 1));
-                }
-            });
+            mBinding.btnMinusQuantity.setOnClickListener(view -> minusQuantity());
         }else {
             mBinding.btnMinusQuantity.setEnabled(false);
             mBinding.btnAddQuantity.setEnabled(false);
@@ -155,6 +126,35 @@ public class MyBottomSheetCart extends BottomSheetDialogFragment {
         }
     }
 
+    public void addQuantity(int sizeNumber){
+        int num = Integer.parseInt(mBinding.tvQuantity.getText().toString());
+
+        if (num >= sizeNumber){
+            mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity_1);
+        }else {
+            if(num == sizeNumber -1){
+                // khi click tăng số lượng lên = tồn khô -> số lượng lúc chưa tăng sẽ == tồn kho - 1 ,tăng lên = tồn kho sẽ xét bgr thành xám
+                mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity_1);
+            }
+            mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity);
+            mBinding.tvQuantity.setText(String.valueOf(num + 1));
+        }
+    }
+
+    public void minusQuantity(){
+        int num = Integer.parseInt(mBinding.tvQuantity.getText().toString());
+
+        if (num <= 1){
+            mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity_1);
+        }else {
+            if (num == 2){
+                // khi click giảm số lượng = 1 -> số lượng lúc chưa giảm = 2 ,giảm = 1 sẽ xét bgr thành xám
+                mBinding.ivMinusQuantity.setImageResource(R.drawable.ic_minus_quatity_1);
+            }
+            mBinding.ivAddQuantity.setImageResource(R.drawable.ic_add_quantity);
+            mBinding.tvQuantity.setText(String.valueOf(num - 1));
+        }
+    }
     public void addCart(){
         mProgressDialog = ProgressDialog.show(getContext(), "", AppConstants.LOADING);
         int quantity = Integer.parseInt(mBinding.tvQuantity.getText().toString());
