@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     private DetailProductContract.Presenter mPresenter;
     private List<Size> mListSize;
     private  int id;
+    private Product mProduct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,19 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
             intent.putExtra("id", id);
             startActivity(intent);
         });
+        mBinding.ivShare.setOnClickListener(view -> shareProduct());
+    }
+
+    private void shareProduct() {
+        Intent intent = new Intent(Intent.ACTION_SEND); // hành động gửi dữ liệu tới úng dụng khác
+        intent.setType("text/plain");
+        String shareText = "Tên sản phẩm: " + mProduct.getNameProduct() +
+                "\nHình ảnh: " + mProduct.getImageProduct() +
+                "\nGiá: " + FormatUtils.formatCurrency(mProduct.getPrice()) +
+                "\nGhi chú: " + mProduct.getNote();
+        intent.putExtra(Intent.EXTRA_TEXT, shareText);
+        startActivity(Intent.createChooser(intent, "Chia sẻ nội dung thông qua"));
+
     }
 
     @Override
@@ -86,8 +101,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mBinding.tvDescriptionProduct.setText(product.getNote());
         mPresenter.getListProductByIdCategory(product.getIdCategory());
         mBinding.btnAddCart.setOnClickListener(view -> openBottomSheetDialogFragment(product, mListSize));
-
-
+        mProduct = product;
     }
 
     @SuppressLint("SetTextI18n")
