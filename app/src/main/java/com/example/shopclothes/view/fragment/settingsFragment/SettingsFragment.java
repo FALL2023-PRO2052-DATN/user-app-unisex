@@ -14,13 +14,18 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
 import com.example.shopclothes.databinding.FragmentProfileBinding;
+import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.User;
 import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.account.login.LoginActivity;
+import com.example.shopclothes.view.activity.address.address.AddressActivity;
+import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.changePassword.ChangePasswordActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.updateInforAccount.UpdateAccountActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
 
 
 public class SettingsFragment extends Fragment implements SettingContract.View {
@@ -47,9 +52,9 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         assert user != null;
         mPresenter.getUser(user.getUid());
+        mPresenter.readListCartByIdUser(user.getUid());
         onClick();
     }
 
@@ -57,6 +62,8 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
         mBinding.btnOut.setOnClickListener(view1 -> logOut());
         mBinding.layoutChangePass.setOnClickListener(view1 -> nextChange());
         mBinding.layoutUpdateInfor.setOnClickListener(view1 -> nextUpdateUser());
+        mBinding.btnBagSettings.setOnClickListener(view -> startActivity(new Intent(getContext(), CartActivity.class)));
+        mBinding.layoutAddressReceive.setOnClickListener(view -> startActivity(new Intent(getContext(), AddressActivity.class)));
     }
 
     public void nextChange(){
@@ -89,6 +96,11 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
         mBinding.tvEmailSetting.setText(firebaseUser.getEmail());
 
         UIUtils.openLayout(mBinding.ivLoadingSettingsFragment, mBinding.layoutSettingsFragment, true, getContext());
+    }
+
+    @Override
+    public void onListCartByIdUser(List<Cart> cartList) {
+        mBinding.tvBagSettings.setText(String.valueOf(cartList.size()));
     }
 
     @Override

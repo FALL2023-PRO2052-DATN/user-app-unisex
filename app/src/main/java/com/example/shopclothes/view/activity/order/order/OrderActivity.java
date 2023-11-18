@@ -44,10 +44,13 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         super.onCreate(savedInstanceState);
         mBinding = ActivityOrtherBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
         UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, false, this);
         mPresenter = new OrderPresenter(this);
+
         PaymentConfiguration.init(this, AppConstants.PUBLISHABLE_KEY);
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
+
         onListProduct();
         initPresenter();
         onClick();
@@ -55,7 +58,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
 
     @Override
     public void onClick() {
-        mBinding.ivNextOther.setOnClickListener(view -> {
+        mBinding.layoutInformation.setOnClickListener(view -> {
            Intent intent1 = new Intent(this, AddressActivity.class);
            mLauncher.launch(intent1);
         });
@@ -208,6 +211,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
                     mBinding.tvAddressOther.setText(address.getAddress());
                     mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
                     mBinding.btnOrder.setEnabled(true);
+                    mAddress = address;
                 }
 
     });

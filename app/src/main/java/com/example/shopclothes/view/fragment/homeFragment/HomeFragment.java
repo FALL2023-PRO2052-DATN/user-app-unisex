@@ -1,11 +1,9 @@
 package com.example.shopclothes.view.fragment.homeFragment;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +13,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.bumptech.glide.Glide;
-import com.example.shopclothes.R;
 import com.example.shopclothes.adapter.AdapterBanner;
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.adapter.AdapterTypeProduct;
 import com.example.shopclothes.databinding.FragmentHomeBinding;
-import com.example.shopclothes.databinding.ItemDialogBinding;
 import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;

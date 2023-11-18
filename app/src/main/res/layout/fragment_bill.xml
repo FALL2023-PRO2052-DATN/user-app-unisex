@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/btn_bag"
+                    android:id="@+id/btn_bag_bill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -37,7 +37,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/tv_quantity_bill"
+                            android:id="@+id/tv_bag_bill"
                             android:layout_width="19dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -46,7 +46,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <ImageView
-                        android:id="@+id/iv_bag_detail_product"
+                        android:id="@+id/iv_bag_bill"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
