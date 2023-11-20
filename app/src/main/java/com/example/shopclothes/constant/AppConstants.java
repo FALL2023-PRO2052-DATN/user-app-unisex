@@ -39,4 +39,7 @@ public class AppConstants {
     public static final String UNISEX = "Unisex-";
     public static final String PERCENT = "%";
     public static final String UNI = "-UNI_";
+    public static final String CODE_SALE = "Mã giảm giá : ";
+    public static final String CODE_SALE_CONTENT_1 = "Được giảm giá đến ";
+    public static final String CODE_SALE_CONTENT_2 = " cho tất các đơn hàng của bạn !";
 }

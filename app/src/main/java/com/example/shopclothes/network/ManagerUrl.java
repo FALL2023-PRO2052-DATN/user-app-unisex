@@ -50,6 +50,7 @@ public class ManagerUrl {
 
     // discount
     public static final String READ_DISCOUNT_BY_ID = "read-byId-discount";
+    public static final String READ_DISCOUNT = "read/discounts";
 
     // order
     public static final String INSERT_ORDER = "insert-order";
@@ -63,4 +64,8 @@ public class ManagerUrl {
     //setting
     public static final String UPDATE_INF_USER = "update-user";
     public static final String READ_USER = "read-user";
+
+    // notification
+    public static final String READ_NOTIFICATION = "read/notifications";
+    public static final String INSERT_NOTIFICATION = "insert/notification";
 }

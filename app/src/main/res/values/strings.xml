@@ -179,4 +179,10 @@
     <string name="text_passnew">Mật khẩu mới</string>
     <string name="title_up_infor">Cập nhật thông tin khách hàng</string>
     <string name="title_name_up_infor">Họ và tên</string>
+
+    <!-- TODO: notification -->
+    <string name="title_notification">Thông báo</string>
+    <string name="title_notification_discount">Mã giảm giá hiện có</string>
+    <string name="title_notification_bill">Đơn hàng của bạn</string>
+    <string name="notification_discount">Không có mã giảm giá nào</string>
 </resources>
