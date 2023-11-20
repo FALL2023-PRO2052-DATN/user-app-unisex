@@ -17,6 +17,7 @@ import com.example.shopclothes.adapter.MyBottomSheetBill;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentChildBillBinding;
 import com.example.shopclothes.model.Bill;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.billDetail.BillDetailActivity;
 import com.example.shopclothes.view.fragment.billFragment.BillContract;
 import com.example.shopclothes.view.fragment.billFragment.BillPresenter;
@@ -46,7 +47,7 @@ public class CanceledFragment extends Fragment implements BillContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mProgressDialog = ProgressDialog.show(getContext(), "", AppConstants.LOADING);
+        UIUtils.openLayout(mBinding.ivLoadingChildBillFragment, mBinding.layoutChildBillFragment, false, getContext());
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         mPresenter.readListBill(user.getUid(), AppConstants.DELIVERY_STATUS_CANCELED);
@@ -68,7 +69,8 @@ public class CanceledFragment extends Fragment implements BillContract.View {
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         mBinding.rcvBill.setLayoutManager(layoutManager);
         mBinding.rcvBill.setAdapter(adapterBill);
-        mProgressDialog.dismiss();
+
+        UIUtils.openLayout(mBinding.ivLoadingChildBillFragment, mBinding.layoutChildBillFragment, true, getContext());
     }
 
     @Override

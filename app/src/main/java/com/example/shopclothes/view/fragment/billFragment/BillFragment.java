@@ -37,7 +37,6 @@ public class BillFragment extends Fragment implements BillContract.View.ViewPare
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentBillBinding.inflate(inflater, container, false);
-        UIUtils.openLayout(mBinding.ivLoadingBillFragment, mBinding.layoutBillFragment, false, getContext());
         return mBinding.getRoot();
     }
 
@@ -81,6 +80,5 @@ public class BillFragment extends Fragment implements BillContract.View.ViewPare
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
         mBinding.tvBagBill.setText(String.valueOf(cartList.size()));
-        UIUtils.openLayout(mBinding.ivLoadingBillFragment, mBinding.layoutBillFragment, true, getContext());
     }
 }

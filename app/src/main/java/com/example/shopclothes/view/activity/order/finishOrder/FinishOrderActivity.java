@@ -10,6 +10,7 @@ import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityFinishOrderBinding;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.MainActivity;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,7 @@ public class FinishOrderActivity extends AppCompatActivity implements FinishOrde
         mBinding = ActivityFinishOrderBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mPresenter = new FinishOrderPresenter(this);
-        mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
+        UIUtils.openLayout(mBinding.ivLoadingFinishOrder, mBinding.layoutFinishOrder, false, this);
         mPresenter.getListProductOutstanding();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
@@ -60,5 +61,6 @@ public class FinishOrderActivity extends AppCompatActivity implements FinishOrde
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mBinding.rcvFinishOrder.setLayoutManager(layoutManager);
         mBinding.rcvFinishOrder.setAdapter(adapter);
+        UIUtils.openLayout(mBinding.ivLoadingFinishOrder, mBinding.layoutFinishOrder, true, this);
     }
 }
