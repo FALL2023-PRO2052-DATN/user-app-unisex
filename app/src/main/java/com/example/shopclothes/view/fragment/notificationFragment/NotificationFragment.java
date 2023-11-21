@@ -16,7 +16,10 @@ import com.example.shopclothes.adapter.AdapterNotification;
 import com.example.shopclothes.databinding.FragmentNotificationBinding;
 import com.example.shopclothes.model.Discount;
 import com.example.shopclothes.model.Notification;
+import com.example.shopclothes.utils.UIUtils;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,18 +38,20 @@ public class NotificationFragment extends Fragment implements NotificationContra
         // Inflate the layout for this fragment
         mBinding = FragmentNotificationBinding.inflate(inflater, container, false);
         mPresenter = new NotificationPresenter(this);
+        UIUtils.openLayout(mBinding.ivLoadingNotificationFragment, mBinding.layoutNotificationFragment, false, getContext());
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.readListNotification(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
         mPresenter.readListDiscount();
+        mPresenter.readListNotification(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
     }
 
     @Override
     public void onListNotification(List<Notification> notificationList) {
+        Collections.reverse(notificationList);
         if (notificationList.size() != 0){
             mBinding.ivEmptyBillNotificationBill.setVisibility(View.GONE);
             mBinding.tvBillNotificationBill.setVisibility(View.GONE);
@@ -56,7 +61,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
         mBinding.rcvNotificationBill.setLayoutManager(layoutManager);
         mBinding.rcvNotificationBill.setAdapter(adapterNotification);
 
-
+        UIUtils.openLayout(mBinding.ivLoadingNotificationFragment, mBinding.layoutNotificationFragment, true, getContext());
     }
 
     @Override

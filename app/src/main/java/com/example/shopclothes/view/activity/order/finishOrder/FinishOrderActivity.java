@@ -2,9 +2,13 @@ package com.example.shopclothes.view.activity.order.finishOrder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import android.app.ProgressDialog;
+
+import android.annotation.SuppressLint;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.example.shopclothes.adapter.AdapterProduct;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityFinishOrderBinding;
@@ -21,21 +25,31 @@ import java.util.List;
 public class FinishOrderActivity extends AppCompatActivity implements FinishOrderContract.View {
     private ActivityFinishOrderBinding mBinding;
     private FinishOrderContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityFinishOrderBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mPresenter = new FinishOrderPresenter(this);
+
         UIUtils.openLayout(mBinding.ivLoadingFinishOrder, mBinding.layoutFinishOrder, false, this);
-        mPresenter.getListProductOutstanding();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
+        mPresenter.getListProductOutstanding();
         mPresenter.getListCartByIdUser(user.getUid());
+
+        senNotification();
         onClick();
     }
 
+    private void senNotification() {
+        // dùng PendingIntent để chuyển vào main khi click vào thông báo
+        Intent intent = new Intent(this, MainActivity.class);
+        @SuppressLint("UnspecifiedImmutableFlag")
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mPresenter.senNotification(AppConstants.NOTIFICATION, AppConstants.NOTIFICATION_CONTENT, pendingIntent, this, getSystemService(Context.NOTIFICATION_SERVICE));
+    }
     @Override
     public void onClick() {
         mBinding.btnHomeFinishOrder.setOnClickListener(view -> mPresenter.nextActivity(this, MainActivity.class));
@@ -56,7 +70,6 @@ public class FinishOrderActivity extends AppCompatActivity implements FinishOrde
 
     @Override
     public void onListProductOutstanding(List<Product> list) {
-        mProgressDialog.dismiss();
         AdapterProduct adapter= new AdapterProduct(list, 2, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mBinding.rcvFinishOrder.setLayoutManager(layoutManager);

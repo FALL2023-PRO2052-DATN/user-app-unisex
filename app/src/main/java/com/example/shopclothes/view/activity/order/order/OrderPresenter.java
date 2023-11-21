@@ -4,7 +4,6 @@ package com.example.shopclothes.view.activity.order.order;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -16,8 +15,6 @@ import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
 import com.example.shopclothes.view.activity.order.response.ResponseModel;
 import com.example.shopclothes.view.activity.order.response.ResponseOrder;
 import com.example.shopclothes.view.activity.order.response.ResponsePayment;
-import com.stripe.android.paymentsheet.PaymentSheet;
-import com.stripe.android.paymentsheet.PaymentSheetResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;

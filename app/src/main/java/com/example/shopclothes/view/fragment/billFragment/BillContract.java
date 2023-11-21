@@ -12,9 +12,9 @@ public interface BillContract {
         void onListBill(List<Bill> billList);
         void nextScreenDetailBill(String id);
         void nextScreenComment(String id);
-       interface ViewParents {
+        interface ViewParents {
            void onListCartByIdUser(List<Cart> cartList);
-       }
+        }
     }
 
     interface Presenter {
