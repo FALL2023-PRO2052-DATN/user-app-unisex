@@ -323,6 +323,7 @@
 
                 <RatingBar
                     android:id="@+id/ratringBar"
+                    android:isIndicator="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="-63dp"

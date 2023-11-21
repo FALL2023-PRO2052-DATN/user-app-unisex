@@ -134,7 +134,6 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     @Override
     public void onListCartByIdUser(List<Cart> list) {
         mBinding.tvQuatityDetail.setText(String.valueOf(list.size()));
-
         UIUtils.openLayout(mBinding.ivLoadingDetailProductActivity, mBinding.layoutDetailProductActivity, true, this);
 
     }

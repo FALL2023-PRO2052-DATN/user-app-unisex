@@ -2,7 +2,7 @@ package com.example.shopclothes.network;
 
 public class ManagerUrl {
 
-    public static final String BASE_URL = "http://172.16.55.154:3000/api/";
+    public static final String BASE_URL = "http://192.168.1.6:3000/api/";
     public static final String BASE_URL_STRIPE = "https://api.stripe.com/v1/";
 
 
@@ -69,4 +69,5 @@ public class ManagerUrl {
     // notification
     public static final String READ_NOTIFICATION = "read/notifications";
     public static final String INSERT_NOTIFICATION = "insert/notification";
+    public static final String DELETE_NOTIFICATION = "delete/notification";
 }

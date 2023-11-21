@@ -13,6 +13,7 @@ import com.example.shopclothes.view.fragment.billFragment.BillFragment;
 import com.example.shopclothes.view.fragment.homeFragment.HomeFragment;
 import com.example.shopclothes.view.fragment.notificationFragment.NotificationFragment;
 import com.example.shopclothes.view.fragment.settingsFragment.SettingsFragment;
+import com.google.android.material.badge.BadgeDrawable;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
@@ -24,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
         switchFragment(new HomeFragment());
         onClick();
         getSelectIntent();
+        setBadgerNotification();
     }
+
+
 
     // chuyển từ màn finish order sang home -> xét lại fragment bill
     public void getSelectIntent(){
@@ -37,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
            }
 
         }
+    }
+
+    private void setBadgerNotification() {
+        BadgeDrawable badgeDrawable = mBinding.bottomNavigationView.getOrCreateBadge(R.id.btn_bell);
+        badgeDrawable.setVisible(true);
+        badgeDrawable.setNumber(5);
     }
 
     @SuppressLint("NonConstantResourceId")

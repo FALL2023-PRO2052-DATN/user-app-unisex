@@ -188,4 +188,7 @@ public interface ApiService {
                                                   @Field("content") String content,
                                                   @Field("image") String image,
                                                   @Field("userId") String userId);
+    @POST(ManagerUrl.DELETE_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> deleteNotification(@Field("id") int id);
 }
