@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     public void onClick() {
         mBinding.btnLogin.setOnClickListener(view -> login());
+        mBinding.ivHidingPass.setOnClickListener(view -> onPasswordToggleImageClick());
         mBinding.tvForgotPassword.setOnClickListener(view -> startActivity(new Intent(this, ForgotPasswordActivity.class)));
         mBinding.tvRegister.setOnClickListener(view -> startActivity(new Intent(this, RegisterActivity.class)));
     }
@@ -36,6 +37,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         String LOGIN = "Đăng nhập";
         mProgressDialog = ProgressDialog.show(this, LOGIN, AppConstants.LOADING);
         mPresenter.doLogin(email,password);
+    }
+
+    public void onPasswordToggleImageClick(){
+        UIUtils.togglePasswordVisibleWithImage(
+                mBinding.etPasswordLogin,
+                mBinding.ivHidingPass);
     }
 
     @Override
