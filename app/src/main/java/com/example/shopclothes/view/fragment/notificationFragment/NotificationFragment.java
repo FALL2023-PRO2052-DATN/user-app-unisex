@@ -49,8 +49,6 @@ public class NotificationFragment extends Fragment implements NotificationContra
         super.onViewCreated(view, savedInstanceState);
         mPresenter.readListDiscount();
         mPresenter.readListNotification(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
-
-
     }
 
     @Override

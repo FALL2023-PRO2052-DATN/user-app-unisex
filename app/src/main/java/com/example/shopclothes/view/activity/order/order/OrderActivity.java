@@ -65,7 +65,12 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         mBinding.ivBackOrder.setOnClickListener(view -> onBackPressed());
         mBinding.btnApply.setOnClickListener(view ->{
             mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
-            mPresenter.readDiscountById(mBinding.etApply.getText().toString().trim());
+           if (!mBinding.etApply.getText().toString().trim().equals("")){
+                mPresenter.readDiscountById(mBinding.etApply.getText().toString().trim());
+            }else {
+               UIUtils.showMessage(mBinding.getRoot(), AppConstants.DISCOUNT_EMPTY);
+               mProgressDialog.dismiss();
+           }
         } );
         mBinding.btnOrder.setOnClickListener(view -> insertOrderActivity());
     }
@@ -114,11 +119,16 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     @Override
     public void onDiscount(Discount discount) {
         mProgressDialog.dismiss();
-        double price = FormatUtils.parseCurrency(intent.getStringExtra("sumPrice"));
-        double discountPrice = price * discount.getPercent() / 100;
-        mBinding.tvDiscountOrder.setText(FormatUtils.formatCurrency(discountPrice));
-        mBinding.tvSumPriceAllOrder.setText(FormatUtils.formatCurrency(price - discountPrice));
-        mBinding.tvPriceOrder.setText(mBinding.tvSumPriceAllOrder.getText().toString());
+        if (discount != null){
+            double price = FormatUtils.parseCurrency(intent.getStringExtra("sumPrice"));
+            double discountPrice = price * discount.getPercent() / 100;
+            mBinding.tvDiscountOrder.setText(FormatUtils.formatCurrency(discountPrice));
+            mBinding.tvSumPriceAllOrder.setText(FormatUtils.formatCurrency(price - discountPrice));
+            mBinding.tvPriceOrder.setText(mBinding.tvSumPriceAllOrder.getText().toString());
+        }else {
+            UIUtils.showMessage(mBinding.getRoot(), AppConstants.DISCOUNT_NOT_FOUND);
+            UIUtils.clearText(mBinding.etApply);
+        }
         mDiscount = discount;
     }
 

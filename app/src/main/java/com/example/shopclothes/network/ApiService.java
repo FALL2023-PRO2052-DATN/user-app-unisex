@@ -79,6 +79,10 @@ public interface ApiService {
                                         @Field("content") String content,
                                         @Field("idUser") String idUser,
                                         @Field("idProduct") int idProduct);
+    @POST(ManagerUrl.READ_COMMENT_STAR)
+    @FormUrlEncoded
+    Call<ResponseComment> readCommentByStar(@Field("id") int id,
+                                            @Field("star") int star);
 
 
     // size
@@ -90,8 +94,6 @@ public interface ApiService {
     @POST(ManagerUrl.READ_CART_BY_ID_USER)
     @FormUrlEncoded
     Call<ResponseCart> readCartById(@Field("id") String id);
-    @GET(ManagerUrl.READ_CART)
-    Call<ResponseCart> readCart();
     @POST(ManagerUrl.INSERT_CART)
     @FormUrlEncoded
     Call<ResponseCart> insertCart(@Field("quantity") int quantity,

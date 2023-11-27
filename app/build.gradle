@@ -64,6 +64,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     // Stripe Android SDK
     implementation 'com.stripe:stripe-android:20.34.4'
-
+    // socket
+    implementation ('io.socket:socket.io-client:2.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
 
 }

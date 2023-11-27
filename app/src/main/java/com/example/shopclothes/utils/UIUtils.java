@@ -1,4 +1,6 @@
 package com.example.shopclothes.utils;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -6,9 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
+import com.example.shopclothes.constant.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
 public class UIUtils {
@@ -29,6 +34,18 @@ public class UIUtils {
             Glide.with(context).load("https://i.gifer.com/ZKZg.gif").into(imageView);
             frameLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.main));
         }
+    }
+
+    public static void copyToClipboard(Context context, String textToCopy, View view) {
+        // Lấy ClipboardManager từ hệ thống
+        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+
+        // Tạo một đối tượng ClipData để chứa dữ liệu cần sao chép
+        ClipData clipData = ClipData.newPlainText("text", textToCopy);
+
+        // Sao chép dữ liệu vào ClipboardManager
+        clipboardManager.setPrimaryClip(clipData);
+        showMessage(view, AppConstants.MESSAGE_COPY);
     }
 
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ItemDiscountBinding;
 import com.example.shopclothes.model.Discount;
+import com.example.shopclothes.utils.UIUtils;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class AdapterDiscount extends RecyclerView.Adapter<AdapterDiscount.ViewHo
             return;
         }
         holder.bind(discount);
+        holder.mBinding.ivCopy.setOnClickListener(view -> UIUtils.copyToClipboard(holder.mBinding.getRoot().getContext(), discount.getCode(), holder.mBinding.getRoot()));
     }
 
     @Override

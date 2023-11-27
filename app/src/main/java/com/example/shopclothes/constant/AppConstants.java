@@ -49,4 +49,7 @@ public class AppConstants {
     public static final String NOTIFICATION_CONTENT = "Bạn đã đặt hàng thành công";
     public static final String NOTIFICATION_TITLE_CANCEL = "Đơn hàng ";
     public static final String NOTIFICATION_CONTENT_CANCEL = "Bạn đã hủy đơn hàng với lí do: ";
+    public static final String DISCOUNT_NOT_FOUND = "Mã giảm giá không tồn tại";
+    public static final String DISCOUNT_EMPTY = "Vui lòng nhập mã giảm giá";
+    public static final String MESSAGE_COPY = "Đã sao chép mã giảm giá";
 }

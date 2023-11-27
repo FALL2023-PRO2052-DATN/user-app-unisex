@@ -39,4 +39,39 @@ public class SeeAllPresenter implements SeeCommentContract.Presenter {
         });
     }
 
+    @Override
+    public void getListCommentByStart(int id, int start) {
+        ApiService.API_SERVICE.readCommentByStar(id, start).enqueue(new Callback<ResponseComment>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseComment> call, @NonNull Response<ResponseComment> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onListComment(response.body().getCommentList());
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ResponseComment> call,@NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void readListCartByIdUser(String id) {
+        ApiService.API_SERVICE.readCartById(id).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onListCartByIdUser(response.body().getCartList());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
 }

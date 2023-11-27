@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -99,7 +100,11 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             binding.tvPriceProductLinear.setText(FormatUtils.formatCurrency(product.getPrice()));
             binding.tvTypeProductLinear.setText(AppConstants.UNISEX + product.getNameTypeProduct());
             binding.tvPriceSalesProductLinear.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
-            binding.tvNumberSalesLinear.setText(product.getSale() + AppConstants.PERCENT);
+            if (product.getSale() == 0){
+                binding.tvNumberSalesLinear.setVisibility(View.GONE);
+            }else {
+                binding.tvNumberSalesLinear.setText(product.getSale() + AppConstants.PERCENT);
+            }
         }
     }
 
@@ -117,7 +122,11 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
             binding.tvPriceProductGrid.setText(FormatUtils.formatCurrency(product.getPrice()));
             binding.tvTypeProductGrid.setText(AppConstants.UNISEX + product.getNameTypeProduct());
             binding.tvPriceSalesProductGrid.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
-            binding.tvNumberSalesGrid.setText(product.getSale() + AppConstants.PERCENT);
+            if (product.getSale() == 0){
+                binding.tvNumberSalesGrid.setVisibility(View.GONE);
+            }else {
+                binding.tvNumberSalesGrid.setText(product.getSale() + AppConstants.PERCENT);
+            }
         }
     }
 }

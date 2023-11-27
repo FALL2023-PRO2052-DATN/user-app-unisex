@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="1 Sao"
+       android:id="@+id/oneStar" />
+    <item android:title="2 Sao"
+        android:id="@+id/towStar" />
+    <item android:title="3 Sao"
+        android:id="@+id/threeStar" />
+    <item android:title="4 Sao"
+        android:id="@+id/fourStar" />
+    <item android:title="5 Sao"
+        android:id="@+id/fifStar" />
+    <item android:title="Tất cả"
+        android:id="@+id/allStar" />
+</menu>
