@@ -26,6 +26,9 @@ import com.example.shopclothes.view.activity.account.login.LoginActivity;
 import com.example.shopclothes.view.activity.address.address.AddressActivity;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.changePassword.ChangePasswordActivity;
+import com.example.shopclothes.view.fragment.settingsFragment.other.AboutUsActivity;
+import com.example.shopclothes.view.fragment.settingsFragment.other.ContactActivity;
+import com.example.shopclothes.view.fragment.settingsFragment.other.PolicyActivity;
 import com.example.shopclothes.view.fragment.settingsFragment.updateInforAccount.UpdateAccountActivity;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -89,6 +92,9 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
         mBinding.layoutUpdateInfor.setOnClickListener(view1 -> nextUpdateUser());
         mBinding.btnBagSettings.setOnClickListener(view -> startActivity(new Intent(getContext(), CartActivity.class)));
         mBinding.layoutAddressReceive.setOnClickListener(view -> startActivity(new Intent(getContext(), AddressActivity.class)));
+        mBinding.layoutAboutUs.setOnClickListener(view -> startActivity(new Intent(getContext(), AboutUsActivity.class)));
+        mBinding.layoutReturnPolicy.setOnClickListener(view -> startActivity(new Intent(getContext(), PolicyActivity.class)));
+        mBinding.layoutContact.setOnClickListener(view -> startActivity(new Intent(getContext(), ContactActivity.class)));
     }
 
     public void nextChange(){
