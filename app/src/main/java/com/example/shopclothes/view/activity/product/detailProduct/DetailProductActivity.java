@@ -171,7 +171,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
 
     @Override
     public void openBottomSheetDialogFragment(Product product, List<Size> list) {
-        MyBottomSheetCart myBottomSheet = new MyBottomSheetCart(product, list, new DetailProductPresenter(this));
+        MyBottomSheetCart myBottomSheet = new MyBottomSheetCart(product, list, new DetailProductPresenter(this), mBinding.getRoot());
         myBottomSheet.show(getSupportFragmentManager(), myBottomSheet.getTag());
     }
 

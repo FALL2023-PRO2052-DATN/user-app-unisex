@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.Size;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.utils.FormatUtils;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.example.shopclothes.view.activity.product.detailProduct.DetailProductContract;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -43,10 +45,12 @@ public class MyBottomSheetCart extends BottomSheetDialogFragment {
     private  ProgressDialog mProgressDialog;
     private final DetailProductContract.Presenter mPresenter;
     private  FirebaseUser user;
-    public MyBottomSheetCart(Product mProduct, List<Size> listSize, DetailProductContract.Presenter presenter) {
+    private final View mView;
+    public MyBottomSheetCart(Product mProduct, List<Size> listSize, DetailProductContract.Presenter presenter, View view) {
         this.mProduct = mProduct;
         this.mListSize = listSize;
         this.mPresenter = presenter;
+        this.mView = view;
         mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -162,16 +166,16 @@ public class MyBottomSheetCart extends BottomSheetDialogFragment {
         ApiService.API_SERVICE.insertCart(quantity , mProduct.getPrice(), mSize,  mUser.getUid(), mProduct.getId()).enqueue(new Callback<ResponseCart>() {
             @Override
             public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                mProgressDialog.dismiss();
+                dismiss();
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
-                    Toast.makeText(getContext(), AppConstants.ON_SUCCESS, Toast.LENGTH_SHORT).show();
+                    UIUtils.showMessage(mView, AppConstants.ON_SUCCESS);
                     user = FirebaseAuth.getInstance().getCurrentUser();
                     assert user != null;
                     mPresenter.getListCartByIdUser(user.getUid()); // lúc thêm vào giỏ hàng load lại giỏ hàng
-                    mProgressDialog.dismiss();
-                    dismiss();
                 }else {
-                    Toast.makeText(getContext(), AppConstants.ON_FAILURE, Toast.LENGTH_SHORT).show();
+                    UIUtils.showMessage(mView, AppConstants.ADD_CART_FAILURE);
                 }
             }
 

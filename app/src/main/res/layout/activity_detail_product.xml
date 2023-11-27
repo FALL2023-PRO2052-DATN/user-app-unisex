@@ -110,7 +110,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <ImageView
+            <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/iv_detail_product"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"

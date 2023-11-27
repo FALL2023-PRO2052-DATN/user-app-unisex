@@ -52,4 +52,5 @@ public class AppConstants {
     public static final String DISCOUNT_NOT_FOUND = "Mã giảm giá không tồn tại";
     public static final String DISCOUNT_EMPTY = "Vui lòng nhập mã giảm giá";
     public static final String MESSAGE_COPY = "Đã sao chép mã giảm giá";
+    public static final String ADD_CART_FAILURE = "Sản phẩm đã có trong giỏ hàng";
 }
