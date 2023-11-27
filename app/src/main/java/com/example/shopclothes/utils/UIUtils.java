@@ -4,12 +4,13 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
@@ -48,4 +49,23 @@ public class UIUtils {
         showMessage(view, AppConstants.MESSAGE_COPY);
     }
 
+    /**
+     * Hàm thay đổi hình ảnh của nút hiển thị password và thay đổi thuộc tính InputType
+     */
+    public static void togglePasswordVisibleWithImage(EditText passwordEditText, ImageView passwordToggleImage) {
+        TransformationMethod transformationMethod;
+        int imgResource;
+
+        boolean isPasswordVisible = passwordEditText.getTransformationMethod() instanceof HideReturnsTransformationMethod;
+        if (isPasswordVisible) {
+            transformationMethod = PasswordTransformationMethod.getInstance();
+            imgResource = R.drawable.ic_eye;
+        } else {
+            transformationMethod = HideReturnsTransformationMethod.getInstance();
+            imgResource = R.drawable.ic_eye_true;
+        }
+
+        passwordEditText.setTransformationMethod(transformationMethod);
+        passwordToggleImage.setImageResource(imgResource);
+    }
 }

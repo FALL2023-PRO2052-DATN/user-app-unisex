@@ -64,26 +64,26 @@
             android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
             android:src="@drawable/pick_image"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/btn_civ"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:cardCornerRadius="20dp"
-            >
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/btn_civ"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-
-                android:src="@drawable/pick_image"
-                />
-        </androidx.cardview.widget.CardView>
+            app:civ_border_width="1dp"
+            android:src="@drawable/pick_image"
+            app:civ_border_color="@color/primary"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

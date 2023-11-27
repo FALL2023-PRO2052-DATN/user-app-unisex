@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
         onListenSocket();
     }
 
-
-
     private void onListenSocket() {
         // Handle events from the server
         mSocket.on("notification", args -> runOnUiThread(() -> {
