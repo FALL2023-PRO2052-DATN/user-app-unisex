@@ -86,6 +86,7 @@
             android:name=".view.activity.account.login.LoginActivity"
             android:exported="false" />
         <activity
+            android:launchMode="singleTask"
             android:name=".view.activity.MainActivity"
             android:exported="false" />
         <activity

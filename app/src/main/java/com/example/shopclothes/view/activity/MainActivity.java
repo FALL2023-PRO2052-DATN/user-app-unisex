@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Random;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
         setBadgerNotification();
 
         try {
-            mSocket = IO.socket("http://192.168.1.6:3000");
+            mSocket = IO.socket("http://172.16.48.141:3000");
             mSocket.connect();
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -95,11 +96,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .setContentIntent(pendingIntent);
-        notificationManager.notify(/* notificationId */ getIdNotification(), builder.build());
-    }
-
-    private int getIdNotification () {
-        return (int) new Date().getTime();
+        notificationManager.notify(/* notificationId */ generateRandomId(), builder.build());
     }
 
     // chuyển từ màn finish order sang home -> xét lại fragment bill
@@ -179,5 +176,10 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
     @Override
     public void onLogout() {
         finishAffinity();
+    }
+
+    public int generateRandomId() {
+        Random random = new Random();
+        return random.nextInt();
     }
 }
