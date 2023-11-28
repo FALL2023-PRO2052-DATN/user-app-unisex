@@ -1,5 +1,6 @@
 package com.example.shopclothes.view.fragment.billFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +12,8 @@ import com.example.shopclothes.adapter.MyPagerAdapter;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.FragmentBillBinding;
 import com.example.shopclothes.model.Cart;
+import com.example.shopclothes.utils.UIUtils;
+import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,10 +69,16 @@ public class BillFragment extends Fragment implements BillContract.View.ViewPare
                 mBinding.viewPager.setCurrentItem(data);
             }
         });
+
+        onClick();
+    }
+
+    private void onClick() {
+        mBinding.btnBagBill.setOnClickListener(view -> startActivity(new Intent(getContext(), CartActivity.class)));
     }
 
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
-        mBinding.tvQuantityBill.setText(String.valueOf(cartList.size()));
+        mBinding.tvBagBill.setText(String.valueOf(cartList.size()));
     }
 }

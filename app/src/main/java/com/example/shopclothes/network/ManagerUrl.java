@@ -2,8 +2,10 @@ package com.example.shopclothes.network;
 
 public class ManagerUrl {
 
-    public static final String BASE_URL = "http://192.168.1.19:3000/api/";
+    public static final String BASE_URL = "http://192.168.1.6:3000/api/";
+
     public static final String BASE_URL_STRIPE = "https://api.stripe.com/v1/";
+
 
     // stripe
     public static final String CUSTOMER = "customers";
@@ -31,12 +33,13 @@ public class ManagerUrl {
     // comment
     public static final String READ_COMMENT_ID = "read-byId-product-comment";
     public static final String INSERT_COMMENT = "insert-comment";
+    public static final String READ_COMMENT_STAR = "read/star/comments";
+
     // size
     public static final String READ_SIZE_ID_PRODUCT = "read-byId-product-size";
 
     // cart
     public static final String READ_CART_BY_ID_USER = "read-byId-user-cart";
-    public static final String READ_CART = "read-cart";
     public static final String INSERT_CART = "insert-cart";
     public static final String DELETE_CART = "delete-cart";
     public static final String UPDATE_CART = "update-cart";
@@ -50,6 +53,7 @@ public class ManagerUrl {
 
     // discount
     public static final String READ_DISCOUNT_BY_ID = "read-byId-discount";
+    public static final String READ_DISCOUNT = "read/discounts";
 
     // order
     public static final String INSERT_ORDER = "insert-order";
@@ -63,4 +67,9 @@ public class ManagerUrl {
     //setting
     public static final String UPDATE_INF_USER = "update-user";
     public static final String READ_USER = "read-user";
+
+    // notification
+    public static final String READ_NOTIFICATION = "read/notifications";
+    public static final String INSERT_NOTIFICATION = "insert/notification";
+    public static final String DELETE_NOTIFICATION = "delete/notification";
 }

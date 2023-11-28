@@ -21,6 +21,7 @@ import com.example.shopclothes.model.Banner;
 import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Product;
 import com.example.shopclothes.model.TypeProduct;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.example.shopclothes.view.activity.product.productNew.ProductNewActivity;
 import com.example.shopclothes.view.activity.product.productOutstanding.ProductOutstandingActivity;
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         // Inflate the layout for this fragment
         mBinding = FragmentHomeBinding.inflate(inflater, container, false);
         mPresenter = new HomePresenter(this);
+        UIUtils.openLayout(mBinding.ivLoadingHomeFragment, mBinding.layoutHomeFragment, false, getContext());
         return mBinding.getRoot();
     }
 
@@ -53,12 +55,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         super.onViewCreated(view, savedInstanceState);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
-        mPresenter.readListCartByIdUser(user.getUid());
         mPresenter.getListBanner();
         mPresenter.getListProductNew();
         mPresenter.getListProductOutstanding();
         mPresenter.getListProductAll();
         mPresenter.getListTypeProduct();
+        mPresenter.readListCartByIdUser(user.getUid());
         onClick();
     }
 
@@ -140,6 +142,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
         mBinding.tvQuantityHome.setText(String.valueOf(cartList.size()));
+        UIUtils.openLayout(mBinding.ivLoadingHomeFragment, mBinding.layoutHomeFragment, true, getContext());
+
     }
 
     @Override
@@ -149,4 +153,5 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         assert user != null;
         mPresenter.readListCartByIdUser(user.getUid());
     }
+
 }

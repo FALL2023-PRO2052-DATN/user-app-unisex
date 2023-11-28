@@ -1,6 +1,7 @@
 package com.example.shopclothes.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,7 @@ public class AdapterComment extends RecyclerView.Adapter<AdapterComment.ViewHold
             Glide.with(mBinding.getRoot()).load(comment.getAvatarUser()).into(mBinding.ivComment);
             mBinding.tvNameComment.setText(comment.getNameUser());
             mBinding.ratingComment.setRating(comment.getPointComment());
+            mBinding.ratingComment.setIsIndicator(true);
             mBinding.tvContentComment.setText(comment.getContentComment());
             mBinding.tvDatetimeComment.setText(FormatUtils.formatDate(comment.getDateComment()));
         }

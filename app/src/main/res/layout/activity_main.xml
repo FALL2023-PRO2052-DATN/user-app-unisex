@@ -25,9 +25,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:labelVisibilityMode="labeled"
-        app:itemTextColor="@color/primary"
-        app:itemIconTint="@color/primary"
-        app:menu="@menu/menu" />
+        app:itemTextColor="@color/bottom_nav_text_color_selector"
+        app:menu="@menu/menu"
+       />
 
 
 

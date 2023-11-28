@@ -44,9 +44,13 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         super.onCreate(savedInstanceState);
         mBinding = ActivityOrtherBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, false, this);
         mPresenter = new OrderPresenter(this);
+
         PaymentConfiguration.init(this, AppConstants.PUBLISHABLE_KEY);
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
+
         onListProduct();
         initPresenter();
         onClick();
@@ -54,14 +58,19 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
 
     @Override
     public void onClick() {
-        mBinding.ivNextOther.setOnClickListener(view -> {
+        mBinding.layoutInformation.setOnClickListener(view -> {
            Intent intent1 = new Intent(this, AddressActivity.class);
            mLauncher.launch(intent1);
         });
         mBinding.ivBackOrder.setOnClickListener(view -> onBackPressed());
         mBinding.btnApply.setOnClickListener(view ->{
             mProgressDialog = ProgressDialog.show(this, "", AppConstants.LOADING);
-            mPresenter.readDiscountById(mBinding.etApply.getText().toString().trim());
+           if (!mBinding.etApply.getText().toString().trim().equals("")){
+                mPresenter.readDiscountById(mBinding.etApply.getText().toString().trim());
+            }else {
+               UIUtils.showMessage(mBinding.getRoot(), AppConstants.DISCOUNT_EMPTY);
+               mProgressDialog.dismiss();
+           }
         } );
         mBinding.btnOrder.setOnClickListener(view -> insertOrderActivity());
     }
@@ -104,16 +113,22 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
             mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.linear));
             mBinding.btnOrder.setEnabled(false);
         }
+        UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, true, this);
     }
 
     @Override
     public void onDiscount(Discount discount) {
         mProgressDialog.dismiss();
-        double price = FormatUtils.parseCurrency(intent.getStringExtra("sumPrice"));
-        double discountPrice = price * discount.getPercent() / 100;
-        mBinding.tvDiscountOrder.setText(FormatUtils.formatCurrency(discountPrice));
-        mBinding.tvSumPriceAllOrder.setText(FormatUtils.formatCurrency(price - discountPrice));
-        mBinding.tvPriceOrder.setText(mBinding.tvSumPriceAllOrder.getText().toString());
+        if (discount != null){
+            double price = FormatUtils.parseCurrency(intent.getStringExtra("sumPrice"));
+            double discountPrice = price * discount.getPercent() / 100;
+            mBinding.tvDiscountOrder.setText(FormatUtils.formatCurrency(discountPrice));
+            mBinding.tvSumPriceAllOrder.setText(FormatUtils.formatCurrency(price - discountPrice));
+            mBinding.tvPriceOrder.setText(mBinding.tvSumPriceAllOrder.getText().toString());
+        }else {
+            UIUtils.showMessage(mBinding.getRoot(), AppConstants.DISCOUNT_NOT_FOUND);
+            UIUtils.clearText(mBinding.etApply);
+        }
         mDiscount = discount;
     }
 
@@ -188,10 +203,10 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
                 clientSelect,
                 configuration
         );
+        mProgressDialog.dismiss();
     }
 
     // nhận địa chỉ trả về
-    @SuppressLint("SetTextI18n")
     private final ActivityResultLauncher<Intent> mLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
@@ -199,15 +214,23 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
                     Intent intent = result.getData();
                     assert intent != null;
                     Address address = (Address) intent.getSerializableExtra("data_address");
-                    mBinding.tvNameOther.setText(address.getName());
-                    mBinding.tvPhoneOther.setText( "(84+) " +address.getPhone());
-                    mBinding.tvEmailOther.setText(address.getEmail());
-                    mBinding.tvAddressOther.setText(address.getAddress());
-                    mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
-                    mBinding.btnOrder.setEnabled(true);
+                    if (address != null){
+                        updateUIWithAddress(address);
+                    }
                 }
 
     });
+    @SuppressLint("SetTextI18n")
+    private void updateUIWithAddress(Address address) {
+        mBinding.tvNameOther.setText(address.getName());
+        mBinding.tvPhoneOther.setText(AppConstants.PHONE + address.getPhone());
+        mBinding.tvEmailOther.setText(address.getEmail());
+        mBinding.tvAddressOther.setText(address.getAddress());
+        mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
+        mBinding.btnOrder.setEnabled(true);
+        mAddress = address;
+    }
+
     @Override
     public void onPaymentSheetResult(PaymentSheetResult paymentSheetResult) {
         // implemented in the next steps
@@ -232,4 +255,5 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
             mPresenter.insertOrder(FormatUtils.formatID(), note, payments, deliveryStatus, "" ,price, idDiscount, idAddress  ,peacefulState, mCartList.size());
         }
     }
+
 }

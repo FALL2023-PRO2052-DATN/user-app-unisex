@@ -13,6 +13,7 @@ import com.example.shopclothes.view.activity.product.response.ResponseSize;
 import com.example.shopclothes.view.fragment.billFragment.ResponseBill;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseBanner;
 import com.example.shopclothes.view.fragment.homeFragment.response.ResponseTypeProduct;
+import com.example.shopclothes.view.fragment.notificationFragment.ResponseNotification;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -78,6 +79,10 @@ public interface ApiService {
                                         @Field("content") String content,
                                         @Field("idUser") String idUser,
                                         @Field("idProduct") int idProduct);
+    @POST(ManagerUrl.READ_COMMENT_STAR)
+    @FormUrlEncoded
+    Call<ResponseComment> readCommentByStar(@Field("id") int id,
+                                            @Field("star") int star);
 
 
     // size
@@ -89,8 +94,6 @@ public interface ApiService {
     @POST(ManagerUrl.READ_CART_BY_ID_USER)
     @FormUrlEncoded
     Call<ResponseCart> readCartById(@Field("id") String id);
-    @GET(ManagerUrl.READ_CART)
-    Call<ResponseCart> readCart();
     @POST(ManagerUrl.INSERT_CART)
     @FormUrlEncoded
     Call<ResponseCart> insertCart(@Field("quantity") int quantity,
@@ -139,7 +142,8 @@ public interface ApiService {
     @POST(ManagerUrl.READ_DISCOUNT_BY_ID)
     @FormUrlEncoded
     Call<ResponseDiscount> readDiscountById(@Field("code") String code);
-
+    @GET(ManagerUrl.READ_DISCOUNT)
+    Call<ResponseDiscount> readDiscount();
     // order
     @POST(ManagerUrl.INSERT_ORDER)
     @FormUrlEncoded
@@ -176,5 +180,17 @@ public interface ApiService {
     @FormUrlEncoded
     Call<ResponseBillDetail> readBillDetail(@Field("id") String id);
 
-    //
+    // notification
+    @POST(ManagerUrl.READ_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> readNotification(@Field("userId") String userId);
+    @POST(ManagerUrl.INSERT_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> insertNotification(@Field("title") String title,
+                                                  @Field("content") String content,
+                                                  @Field("image") String image,
+                                                  @Field("userId") String userId);
+    @POST(ManagerUrl.DELETE_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> deleteNotification(@Field("id") int id);
 }

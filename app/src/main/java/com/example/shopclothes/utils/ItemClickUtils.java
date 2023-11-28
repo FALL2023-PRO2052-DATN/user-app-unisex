@@ -4,4 +4,7 @@ public interface ItemClickUtils {
     interface MyBottomSheetBill {
         void onBottomSheetDismissed();
     }
+    interface onLogoutListener {
+        void onLogout();
+    }
 }

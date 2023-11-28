@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ShopClothes</string>
+    <string name="default_web_client_id">608365492504-pef6p0ldcvm1t4g2a2m6rppvv25dedie.apps.googleusercontent.com</string>
     <!-- TODO: account -->
     <string name="content_login">THỜI TRANG CHO MỌI NGƯỜI</string>
     <string name="content_email">Email</string>
@@ -125,6 +126,49 @@
     <string name="text_contact">Liên hệ</string>
     <string name="text_logout">Đăng xuất</string>
 
+    <!-- TODO: about_us -->
+    <string name="content_about_us">Chào mừng bạn đến với Unisex - Thời trang cho mọi người</string>
+    <string name="content2_about_us">Chúng tôi là Unisex Store, nơi nơi bạn có thể khám phá và trải nghiệm thế giới thời trang thông qua con đường cá nhân hóa. Tại đây, chúng tôi không chỉ cung cấp những sản phẩm thời trang chất lượng cao, mà còn là điểm đến để bạn tự do thể hiện phong cách cá nhân và sáng tạo.</string>
+    <string name="content3_about_us">Tầm nhìn của chúng tôi</string>
+    <string name="content4_about_us">Chúng tôi tin rằng thời trang không chỉ là về việc mặc đẹp, mà còn là về cách bạn tự tin và biểu đạt bản thân. Tại Unisex Store, chúng tôi mong muốn tạo ra một cộng đồng nơi mọi người được khích lệ khám phá phong cách của họ một cách tự tin và độc đáo.</string>
+    <string name="content5_about_us">Sứ mệnh của chúng tôi</string>
+    <string name="content6_about_us">Sứ mệnh của chúng tôi là mang đến cho bạn trải nghiệm mua sắm thời trang độc đáo và thoải mái nhất. Chúng tôi cam kết cung cấp những sản phẩm chất lượng, xu hướng mới nhất và dịch vụ khách hàng xuất sắc. Chúng tôi tin rằng mỗi người đều có câu chuyện riêng và phong cách cá nhân, và chúng tôi muốn giúp bạn kể nên câu chuyện đó thông qua những bộ trang phục đẹp và độc đáo.</string>
+    <string name="content7_about_us">Đội ngũ sáng lập</string>
+    <string name="content8_about_us">Unisex Store được thành lập bởi nhóm đam mê thời trang. Chúng tôi đồng lòng với niềm đam mê để tạo ra một không gian mua sắm thú vị và độc đáo dành cho những người yêu thời trang trên khắp thế giới.</string>
+    <string name="content9_about_us">Hãy đồng hành cùng chúng tôi trên hành trình khám phá phong cách cá nhân của bạn. Cảm ơn bạn đã chọn Unisex Store!</string>
+
+    <!-- TODO: policy -->
+    <string name="content_policy">Chính sách đổi trả của Unisex</string>
+    <string name="content1_policy">Chúng tôi cam kết đem lại sự hài lòng cao nhất cho bạn khi mua sắm tại Unisex Store. Dưới đây là chính sách đổi trả của chúng tôi để đảm bảo bạn có trải nghiệm mua sắm an tâm và thuận lợi.</string>
+    <string name="content2_policy">1. Điều Kiện Đổi Trả:</string>
+    <string name="content3_policy">- Sản phẩm cần phải ở trong tình trạng mới và không bị hư hại.</string>
+    <string name="content4_policy">- Bạn có quyền đổi trả sản phẩm trong vòng 7 ngày kể từ ngày nhận hàng.</string>
+    <string name="content5_policy">- Đối với quần áo và phụ kiện, nhãn mác và bao bì gốc cần được giữ nguyên.</string>
+    <string name="content6_policy">2. Quy Trình Đổi Trả:</string>
+    <string name="content7_policy">- Bước 1: Liên hệ với bộ phận chăm sóc khách hàng của chúng tôi qua Email:shop.unisex.dutn@gmail.com hoặc Phone:0353298917 để thông báo về ý định đổi trả.</string>
+    <string name="content8_policy">- Bước 2: Chúng tôi sẽ cung cấp hướng dẫn chi tiết về quy trình đổi trả và địa chỉ gửi hàng trở lại.</string>
+    <string name="content9_policy">- Bước 3: Sau khi nhận được sản phẩm trả lại và kiểm tra, chúng tôi sẽ thông báo kết quả và tiến hành xử lý theo yêu cầu của bạn.</string>
+    <string name="content10_policy">3. Chi Phí Đổi Trả:</string>
+    <string name="content11_policy">- Nếu sản phẩm bị hỏng hoặc có lỗi từ phía chúng tôi, chúng tôi sẽ chịu chi phí vận chuyển và đổi trả.</string>
+    <string name="content12_policy">- Trong trường hợp đổi trả do lý do cá nhân, bạn sẽ chịu trách nhiệm và chi phí vận chuyển.</string>
+    <string name="content13_policy">4. Đổi Trả Sản Phẩm Lỗi:</string>
+    <string name="content14_policy">- Nếu bạn nhận được sản phẩm có vấn đề kỹ thuật hoặc lỗi sản xuất, hãy liên hệ ngay với chúng tôi. Chúng tôi sẽ xử lý nhanh chóng và cung cấp sự hỗ trợ đầy đủ để giải quyết vấn đề.</string>
+    <string name="content15_policy">-  Chúng tôi mong muốn bạn có trải nghiệm mua sắm thú vị và không lo lắng khi chọn Unisex Store. Xin cảm ơn bạn đã tin tưởng và ủng hộ chúng tôi.</string>
+
+    <!-- TODO: contact -->
+    <string name="content_contact">Liên hệ chúng tôi</string>
+    <string name="content1_contact">Chào mừng bạn đến với Unisex - nơi bạn có thể kết nối và chia sẻ niềm đam mê về thời trang. Chúng tôi rất mong muốn lắng nghe ý kiến và phản hồi của bạn.</string>
+    <string name="content2_contact">Thông Tin Liên Hệ:</string>
+    <string name="content3_contact">Địa Chỉ:</string>
+    <string name="content4_contact">587 Nguyễn Tất Thành - Thanh Khê - Đà Nẵng</string>
+    <string name="content5_contact">Điện Thoại:</string>
+    <string name="content6_contact">0353298917 - 0775098507</string>
+    <string name="content7_contact">Email:</string>
+    <string name="content8_contact">shop.unisex.dutn@gmail.com</string>
+    <string name="content9_contact">Giờ Làm Việc:</string>
+    <string name="content10_contact">Thứ 2 - Chủ Nhật: 8:00 sáng - 8:00 tối</string>
+    <string name="content11_contact">Chúng tôi xin chân thành cảm ơn sự ủng hộ của bạn và hân hạnh được phục vụ bạn tại Unisex Store.</string>
+
     <!-- TODO: bill -->
     <string name="title_bill">Đơn mua</string>
     <string name="text_wait_confirm">Chờ xác nhận</string>
@@ -178,4 +222,10 @@
     <string name="text_passnew">Mật khẩu mới</string>
     <string name="title_up_infor">Cập nhật thông tin khách hàng</string>
     <string name="title_name_up_infor">Họ và tên</string>
+
+    <!-- TODO: notification -->
+    <string name="title_notification">Thông báo</string>
+    <string name="title_notification_discount">Mã giảm giá hiện có</string>
+    <string name="title_notification_bill">Đơn hàng của bạn</string>
+    <string name="notification_discount">Không có mã giảm giá nào</string>
 </resources>

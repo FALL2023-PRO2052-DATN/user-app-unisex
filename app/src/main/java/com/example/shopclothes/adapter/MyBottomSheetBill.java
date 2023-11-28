@@ -16,8 +16,13 @@ import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.utils.ItemClickUtils;
 import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.view.fragment.billFragment.ResponseBill;
+import com.example.shopclothes.view.fragment.notificationFragment.ResponseNotification;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +53,10 @@ public class MyBottomSheetBill extends BottomSheetDialogFragment {
         mBinding.btnApplyReasonCancel.setOnClickListener(view -> {
             mProgressDialog = ProgressDialog.show(getContext(), "", AppConstants.LOADING);
             callApiCancelBill(AppConstants.USER + selectedText);
+            insertNotification(AppConstants.NOTIFICATION_TITLE_CANCEL + id,
+                    AppConstants.NOTIFICATION_CONTENT_CANCEL + selectedText,
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/2198px-Error.svg.png",
+                     Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
         });
     }
     private void isCheckRadio() {
@@ -83,9 +92,29 @@ public class MyBottomSheetBill extends BottomSheetDialogFragment {
             }
         });
     }
-    // gọi xong api hủy chuyển qua fragment hủy đơn hàng
+    // gọi xong api hủy xon sẽ chuyển qua fragment hủy đơn hàng
     private void nextCancelFragment() {
         myBottomSheetBill.onBottomSheetDismissed();
+    }
+
+    // thêm vào thông báo
+    public void insertNotification(String title, String content, String image, String userId) {
+        ApiService.API_SERVICE.insertNotification(title, content, image, userId).enqueue(new Callback<ResponseNotification>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseNotification> call, @NonNull Response<ResponseNotification> response) {
+                if (response.isSuccessful()){
+                    assert response.body() != null;
+                    if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                        UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_SUCCESS);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseNotification> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
 
