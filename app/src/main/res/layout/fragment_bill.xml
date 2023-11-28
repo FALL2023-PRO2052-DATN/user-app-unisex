@@ -82,6 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView5"
         app:tabGravity="fill"
         app:tabMode="scrollable"
+        style="@style/CustomTabLayout"
         app:tabTextColor="@color/text3"
         app:tabSelectedTextColor="@color/primary"
         app:tabIndicatorColor="@color/primary">
