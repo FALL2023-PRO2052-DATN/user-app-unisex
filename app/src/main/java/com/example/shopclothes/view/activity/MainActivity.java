@@ -2,6 +2,7 @@ package com.example.shopclothes.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -115,7 +116,8 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
     private void setBadgerNotification() {
         BadgeDrawable badgeDrawable = mBinding.bottomNavigationView.getOrCreateBadge(R.id.btn_bell);
         badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(5);
+        int backgroundColor = ContextCompat.getColor(this, R.color.red);
+        badgeDrawable.setBackgroundColor(backgroundColor);
     }
 
     @SuppressLint("NonConstantResourceId")

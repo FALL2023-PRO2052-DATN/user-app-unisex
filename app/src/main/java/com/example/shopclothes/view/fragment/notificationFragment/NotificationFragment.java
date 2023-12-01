@@ -1,5 +1,6 @@
 package com.example.shopclothes.view.fragment.notificationFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,10 +16,12 @@ import android.view.ViewGroup;
 import com.example.shopclothes.adapter.AdapterDiscount;
 import com.example.shopclothes.adapter.AdapterNotification;
 import com.example.shopclothes.databinding.FragmentNotificationBinding;
+import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.model.Discount;
 import com.example.shopclothes.model.Notification;
 import com.example.shopclothes.utils.SwipeToDeleteCallback;
 import com.example.shopclothes.utils.UIUtils;
+import com.example.shopclothes.view.activity.cart.CartActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Collections;
@@ -47,8 +50,14 @@ public class NotificationFragment extends Fragment implements NotificationContra
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        onClick();
+        mPresenter.readListCartByIdUser(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
         mPresenter.readListDiscount();
         mPresenter.readListNotification(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+    }
+
+    private void onClick() {
+        mBinding.btnCartNotification.setOnClickListener(view -> startActivity(new Intent(getContext(), CartActivity.class)));
     }
 
     @Override
@@ -82,5 +91,10 @@ public class NotificationFragment extends Fragment implements NotificationContra
     @Override
     public void onMessage(String message) {
         UIUtils.showMessage(mBinding.getRoot(), message);
+    }
+
+    @Override
+    public void onListCartByIdUser(List<Cart> cartList) {
+        mBinding.tvQuantityNotification.setText(String.valueOf(cartList.size()));
     }
 }
