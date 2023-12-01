@@ -23,6 +23,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 
     public void onClick() {
         mBinding.btnRegister.setOnClickListener(view -> register());
+        mBinding.ivHidingPass.setOnClickListener(view -> onPasswordToggleImageClick());
+        mBinding.ivHidingPassAgain.setOnClickListener(view -> onPasswordToggleImageClickAgain());
         mBinding.btnBackRegister.setOnClickListener(view -> {
             mPresenter.nextActivity(this);
             finish();
@@ -40,6 +42,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         String REGISTER = "Đăng ký tài khoản";
         mProgressDialog = ProgressDialog.show(this, REGISTER, AppConstants.LOADING);
         mPresenter.doRegister(email, password, confirmPassword);
+    }
+
+    public void onPasswordToggleImageClick(){
+        UIUtils.togglePasswordVisibleWithImage(
+                mBinding.etPasswordRegister,
+                mBinding.ivHidingPass);
+    }
+
+    public void onPasswordToggleImageClickAgain(){
+        UIUtils.togglePasswordVisibleWithImage(
+                mBinding.etPasswordAgainRegister,
+                mBinding.ivHidingPassAgain);
     }
 
     @Override

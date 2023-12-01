@@ -24,6 +24,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     public void setListener(){
         mBinding.ivBack.setOnClickListener(view -> onBackPressed());
         mBinding.btnSave.setOnClickListener(view -> changePass());
+        mBinding.ivHidingPass.setOnClickListener(view -> onPasswordOldToggleImageClick());
+        mBinding.ivHidingPassNew.setOnClickListener(view -> onPasswordNewToggleImageClick());
+        mBinding.ivHidingPassAgain.setOnClickListener(view -> onPasswordAgainToggleImageClick());
     }
 
     public void changePass(){
@@ -33,6 +36,21 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         String changePass = "Đổi mật khẩu";
         progressDialog = ProgressDialog.show(this, changePass, AppConstants.LOADING);
         mPresenter.doChange(password, passwordNew, passwordAgain);
+    }
+    public void onPasswordOldToggleImageClick(){
+        UIUtils.togglePasswordVisibleWithImage(
+                mBinding.etPasswordOld,
+                mBinding.ivHidingPass);
+    }
+    public void onPasswordNewToggleImageClick(){
+        UIUtils.togglePasswordVisibleWithImage(
+                mBinding.etPasswordOld,
+                mBinding.ivHidingPass);
+    }
+    public void onPasswordAgainToggleImageClick(){
+        UIUtils.togglePasswordVisibleWithImage(
+                mBinding.etPasswordOld,
+                mBinding.ivHidingPass);
     }
 
     @Override
