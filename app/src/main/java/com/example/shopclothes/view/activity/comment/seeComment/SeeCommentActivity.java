@@ -25,6 +25,7 @@ import java.util.Objects;
 public class SeeCommentActivity extends AppCompatActivity implements SeeCommentContract.View {
     private ActivitySeeCommentBinding mBinding;
     private SeeCommentContract.Presenter mPresenter;
+    private List<Comment> mCommentList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,13 @@ public class SeeCommentActivity extends AppCompatActivity implements SeeCommentC
     @Override
     public void onClick() {
         mBinding.ivBackSeeAllComment.setOnClickListener(view -> onBackPressed());
-        mBinding.tvFilterComment.setOnClickListener(view -> showPopupMenu());
+        mBinding.tvFilterComment.setOnClickListener(view -> {
+            if (mCommentList != null){
+                showPopupMenu();
+            }else {
+                UIUtils.showMessage(mBinding.getRoot(), AppConstants.FILTER_MESSAGE);
+            }
+        });
         mBinding.btnSeeCommentProduct.setOnClickListener(view -> startActivity(new Intent(this, CartActivity.class)));
     }
 
@@ -61,6 +68,8 @@ public class SeeCommentActivity extends AppCompatActivity implements SeeCommentC
         mBinding.ratingBarSeeComment.setRating(averageRating(list));
         mBinding.tvRatingSeeAllComment.setText(FormatUtils.formatRating(averageRating(list)));
         mBinding.tvNumberSeeAllComment.setText("("+list.size()+ AppConstants.COMMENT +")");
+
+        mCommentList = list;
 
         UIUtils.openLayout(mBinding.ivLoadingSeeCommentActivity, mBinding.layoutSeeCommentActivity, true, this);
     }

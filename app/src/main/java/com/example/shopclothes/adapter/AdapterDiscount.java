@@ -54,7 +54,7 @@ public class AdapterDiscount extends RecyclerView.Adapter<AdapterDiscount.ViewHo
         @SuppressLint("SetTextI18n")
         public void bind(Discount discount){
             mBinding.tvDiscount.setText(AppConstants.CODE_SALE + discount.getCode());
-            mBinding.tvSalesDiscount.setText(AppConstants.CODE_SALE_CONTENT_1 + discount.getPercent() + AppConstants.CODE_SALE_CONTENT_2);
+            mBinding.tvSalesDiscount.setText(AppConstants.CODE_SALE_CONTENT_1 + discount.getPercent() + AppConstants.PERCENT + AppConstants.CODE_SALE_CONTENT_2);
         }
     }
 }
