@@ -84,6 +84,7 @@
         app:tabMode="scrollable"
         style="@style/CustomTabLayout"
         app:tabTextColor="@color/text3"
+        android:background="@color/white"
         app:tabSelectedTextColor="@color/primary"
         app:tabIndicatorColor="@color/primary">
 
