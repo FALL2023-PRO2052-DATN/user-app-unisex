@@ -81,11 +81,11 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
-        mPresenter.getProduct(id);
         mPresenter.getListCommentById(id);
         mPresenter.getListSizeByIdProduct(id);
         assert user != null;
         mPresenter.getListCartByIdUser(user.getUid());
+        mPresenter.getProduct(id);
     }
 
     @SuppressLint("SetTextI18n")
@@ -102,6 +102,7 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mPresenter.getListProductByIdCategory(product.getIdCategory());
         mBinding.btnAddCart.setOnClickListener(view -> openBottomSheetDialogFragment(product, mListSize));
         mProduct = product;
+        UIUtils.openLayout(mBinding.ivLoadingDetailProductActivity, mBinding.layoutDetailProductActivity, true, this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -134,8 +135,6 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
     @Override
     public void onListCartByIdUser(List<Cart> list) {
         mBinding.tvQuatityDetail.setText(String.valueOf(list.size()));
-        UIUtils.openLayout(mBinding.ivLoadingDetailProductActivity, mBinding.layoutDetailProductActivity, true, this);
-
     }
 
     @Override

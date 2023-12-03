@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,14 +49,17 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         Product product = mList.get(position);
         if (product == null){
             return;
         }
+
         if (TYPE_LINEAR == holder.getItemViewType()){
             LinearViewHolder linearViewHolder = (LinearViewHolder) holder;
             linearViewHolder.bind(product);
-            mBindingLinear.layoutProductLinear.setOnClickListener(view -> {
+            ItemProductLinearBinding binding = linearViewHolder.binding;
+            binding.layoutProductLinear.setOnClickListener(view -> {
                 Intent intent = new Intent(mContext, DetailProductActivity.class);
                 intent.putExtra("id", product.getId());
                 mContext.startActivity(intent);
@@ -64,7 +68,8 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (TYPE_GRID == holder.getItemViewType()){
             GridViewHolder gridViewHolder = (GridViewHolder) holder;
             gridViewHolder.bind(product);
-            mBindingGrid.layoutProductGrid.setOnClickListener(view -> {
+            ItemProductGridBinding binding = gridViewHolder.binding;
+            binding.layoutProductGrid.setOnClickListener(view -> {
                 Intent intent = new Intent(mContext, DetailProductActivity.class);
                 intent.putExtra("id", product.getId());
                 mContext.startActivity(intent);

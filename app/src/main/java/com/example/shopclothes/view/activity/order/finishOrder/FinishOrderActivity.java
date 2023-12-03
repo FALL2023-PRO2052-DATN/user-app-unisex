@@ -52,15 +52,25 @@ public class FinishOrderActivity extends AppCompatActivity implements FinishOrde
     }
     @Override
     public void onClick() {
-        mBinding.btnHomeFinishOrder.setOnClickListener(view -> mPresenter.nextActivity(this, MainActivity.class));
-        mBinding.btnBackFinishOrder.setOnClickListener(view -> mPresenter.nextActivity(this, MainActivity.class));
+        mBinding.btnHomeFinishOrder.setOnClickListener(view -> {
+            mPresenter.nextActivity(this, MainActivity.class);
+            finish();
+        });
+        mBinding.btnBackFinishOrder.setOnClickListener(view -> {
+            mPresenter.nextActivity(this, MainActivity.class);
+            finish();
+        });
         mBinding.btnBillFinishOrder.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("BILL", 2);
+            intent.putExtra("bill", 2);
             startActivity(intent);
+            finish();
 
         });
-        mBinding.btnCartFinishOrder.setOnClickListener(view -> mPresenter.nextActivity(this, CartActivity.class));
+        mBinding.btnCartFinishOrder.setOnClickListener(view -> {
+            mPresenter.nextActivity(this, CartActivity.class);
+            finish();
+        });
     }
 
     @Override
