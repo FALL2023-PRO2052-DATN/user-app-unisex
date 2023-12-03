@@ -28,6 +28,7 @@ import com.stripe.android.paymentsheet.PaymentSheet;
 import com.stripe.android.paymentsheet.PaymentSheetResult;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OrderActivity extends AppCompatActivity implements OrderContract.View {
     private OrderContract.Presenter mPresenter;
@@ -51,9 +52,9 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         PaymentConfiguration.init(this, AppConstants.PUBLISHABLE_KEY);
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
 
-        onListProduct();
-        initPresenter();
         onClick();
+        initPresenter();
+        onListProduct();
     }
 
     @Override
@@ -85,15 +86,20 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     @Override
     public void onListProduct() {
         intent = getIntent();
-        List<Cart> cartList = intent.getParcelableArrayListExtra("listCart");
+        String jsonCartList = intent.getStringExtra("listCart");
+        Log.i("TAG", "onListProduct: " + jsonCartList);
+        mPresenter.readListProductByListId(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), jsonCartList);
+    }
+    @Override
+    public void setAdapter(List<Cart> cartList){
         AdapterOrder adapterOrder = new AdapterOrder(cartList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.recyclerViewProductOther.setLayoutManager(layoutManager);
         mBinding.recyclerViewProductOther.setAdapter(adapterOrder);
         setValue(intent, cartList);
         mCartList = cartList;
+        UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, true, this);
     }
-
     @SuppressLint("SetTextI18n")
     @Override
     public void onAddress(Address address) {
@@ -113,7 +119,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
             mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.linear));
             mBinding.btnOrder.setEnabled(false);
         }
-        UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, true, this);
+
     }
 
     @Override

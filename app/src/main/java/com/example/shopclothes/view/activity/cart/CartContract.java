@@ -9,9 +9,9 @@ public interface CartContract {
         void onClick();
         void onListCartByIdUser(List<Cart> cartList);
         void itemCartClick(double sumPrice, boolean check, boolean checkItem);
-        void listCartClick(List<Cart> cartList);
+        void listCartClick(List<Integer> cartList);
         void onMessage(String message);
-        void onListUpdate();
+//        void onListUpdate();
         void selectedItemsCount(int selectedItemsCount);
     }
 
