@@ -6,14 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.SplashActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="41.67dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/logo_unisex"
-        />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="200dp"
+            android:layout_height="33.33dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/logo_unisex" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="290dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="13.67dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:gravity="center"
+            android:text="@string/content_login"
+            android:textColor="@color/primary"
+            android:textSize="21sp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
