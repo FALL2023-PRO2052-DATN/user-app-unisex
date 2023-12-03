@@ -103,9 +103,12 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
     // chuyển từ màn finish order sang home -> xét lại fragment bill
     public void getSelectIntent(){
         Intent intent = getIntent();
+        Log.e("TAG", "getSelectIntent: " + getIntent() );
         if (intent != null){
-            int selectFragment = intent.getIntExtra("BILL", 0);
+            int selectFragment = intent.getIntExtra("bill", 0);
+            Log.e("TAG1", "getSelectIntent: " + selectFragment );
            if (selectFragment == 2){
+               Log.e("TAG2", "getSelectIntent: " + selectFragment );
                switchFragment(new BillFragment());
                switchIcon(R.id.btn_bill);
            }

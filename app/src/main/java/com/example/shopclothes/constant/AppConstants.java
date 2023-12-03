@@ -11,10 +11,11 @@ public class AppConstants {
     public static final String ON_SUCCESS = "Thành công";
     public static final String ON_FAILURE = "Thất bại";
     public static final String ENTER_COMPLETE_INFORMATION = "Bạn cần nhập đầy đủ thông tin";
+    public static final String NAME_IS_EMPTY = "Tên không được để trống";
     public static final String SUCCESS = "SUCCESS";
     public static final String TAG = "ERROR";
-    public static final String PASS_NOT_DUPLICATES = "Mật khẩu không trùng lặp";
-    public static final String LOADING = "Loading...";
+    public static final String PASS_NOT_DUPLICATES = "Mật khẩu nhập lại không trùng khớp";
+    public static final String LOADING = "Vui lòng chờ...";
     public static final String X = "x";
     public static final String SIZE = "Size - ";
     public static final String NOT_FOUND = "Không tìm thấy";

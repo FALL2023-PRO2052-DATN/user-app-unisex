@@ -42,14 +42,19 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
     public void onClick() {
         mBinding.btnCiv.setOnClickListener(view -> choseImgFromGallery());
         mBinding.btnSaveUpInfor.setOnClickListener(view -> {
-            mProgressDialog = ProgressDialog.show(this,"",AppConstants.LOADING);
-           if (mUri != null){
-               // nếu đường dẫn ko rỗng thì update theo đường dẫn ảnh
-               mPresenter.uploadImageToFirebaseStorage(mUri, Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString());
-           }else {
-               // nêu rỗng update ảnh có sẵn
-               mPresenter.updateUserInformation(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString(), mUser.getAnh());
-           }
+
+          if (mBinding.etFullnameUpdate.getText().toString().isEmpty()){
+              UIUtils.showMessage(mBinding.getRoot(), AppConstants.NAME_IS_EMPTY);
+          }else {
+              mProgressDialog = ProgressDialog.show(this,"",AppConstants.LOADING);
+              if (mUri != null){
+                  // nếu đường dẫn ko rỗng thì update theo đường dẫn ảnh
+                  mPresenter.uploadImageToFirebaseStorage(mUri, Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString());
+              }else {
+                  // nêu rỗng update ảnh có sẵn
+                  mPresenter.updateUserInformation(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString(), mUser.getAnh());
+              }
+          }
         });
         mBinding.ivBackInfor.setOnClickListener(view -> onBackPressed());
     }
@@ -68,8 +73,7 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
 
     @Override
     public void onMessage(String message) {
-        UIUtils.showMessage(mBinding.getRoot(), message);
-        mProgressDialog.dismiss();
+        onBackPressed();
     }
 
     @Override
