@@ -44,13 +44,13 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     }
     public void onPasswordNewToggleImageClick(){
         UIUtils.togglePasswordVisibleWithImage(
-                mBinding.etPasswordOld,
-                mBinding.ivHidingPass);
+                mBinding.etPasswordNew,
+                mBinding.ivHidingPassNew);
     }
     public void onPasswordAgainToggleImageClick(){
         UIUtils.togglePasswordVisibleWithImage(
-                mBinding.etPasswordOld,
-                mBinding.ivHidingPass);
+                mBinding.etPasswordNewAgain,
+                mBinding.ivHidingPassAgain );
     }
 
     @Override
