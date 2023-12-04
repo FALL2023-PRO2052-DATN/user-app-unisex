@@ -87,7 +87,6 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     public void onListProduct() {
         intent = getIntent();
         String jsonCartList = intent.getStringExtra("listCart");
-        Log.i("TAG", "onListProduct: " + jsonCartList);
         mPresenter.readListProductByListId(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), jsonCartList);
     }
     @Override
@@ -96,6 +95,7 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.recyclerViewProductOther.setLayoutManager(layoutManager);
         mBinding.recyclerViewProductOther.setAdapter(adapterOrder);
+        mBinding.recyclerViewProductOther.setNestedScrollingEnabled(false);
         setValue(intent, cartList);
         mCartList = cartList;
         UIUtils.openLayout(mBinding.ivLoadingOrderActivity, mBinding.layoutOrderActivity, true, this);
