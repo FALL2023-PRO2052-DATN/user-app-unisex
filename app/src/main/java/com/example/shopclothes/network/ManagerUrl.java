@@ -40,6 +40,7 @@ public class ManagerUrl {
 
     // cart
     public static final String READ_CART_BY_ID_USER = "read-byId-user-cart";
+    public static final String READ_CART_BY_ID_USER_LIST_ID_CART = "id/list/products";
     public static final String INSERT_CART = "insert-cart";
     public static final String DELETE_CART = "delete-cart";
     public static final String UPDATE_CART = "update-cart";
