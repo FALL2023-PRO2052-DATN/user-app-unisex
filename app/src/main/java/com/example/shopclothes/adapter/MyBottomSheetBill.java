@@ -58,6 +58,8 @@ public class MyBottomSheetBill extends BottomSheetDialogFragment {
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/2198px-Error.svg.png",
                      Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
         });
+
+        mBinding.btnCancelBottomSheetBill.setOnClickListener(view -> dismiss());
     }
     private void isCheckRadio() {
         // bắt sự kiện chọn radio

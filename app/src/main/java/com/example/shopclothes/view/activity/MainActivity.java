@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
             int selectFragment = intent.getIntExtra("bill", 0);
            if (selectFragment == 2){
                switchFragment(new BillFragment());
-               switchIcon(R.id.btn_bill);
+               mBinding.bottomNavigationView.setSelectedItemId(R.id.btn_bill);
            }
         }
     }

@@ -88,11 +88,13 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     }
     @Override
     public void listCartClick(List<Integer> cartList) {
-        String jsonListIdCart = new Gson().toJson(cartList);
-        Intent intent = new Intent(this, OrderActivity.class);
-        intent.putExtra("listCart", jsonListIdCart);
-        intent.putExtra("sumPrice", mBinding.tvPriceOderCart.getText().toString());
-        mBinding.btnOtherCart.setOnClickListener(view -> startActivity(intent));
+        mBinding.btnOtherCart.setOnClickListener(view -> {
+            String jsonListIdCart = new Gson().toJson(cartList);
+            Intent intent = new Intent(this, OrderActivity.class);
+            intent.putExtra("listCart", jsonListIdCart);
+            intent.putExtra("sumPrice", mBinding.tvPriceOderCart.getText().toString());
+            startActivity(intent);
+        });
     }
 
     @Override
