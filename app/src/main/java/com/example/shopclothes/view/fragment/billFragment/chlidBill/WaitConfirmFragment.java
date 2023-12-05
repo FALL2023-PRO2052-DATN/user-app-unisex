@@ -25,11 +25,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class WaitConfirmFragment extends Fragment implements BillContract.View, ItemClickUtils.MyBottomSheetBill {
     private FragmentChildBillBinding mBinding;
     private BillContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
     private MyBottomSheetBill myBottomSheetBill;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,5 +96,11 @@ public class WaitConfirmFragment extends Fragment implements BillContract.View, 
         Bundle args = new Bundle();
         args.putInt("DISMISS", 4);
         getParentFragmentManager().setFragmentResult("requestKey", args);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.readListBill(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), AppConstants.DELIVERY_STATUS_WAIT_CONFIRM);
     }
 }
