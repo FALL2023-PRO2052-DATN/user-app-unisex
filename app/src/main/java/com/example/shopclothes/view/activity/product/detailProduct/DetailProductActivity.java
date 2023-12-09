@@ -97,7 +97,11 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
         mBinding.tvPriceSalesProductDetail.setText(FormatUtils.formatCurrency(product.getPrice() - (product.getPrice() * product.getSale() / 100)));
         mBinding.tvPriceProductDetail.setText(FormatUtils.formatCurrency(product.getPrice()));
         mBinding.tvPriceProductDetail.setPaintFlags(mBinding.tvPriceProductDetail.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        mBinding.tvNumberSalesDetail.setText(product.getSale() + AppConstants.PERCENT);
+        if (product.getSale() == 0 ){
+            mBinding.tvNumberSalesDetail.setVisibility(View.GONE);
+        }{
+            mBinding.tvNumberSalesDetail.setText(product.getSale() + AppConstants.PERCENT);
+        }
         mBinding.tvDescriptionProduct.setText(product.getNote());
         mPresenter.getListProductByIdCategory(product.getIdCategory());
         mBinding.btnAddCart.setOnClickListener(view -> openBottomSheetDialogFragment(product, mListSize));

@@ -35,6 +35,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         super.onCreate(savedInstanceState);
         mBinding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        mBinding.tvShowCartActivity.setVisibility(View.GONE);
         UIUtils.openLayout(mBinding.ivLoadingCartActivity, mBinding.layoutCartActivity, false, this);
         onClick();
         CartContract.Presenter mPresenter = new CartPresenter(this);
@@ -51,6 +52,11 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     }
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
+        if (cartList.size() == 0) {
+            mBinding.tvShowCartActivity.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.tvShowCartActivity.setVisibility(View.GONE);
+        }
         Collections.reverse(cartList);
         AdapterCart adapterCart = new AdapterCart(cartList, this, new CartPresenter(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -63,8 +69,8 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void itemCartClick(double sumPrice, boolean check, boolean checkItem) {
         /*
-         * check = true -> thêm giá tiền, false -> xóa giá tiền
-         * check item = true -> bấm vào checkbox , false -> bấm vào button add, minus
+          check = true -> thêm giá tiền, false -> xóa giá tiền
+          check item = true -> bấm vào checkbox , false -> bấm vào button add, minus
          */
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOderCart.getText().toString());
         if (checkItem){
@@ -100,6 +106,16 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void onMessage(String message) {
         UIUtils.showMessage(mBinding.getRoot(), message);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onDeleteCartShowText(List<Cart> cartList) {
+        if (cartList.size() == 0) {
+            mBinding.tvShowCartActivity.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.tvShowCartActivity.setVisibility(View.GONE);
+        }
     }
 
     @Override

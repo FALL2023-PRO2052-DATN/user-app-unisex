@@ -133,14 +133,16 @@
 
                 <TextView
                     android:id="@+id/tv_name_product_detail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:text="@string/text_name_product"
                     android:textColor="@color/text1"
                     android:textSize="17sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_number_sales_detail"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -433,7 +435,7 @@
                 android:layout_marginBottom="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_relate"></androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/layout_relate"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

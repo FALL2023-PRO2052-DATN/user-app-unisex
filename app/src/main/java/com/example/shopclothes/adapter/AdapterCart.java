@@ -3,6 +3,7 @@ package com.example.shopclothes.adapter;
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,7 +51,14 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
         onClickItem(holder.mBinding, cart);
         checkBox(holder.mBinding, cart);
-        deleteCart(holder.mBinding, cart);
+
+        holder.mBinding.tvClearProductCart.setOnClickListener(view -> deleteCart(cart));
+        for (int i = 0 ; i < mListNew.size() ; i ++){
+            if (cart.getId() == mListNew.get(i)){
+                holder.mBinding.checkBoxCart.setChecked(true);
+                holder.mBinding.tvClearProductCart.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -58,12 +66,11 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         return mList != null ? mList.size() : 0;
     }
     @SuppressLint("NotifyDataSetChanged")
-    public void deleteCart(ItemCartBinding mBinding, Cart cart){
-       mBinding.tvClearProductCart.setOnClickListener(view -> {
-           mPresenter.deleteCart(cart.getId());
-           mList.remove(cart);
-           notifyDataSetChanged();
-       });
+    public void deleteCart(Cart cart){
+        mPresenter.deleteCart(cart.getId());
+        mList.remove(cart);
+        mView.onDeleteCartShowText(mList);
+        notifyDataSetChanged();
     }
 
     public void onClickItem(ItemCartBinding mBinding, Cart cart) {
@@ -129,11 +136,13 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
                mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, true, true);
                mListNew.add(cart.getId()); // add vào list để chuyển qua màn orther
                mView.listCartClick(mListNew); // trả ra list để chuyển
+               mBinding.tvClearProductCart.setVisibility(View.GONE);
                selectedItemsCount++;
            }else {
                mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true);
                mListNew.remove(Integer.valueOf(cart.getId())); // xoá khỏi list
                mView.listCartClick(mListNew); // trả ra list để chuyển
+               mBinding.tvClearProductCart.setVisibility(View.VISIBLE);
                selectedItemsCount--;
            }
            mView.selectedItemsCount(selectedItemsCount);
