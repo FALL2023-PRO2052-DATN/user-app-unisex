@@ -31,9 +31,18 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     private void senEmail() {
         String email = mBinding.etEmailForgotPass.getText().toString();
+        if (isValidate(email)) return;
         String SEN_CODE = "Gửi mã xác nhận";
         mProgressDialog = ProgressDialog.show(this, SEN_CODE, AppConstants.LOADING);
         mPresenter.senEmailResetPass(email);
+    }
+
+    private boolean isValidate(String email) {
+        if (!UIUtils.isEmailValid(email)){
+            UIUtils.showMessage(mBinding.getRoot(), "Email sai định dạng");
+            return true;
+        }
+        return false;
     }
 
     @Override

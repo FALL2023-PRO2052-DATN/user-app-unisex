@@ -18,6 +18,7 @@ import com.example.shopclothes.constant.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
 public class UIUtils {
+    public static final int MIN_PASSWORD_LENGTH = 6;
     public static void showMessage(View view, String message){
         new Handler(Looper.getMainLooper()).post(() -> Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show());
     }
@@ -68,4 +69,30 @@ public class UIUtils {
         passwordEditText.setTransformationMethod(transformationMethod);
         passwordToggleImage.setImageResource(imgResource);
     }
+
+    /**
+     * Kiểm tra tính hợp lệ của mật khẩu.
+     *
+     * @param password Mật khẩu cần kiểm tra.
+     * @return `true` nếu mật khẩu hợp lệ, ngược lại trả về `false`.
+     */
+    public static boolean isPasswordValid(String password) {
+        return password != null && password.length() >= MIN_PASSWORD_LENGTH;
+    }
+
+    /**
+     * Kiểm tra tính hợp lệ của địa chỉ email.
+     *
+     * @param email Địa chỉ email cần kiểm tra.
+     * @return `true` nếu địa chỉ email hợp lệ, ngược lại trả về `false`.
+     */
+    public static boolean isEmailValid(String email) {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+
+        String emailPattern = "[a-zA-Z\\d._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+
 }
