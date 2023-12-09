@@ -11,7 +11,7 @@ public interface CartContract {
         void itemCartClick(double sumPrice, boolean check, boolean checkItem);
         void listCartClick(List<Integer> cartList);
         void onMessage(String message);
-//        void onListUpdate();
+        void onDeleteCart(Double price, int count);
         void selectedItemsCount(int selectedItemsCount);
     }
 

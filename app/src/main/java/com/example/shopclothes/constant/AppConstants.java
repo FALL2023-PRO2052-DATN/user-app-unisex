@@ -55,4 +55,9 @@ public class AppConstants {
     public static final String MESSAGE_COPY = "Đã sao chép mã giảm giá";
     public static final String ADD_CART_FAILURE = "Sản phẩm đã có trong giỏ hàng";
     public static final String FILTER_MESSAGE = "Không có đánh giá để lọc";
+    public static final String VERY_GOOD = "Tuyệt vời";
+    public static final String GOOD = "Tốt";
+    public static final String AWE_SOME = "Khá";
+    public static final String NORMAL = "Bình thường";
+    public static final String BAD = "Tệ";
 }

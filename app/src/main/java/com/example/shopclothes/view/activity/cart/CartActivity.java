@@ -63,8 +63,8 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void itemCartClick(double sumPrice, boolean check, boolean checkItem) {
         /*
-         * check = true -> thêm giá tiền, false -> xóa giá tiền
-         * check item = true -> bấm vào checkbox , false -> bấm vào button add, minus
+          check = true -> thêm giá tiền, false -> xóa giá tiền
+          check item = true -> bấm vào checkbox , false -> bấm vào button add, minus
          */
         double price = FormatUtils.parseCurrency(mBinding.tvPriceOderCart.getText().toString());
         if (checkItem){
@@ -100,6 +100,13 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     @Override
     public void onMessage(String message) {
         UIUtils.showMessage(mBinding.getRoot(), message);
+    }
+
+    @Override
+    public void onDeleteCart(Double price, int count) {
+        double sumPrice = FormatUtils.parseCurrency(mBinding.tvPriceOderCart.getText().toString());
+        mBinding.tvPriceOderCart.setText(FormatUtils.formatCurrency(price + sumPrice));
+        mBinding.tvNumberOderCart.setText("(" + (count - 1) + ")");
     }
 
     @Override
