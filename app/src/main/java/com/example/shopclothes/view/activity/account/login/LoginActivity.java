@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mPresenter.doLogin(email,password);
     }
 
+
     public void onPasswordToggleImageClick(){
         UIUtils.togglePasswordVisibleWithImage(
                 mBinding.etPasswordLogin,
@@ -71,7 +72,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void onMessage(String message) {
         mProgressDialog.dismiss();
-        UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
         UIUtils.showMessage(mBinding.getRoot(), message);
     }
 
@@ -85,7 +85,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void onMessageSuccess(String message) {
         mProgressDialog.dismiss();
-        UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
         UIUtils.showMessage(mBinding.getRoot(), message);
         mPresenter.nextActivity(this);
         finish();
@@ -94,7 +93,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void onMessageFailure(String message) {
         mProgressDialog.dismiss();
-        UIUtils.clearText(mBinding.etEmailLogin, mBinding.etPasswordLogin);
         UIUtils.showMessage(mBinding.getRoot(), message);
     }
 
