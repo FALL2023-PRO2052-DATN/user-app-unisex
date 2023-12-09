@@ -55,6 +55,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         super.onViewCreated(view, savedInstanceState);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
+        mBinding.tvShowHomeFragment.setVisibility(View.GONE);
         mPresenter.getListBanner();
         mPresenter.getListProductNew();
         mPresenter.getListProductOutstanding();
@@ -133,6 +134,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProductById(List<Product> list) {
+        if (list.size() == 0){
+            mBinding.tvShowHomeFragment.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.tvShowHomeFragment.setVisibility(View.GONE);
+        }
         AdapterProduct adapter = new AdapterProduct(list, 2, getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mBinding.rcvProductAll.setLayoutManager(layoutManager);

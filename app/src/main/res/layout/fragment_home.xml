@@ -81,7 +81,6 @@
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="24dp"
                                     android:layout_marginEnd="16dp"
-                                    android:layout_marginBottom="1dp"
                                     android:background="@drawable/bg_search"
                                     android:drawableStart="@drawable/ic_search"
                                     android:ems="10"
@@ -92,7 +91,6 @@
                                     android:paddingStart="14dp"
                                     android:textColor="@color/text1"
                                     android:textSize="15sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/imageView8"
@@ -266,7 +264,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
-                            android:minHeight="48dp" />
+                            android:minHeight="48dp" >
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <TextView
+                            android:id="@+id/tv_show_home_fragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="40dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Không có sản phẩm nào thuộc danh mục này"
+                            android:textSize="15dp" />
                 </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

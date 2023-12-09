@@ -94,6 +94,12 @@ public interface ApiService {
     @POST(ManagerUrl.READ_CART_BY_ID_USER)
     @FormUrlEncoded
     Call<ResponseCart> readCartById(@Field("id") String id);
+
+    @POST(ManagerUrl.READ_CART_BY_ID_USER_LIST_ID_CART)
+    @FormUrlEncoded
+    Call<ResponseCart> readCartByListId(@Field("idUser") String idUser,
+                                        @Field("idList") String idList);
+
     @POST(ManagerUrl.INSERT_CART)
     @FormUrlEncoded
     Call<ResponseCart> insertCart(@Field("quantity") int quantity,

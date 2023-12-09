@@ -26,11 +26,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class CanceledFragment extends Fragment implements BillContract.View {
     private FragmentChildBillBinding mBinding;
     private BillContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,5 +82,11 @@ public class CanceledFragment extends Fragment implements BillContract.View {
     @Override
     public void nextScreenComment(String id) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.readListBill(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), AppConstants.DELIVERY_STATUS_CANCELED);
     }
 }

@@ -3,6 +3,7 @@ package com.example.shopclothes.adapter;
 import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     private List<Cart> mList;
-    private  List<Cart> mListNew;
+    private final List<Integer> mListNew;
     private int selectedItemsCount = 0; // xem item nào đươc check
     private final CartContract.View mView;
     private final CartContract.Presenter mPresenter;
@@ -27,6 +28,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         this.mList = mList;
         this.mView = view;
         this.mPresenter = presenter;
+        mListNew = new ArrayList<>();
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -49,7 +51,14 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
         onClickItem(holder.mBinding, cart);
         checkBox(holder.mBinding, cart);
-        deleteCart(holder.mBinding, cart);
+
+        holder.mBinding.tvClearProductCart.setOnClickListener(view -> deleteCart(cart));
+        for (int i = 0 ; i < mListNew.size() ; i ++){
+            if (cart.getId() == mListNew.get(i)){
+                holder.mBinding.checkBoxCart.setChecked(true);
+                holder.mBinding.tvClearProductCart.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -57,12 +66,11 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         return mList != null ? mList.size() : 0;
     }
     @SuppressLint("NotifyDataSetChanged")
-    public void deleteCart(ItemCartBinding mBinding, Cart cart){
-       mBinding.tvClearProductCart.setOnClickListener(view -> {
-           mPresenter.deleteCart(cart.getId());
-           mList.remove(cart);
-           notifyDataSetChanged();
-       });
+    public void deleteCart(Cart cart){
+        mPresenter.deleteCart(cart.getId());
+        mList.remove(cart);
+        mView.onDeleteCartShowText(mList);
+        notifyDataSetChanged();
     }
 
     public void onClickItem(ItemCartBinding mBinding, Cart cart) {
@@ -93,9 +101,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             mBinding.ivMinusQuantityCart.setImageResource(R.drawable.ic_minus_quatity); // set bgr khi nhấn vào nút add
             mBinding.tvQuantityCart.setText(String.valueOf(quantity + 1)); // tăng thêm 1
             mPresenter.updateCart(cart.getId(), quantity + 1); // update data lên server
-            // nếu check box được chọn
+
             if (mBinding.checkBoxCart.isChecked()){
-                // check = xem thêm hay bớt - true = thêm , chekitem = checkbox có dc chọn hay ko
                 mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100)), true, false);
             }
         }
@@ -113,9 +120,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             mBinding.ivAddQuantityCart.setImageResource(R.drawable.ic_add_quantity);
             mBinding.tvQuantityCart.setText(String.valueOf(quantity - 1));
             mPresenter.updateCart(cart.getId(), quantity - 1 );// update data lên server
-            // nếu check box được chọn
+
             if (mBinding.checkBoxCart.isChecked()){
-                // check = xem thêm hay bớt - false = bớt , chekitem = checkbox có dc chọn hay ko
                 mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100)), false, false);
             }
         }
@@ -123,19 +129,20 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
 
     public void checkBox(ItemCartBinding mBinding, Cart cart){
-        mListNew = new ArrayList<>();
        mBinding.checkBoxCart.setOnClickListener(view -> {
            int quantity = Integer.parseInt(mBinding.tvQuantityCart.getText().toString());
 
            if (mBinding.checkBoxCart.isChecked()){
-               mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, true, true); // trả ra giá tiền
-               mListNew.add(cart); // add vào list để chuyển qua màn orther
+               mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, true, true);
+               mListNew.add(cart.getId()); // add vào list để chuyển qua màn orther
                mView.listCartClick(mListNew); // trả ra list để chuyển
+               mBinding.tvClearProductCart.setVisibility(View.GONE);
                selectedItemsCount++;
            }else {
-               mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true); // trả ra giá tiền
-               mListNew.remove(cart); // xoá khỏi list
+               mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true);
+               mListNew.remove(Integer.valueOf(cart.getId())); // xoá khỏi list
                mView.listCartClick(mListNew); // trả ra list để chuyển
+               mBinding.tvClearProductCart.setVisibility(View.VISIBLE);
                selectedItemsCount--;
            }
            mView.selectedItemsCount(selectedItemsCount);

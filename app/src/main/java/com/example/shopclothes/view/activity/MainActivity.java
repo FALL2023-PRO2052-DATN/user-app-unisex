@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
         setContentView(mBinding.getRoot());
         switchFragment(new HomeFragment());
         onClick();
-        getSelectIntent();
         setBadgerNotification();
 
         try {
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
             return;
         }
         // PendingIntent để chuyển vào main khi click vào thông báo
-        Intent intent = new Intent(this, BillFragment.class);
+        Intent intent = new Intent(this, MainActivity.class);
         @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         // Notification
@@ -103,16 +102,12 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
     // chuyển từ màn finish order sang home -> xét lại fragment bill
     public void getSelectIntent(){
         Intent intent = getIntent();
-        Log.e("TAG", "getSelectIntent: " + getIntent() );
         if (intent != null){
             int selectFragment = intent.getIntExtra("bill", 0);
-            Log.e("TAG1", "getSelectIntent: " + selectFragment );
            if (selectFragment == 2){
-               Log.e("TAG2", "getSelectIntent: " + selectFragment );
                switchFragment(new BillFragment());
-               switchIcon(R.id.btn_bill);
+               mBinding.bottomNavigationView.setSelectedItemId(R.id.btn_bill);
            }
-
         }
     }
 
@@ -176,6 +171,13 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
     protected void onDestroy() {
         super.onDestroy();
         mSocket.disconnect();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        getSelectIntent();
     }
 
     @Override

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
 import com.example.shopclothes.network.ApiServiceStripe;
+import com.example.shopclothes.view.activity.cart.ResponseCart;
 import com.example.shopclothes.view.activity.order.response.ResponseAddress;
 import com.example.shopclothes.view.activity.order.response.ResponseDiscount;
 import com.example.shopclothes.view.activity.order.response.ResponseModel;
@@ -29,6 +30,26 @@ public class OrderPresenter implements OrderContract.Presenter {
 
     public OrderPresenter(OrderContract.View mView) {
         this.mView = mView;
+    }
+
+    @Override
+    public void readListProductByListId(String idUser, String idList) {
+        ApiService.API_SERVICE.readCartByListId(idUser, idList).enqueue(new Callback<ResponseCart>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
+                if (response.isSuccessful()){
+                    assert response.body() != null;
+                    if (AppConstants.SUCCESS.equals(response.body().getStatus())){
+                        mView.setAdapter(response.body().getCartList());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseCart> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     @Override

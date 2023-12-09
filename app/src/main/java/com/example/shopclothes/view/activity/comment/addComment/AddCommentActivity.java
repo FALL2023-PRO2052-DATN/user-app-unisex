@@ -48,9 +48,24 @@ public class AddCommentActivity extends AppCompatActivity implements AddCommentC
             mProgressDialog.dismiss();
             UIUtils.showMessage(mBinding.getRoot(), AppConstants.ON_SUCCESS);
             UIUtils.clearText(mBinding.etComment2);
+            onBackPressed();
         });
 
         mBinding.btnBackAddComment.setOnClickListener(view -> onBackPressed());
+
+        mBinding.ratingBarComment2.setOnRatingBarChangeListener((ratingBar, v, b) -> {
+            if (v <=1){
+                mBinding.tvComment2.setText(AppConstants.BAD);
+            }else if(v <= 2){
+                mBinding.tvComment2.setText(AppConstants.NORMAL);
+            }else if(v <= 3){
+                mBinding.tvComment2.setText(AppConstants.AWE_SOME);
+            }else if(v <= 4){
+                mBinding.tvComment2.setText(AppConstants.GOOD);
+            }else{
+                mBinding.tvComment2.setText(AppConstants.VERY_GOOD);
+            }
+        });
     }
 
     @Override

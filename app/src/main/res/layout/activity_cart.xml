@@ -8,9 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        app:cardElevation="6dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -66,8 +66,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/textView10"
@@ -98,8 +98,8 @@
             android:id="@+id/btn_other_cart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/black"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/black">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -143,7 +143,20 @@
         android:src="@drawable/line_item_add_cart"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_cart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcv_cart" />
+
+    <TextView
+        android:id="@+id/tv_show_cart_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Không có sản phẩm trong giỏ hàng"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <ImageView
         android:id="@+id/iv_loading_cart_activity"

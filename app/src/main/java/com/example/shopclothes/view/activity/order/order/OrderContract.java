@@ -15,6 +15,7 @@ public class OrderContract {
         void onClick();
         void initPresenter();
         void onListProduct();
+        void setAdapter(List<Cart> cartList);
         void onAddress(Address address);
         void onDiscount(Discount discount);
         void onInsertOrder(String idOrder);
@@ -27,6 +28,7 @@ public class OrderContract {
 
     }
     interface Presenter{
+        void readListProductByListId(String idUser, String idList);
         void readAddress(String id);
         void readDiscountById(String code);
         void insertOrder(String id, String note, String payments, String deliveryStatus,

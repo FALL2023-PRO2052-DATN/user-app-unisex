@@ -35,14 +35,18 @@
 
     <TextView
         android:id="@+id/tv_name_product_cart_order"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/sf_pro_display_medium"
         android:text="@string/text_name_product"
+        android:lines="1"
+        android:ellipsize="end"
         android:textColor="@color/text1"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/layoutImg"
         app:layout_constraintTop_toTopOf="parent" />
 

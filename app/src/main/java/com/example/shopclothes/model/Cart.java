@@ -24,6 +24,17 @@ public class Cart implements Parcelable {
     @SerializedName("san_pham_id")
     private int idProduct;
 
+    @SerializedName("so_luong_ton_kho")
+    private int inventoryNumber;
+
+    public int getInventoryNumber() {
+        return inventoryNumber;
+    }
+
+    public void setInventoryNumber(int inventoryNumber) {
+        this.inventoryNumber = inventoryNumber;
+    }
+
     public int getId() {
         return id;
     }

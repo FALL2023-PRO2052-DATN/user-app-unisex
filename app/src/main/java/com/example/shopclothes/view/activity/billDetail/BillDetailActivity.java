@@ -46,6 +46,7 @@ public class BillDetailActivity extends AppCompatActivity implements BillDetailC
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rcvBillDetail.setLayoutManager(layoutManager);
         mBinding.rcvBillDetail.setAdapter(adapter);
+        mBinding.rcvBillDetail.setNestedScrollingEnabled(false);
         setValuesBillDetail(list.get(0));
         UIUtils.openLayout(mBinding.ivLoadingBillDetailActivity, mBinding.layoutBillDetailActivity, true, this);
     }

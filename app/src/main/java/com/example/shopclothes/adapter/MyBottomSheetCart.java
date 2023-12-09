@@ -170,7 +170,6 @@ public class MyBottomSheetCart extends BottomSheetDialogFragment {
                 dismiss();
                 assert response.body() != null;
                 if (AppConstants.SUCCESS.equals(response.body().getStatus())){
-                    UIUtils.showMessage(mView, AppConstants.ON_SUCCESS);
                     user = FirebaseAuth.getInstance().getCurrentUser();
                     assert user != null;
                     mPresenter.getListCartByIdUser(user.getUid()); // lúc thêm vào giỏ hàng load lại giỏ hàng

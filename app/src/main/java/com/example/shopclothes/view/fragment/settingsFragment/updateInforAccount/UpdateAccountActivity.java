@@ -2,10 +2,15 @@ package com.example.shopclothes.view.fragment.settingsFragment.updateInforAccoun
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,7 +32,7 @@ import java.util.regex.Pattern;
 public class UpdateAccountActivity extends AppCompatActivity implements UpdateAccountContract.View {
     private ActivityUpdateInforAccountBinding mBinding;
     private UpdateAccountContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
+    private static final int REQUEST_CODE = 0;
     private Uri mUri;
     private User mUser;
     @Override
@@ -44,7 +49,9 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
 
     @Override
     public void onClick() {
+      
         mBinding.openGalleryButton.setOnClickListener(view -> choseImgFromGallery());
+        mBinding.btnCiv.setOnClickListener(view -> clickRequestPermission());
         mBinding.btnSaveUpInfor.setOnClickListener(view -> {
 
           if (mBinding.etFullnameUpdate.getText().toString().isEmpty()){
@@ -56,6 +63,7 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
                   return;
               }
               mProgressDialog = ProgressDialog.show(this,"",AppConstants.LOADING);
+
               if (mUri != null){
                   // nếu đường dẫn ko rỗng thì update theo đường dẫn ảnh
                   mPresenter.uploadImageToFirebaseStorage(mUri, Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString());
@@ -114,6 +122,7 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
                 }
             });
 
+
     public boolean isValidFullName(String fullName) {
         // Loại bỏ khoảng trắng ở đầu và cuối chuỗi
         fullName = fullName.trim();
@@ -128,7 +137,30 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
         // Kiểm tra chuỗi tên với biểu thức chính quy đã tạo
         return pattern.matcher(fullName).matches();
     }
+  
     private void showToastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+  
+    private void clickRequestPermission() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED){
+            choseImgFromGallery();
+        }else {
+            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
+        };
+    }
+
+    // nhan phan hoi nguoi dung bang onRequestPermissionsResult()
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE ){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                choseImgFromGallery();
+            }else {
+                Toast.makeText(this, "Quyền đã bị từ chối", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
