@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.PopupMenu;
 
 import com.example.shopclothes.R;
@@ -25,13 +26,14 @@ import java.util.Objects;
 public class SeeCommentActivity extends AppCompatActivity implements SeeCommentContract.View {
     private ActivitySeeCommentBinding mBinding;
     private SeeCommentContract.Presenter mPresenter;
-    private List<Comment> mCommentList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivitySeeCommentBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mPresenter = new SeeAllPresenter(this);
+        mBinding.tvShowSeeComment.setVisibility(View.GONE);
         UIUtils.openLayout(mBinding.ivLoadingSeeCommentActivity, mBinding.layoutSeeCommentActivity, false, this);
         onClick();
         initPresenter();
@@ -40,13 +42,7 @@ public class SeeCommentActivity extends AppCompatActivity implements SeeCommentC
     @Override
     public void onClick() {
         mBinding.ivBackSeeAllComment.setOnClickListener(view -> onBackPressed());
-        mBinding.tvFilterComment.setOnClickListener(view -> {
-            if (mCommentList != null){
-                showPopupMenu();
-            }else {
-                UIUtils.showMessage(mBinding.getRoot(), AppConstants.FILTER_MESSAGE);
-            }
-        });
+        mBinding.tvFilterComment.setOnClickListener(view -> showPopupMenu());
         mBinding.btnSeeCommentProduct.setOnClickListener(view -> startActivity(new Intent(this, CartActivity.class)));
     }
 
@@ -59,19 +55,24 @@ public class SeeCommentActivity extends AppCompatActivity implements SeeCommentC
     @SuppressLint("SetTextI18n")
     @Override
     public void onListComment(List<Comment> list) {
+        if (list.size() == 0){
+            mBinding.tvShowSeeComment.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.tvShowSeeComment.setVisibility(View.GONE);
+        }
+
         Collections.reverse(list);
         AdapterComment adapter = new AdapterComment(list, 0);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rcvSeeAllComment.setLayoutManager(layoutManager);
         mBinding.rcvSeeAllComment.setAdapter(adapter);
-
         mBinding.ratingBarSeeComment.setRating(averageRating(list));
         mBinding.tvRatingSeeAllComment.setText(FormatUtils.formatRating(averageRating(list)));
         mBinding.tvNumberSeeAllComment.setText("("+list.size()+ AppConstants.COMMENT +")");
 
-        mCommentList = list;
-
         UIUtils.openLayout(mBinding.ivLoadingSeeCommentActivity, mBinding.layoutSeeCommentActivity, true, this);
+
+
     }
 
     @Override
