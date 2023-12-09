@@ -46,57 +46,56 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_account"
+        android:id="@+id/constraintLayout18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView50">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_user"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pick_image"
-            app:civ_border_color="@color/primary"
-            app:civ_border_width="1dp"
+            android:id="@+id/circleImageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:src="@drawable/user_avatar_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/btn_civ"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
+        <RelativeLayout
+            android:id="@+id/openGalleryButton"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pick_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="20dp"
-            app:civ_border_width="1dp"
-            android:src="@drawable/pick_image"
-            app:civ_border_color="@color/primary"
-            />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Sửa"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
         android:id="@+id/linearLayout21"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_account">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout18">
 
         <TextView
             android:id="@+id/textView1"

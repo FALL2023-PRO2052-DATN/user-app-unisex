@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.shopclothes.R;
 import com.example.shopclothes.constant.AppConstants;
@@ -18,7 +20,9 @@ import com.example.shopclothes.model.User;
 import com.example.shopclothes.utils.UIUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.Normalizer;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class UpdateAccountActivity extends AppCompatActivity implements UpdateAccountContract.View {
     private ActivityUpdateInforAccountBinding mBinding;
@@ -40,12 +44,17 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
 
     @Override
     public void onClick() {
-        mBinding.btnCiv.setOnClickListener(view -> choseImgFromGallery());
+        mBinding.openGalleryButton.setOnClickListener(view -> choseImgFromGallery());
         mBinding.btnSaveUpInfor.setOnClickListener(view -> {
 
           if (mBinding.etFullnameUpdate.getText().toString().isEmpty()){
               UIUtils.showMessage(mBinding.getRoot(), AppConstants.NAME_IS_EMPTY);
           }else {
+              String fullName = mBinding.etFullnameUpdate.getText().toString();
+              if (!isValidFullName(fullName)) {
+                  showToastMessage("Tên không hợp lệ");
+                  return;
+              }
               mProgressDialog = ProgressDialog.show(this,"",AppConstants.LOADING);
               if (mUri != null){
                   // nếu đường dẫn ko rỗng thì update theo đường dẫn ảnh
@@ -55,6 +64,8 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
                   mPresenter.updateUserInformation(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(), mBinding.etFullnameUpdate.getText().toString(), mUser.getAnh());
               }
           }
+
+
         });
         mBinding.ivBackInfor.setOnClickListener(view -> onBackPressed());
     }
@@ -67,7 +78,7 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
                 .load(mUser.getAnh())
                 .centerCrop()
                 .placeholder(R.drawable.pick_image)
-                .into(mBinding.civUser);
+                .into(mBinding.circleImageView);
         mBinding.etFullnameUpdate.setText(mUser.getName());
     }
 
@@ -96,10 +107,28 @@ public class UpdateAccountActivity extends AppCompatActivity implements UpdateAc
                     mUri = data.getData();
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mUri);
-                        mBinding.civUser.setImageBitmap(bitmap);
+                        mBinding.circleImageView.setImageBitmap(bitmap);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             });
+
+    public boolean isValidFullName(String fullName) {
+        // Loại bỏ khoảng trắng ở đầu và cuối chuỗi
+        fullName = fullName.trim();
+
+        // Loại bỏ các dấu diacritic (dấu thanh, dấu mũ) trong chuỗi tiếng Việt
+        fullName = Normalizer.normalize(fullName, Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+
+        // Biểu thức chính quy để kiểm tra chuỗi có chứa ký tự không phải là chữ cái (bao gồm cả dấu tiếng Việt) hoặc khoảng trắng không
+        Pattern pattern = Pattern.compile("^[\\p{L} ]+$");
+
+        // Kiểm tra chuỗi tên với biểu thức chính quy đã tạo
+        return pattern.matcher(fullName).matches();
+    }
+    private void showToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }
