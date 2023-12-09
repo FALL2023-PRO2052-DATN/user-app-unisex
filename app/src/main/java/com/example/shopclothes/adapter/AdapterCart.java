@@ -69,6 +69,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     public void deleteCart(Cart cart){
         mPresenter.deleteCart(cart.getId());
         mList.remove(cart);
+        mView.onDeleteCartShowText(mList);
         notifyDataSetChanged();
     }
 

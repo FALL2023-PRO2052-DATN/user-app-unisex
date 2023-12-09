@@ -35,6 +35,7 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         super.onCreate(savedInstanceState);
         mBinding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        mBinding.tvShowCartActivity.setVisibility(View.GONE);
         UIUtils.openLayout(mBinding.ivLoadingCartActivity, mBinding.layoutCartActivity, false, this);
         onClick();
         CartContract.Presenter mPresenter = new CartPresenter(this);
@@ -51,6 +52,11 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
     }
     @Override
     public void onListCartByIdUser(List<Cart> cartList) {
+        if (cartList.size() == 0) {
+            mBinding.tvShowCartActivity.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.tvShowCartActivity.setVisibility(View.GONE);
+        }
         Collections.reverse(cartList);
         AdapterCart adapterCart = new AdapterCart(cartList, this, new CartPresenter(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -102,11 +108,14 @@ public class CartActivity extends AppCompatActivity implements CartContract.View
         UIUtils.showMessage(mBinding.getRoot(), message);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onDeleteCart(Double price, int count) {
-        double sumPrice = FormatUtils.parseCurrency(mBinding.tvPriceOderCart.getText().toString());
-        mBinding.tvPriceOderCart.setText(FormatUtils.formatCurrency(price + sumPrice));
-        mBinding.tvNumberOderCart.setText("(" + (count - 1) + ")");
+    public void onDeleteCartShowText(List<Cart> cartList) {
+        if (cartList.size() == 0) {
+            mBinding.tvShowCartActivity.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.tvShowCartActivity.setVisibility(View.GONE);
+        }
     }
 
     @Override

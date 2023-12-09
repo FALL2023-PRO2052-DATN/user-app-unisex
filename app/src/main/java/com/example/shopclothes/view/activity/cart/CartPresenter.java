@@ -43,8 +43,8 @@ public class CartPresenter implements CartContract.Presenter{
             @Override
             public void onResponse(@NonNull Call<ResponseCart> call, @NonNull Response<ResponseCart> response) {
                 assert response.body() != null;
-                if (AppConstants.SUCCESS.equals(response.body().getStatus())){
-                    view.onMessage(AppConstants.ON_SUCCESS);
+                if (!AppConstants.SUCCESS.equals(response.body().getStatus())){
+                    view.onMessage(AppConstants.ON_FAILURE);
                 }
             }
 

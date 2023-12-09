@@ -269,14 +269,14 @@
                         </androidx.recyclerview.widget.RecyclerView>
 
                         <TextView
-                            android:layout_gravity="center"
-                            android:textSize="15dp"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:layout_marginBottom="40dp"
                             android:id="@+id/tv_show_home_fragment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Không có sản phẩm" />
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="40dp"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:text="Không có sản phẩm nào thuộc danh mục này"
+                            android:textSize="15dp" />
                 </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
