@@ -54,7 +54,6 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
                     }
                 });
 
-        updateUserFirebase(passwordNew);
     }
 
     @Override
