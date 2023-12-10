@@ -22,6 +22,7 @@ public class AppConstants {
     public static final String REGISTER = "Đăng ký tài khoản";
     public static final String SEN_CODE = "Gửi mã xác nhận";
     public static final String CHANGE_PASS = "Đổi mật khẩu";
+    public static final String PASS_NOT = "Mật khẩu cũ không chính xác";
     public static final String LOADING = "Vui lòng chờ...";
     public static final String X = "x";
     public static final String SIZE = "Size - ";
