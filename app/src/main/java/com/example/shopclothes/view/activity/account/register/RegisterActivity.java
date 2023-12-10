@@ -39,27 +39,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         String email = mBinding.etEmailRegister.getText().toString();
         String password = mBinding.etPasswordRegister.getText().toString();
         String confirmPassword = mBinding.etPasswordAgainRegister.getText().toString();
-        if (isValidate(email, password, confirmPassword)) return;
-        String REGISTER = "Đăng ký tài khoản";
-        mProgressDialog = ProgressDialog.show(this, REGISTER, AppConstants.LOADING);
+        mProgressDialog = ProgressDialog.show(this, AppConstants.REGISTER, AppConstants.LOADING);
         mPresenter.doRegister(email, password, confirmPassword);
     }
 
-    private boolean isValidate(String email, String password, String confirmPassword) {
-        if (!UIUtils.isEmailValid(email)){
-            UIUtils.showMessage(mBinding.getRoot(), "Email sai định dạng");
-            return true;
-        }
-        if (!UIUtils.isPasswordValid(password)) {
-            UIUtils.showMessage(mBinding.getRoot(), "Mật khẩu phải lớn hơn " + UIUtils.MIN_PASSWORD_LENGTH + " kí tự");
-            return true;
-        }
-        if (!password.equals(confirmPassword)) {
-            UIUtils.showMessage(mBinding.getRoot(), "Mật khẩu không trùng khớp");
-            return true;
-        }
-        return false;
-    }
+
 
     public void onPasswordToggleImageClick(){
         UIUtils.togglePasswordVisibleWithImage(
@@ -76,7 +60,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @Override
     public void onMessage(String message) {
         mProgressDialog.dismiss();
-        UIUtils.clearText(mBinding.etEmailRegister, mBinding.etPasswordRegister, mBinding.etPasswordAgainRegister);
         UIUtils.showMessage(mBinding.getRoot(), message);
     }
 }

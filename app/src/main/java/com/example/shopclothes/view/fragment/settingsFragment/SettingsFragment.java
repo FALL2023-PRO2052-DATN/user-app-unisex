@@ -43,12 +43,9 @@ import java.util.List;
 public class SettingsFragment extends Fragment implements SettingContract.View {
     private FragmentProfileBinding mBinding;
     private SettingContract.Presenter mPresenter;
-    private ItemClickUtils.onLogoutListener mOnLogoutListener;
+
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private User mUserUpdate;
-    public void setLogoutListener(ItemClickUtils.onLogoutListener listener) {
-        this.mOnLogoutListener = listener;
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +64,6 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assert user != null;
-        mPresenter.getUser(user.getUid());
         mPresenter.readListCartByIdUser(user.getUid());
         onClick();
         checkLoginFirebase();
@@ -110,10 +105,8 @@ public class SettingsFragment extends Fragment implements SettingContract.View {
 
     private void logOut() {
         FirebaseAuth.getInstance().signOut();
-        if (mOnLogoutListener != null){
-            mOnLogoutListener.onLogout();
-        }
         startActivity(new Intent(getContext(), LoginActivity.class));
+        getActivity().finishAffinity();
     }
 
 

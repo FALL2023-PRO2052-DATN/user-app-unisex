@@ -1,6 +1,7 @@
 package com.example.shopclothes.view.fragment.settingsFragment.changePassword;
 
 import com.example.shopclothes.constant.AppConstants;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.utils.ValidateUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,10 +20,19 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
             view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
             return;
         }
+        if (!UIUtils.isPasswordValid(password)) {
+            view.onMessage(AppConstants.PASS_LENGTH);
+            return ;
+        }
+        if (!UIUtils.isPasswordValid(passwordNew)) {
+            view.onMessage(AppConstants.PASS_LENGTH);
+            return ;
+        }
         if (!ValidateUtils.validateChangePasswordEqual(passwordNew, passwordNewAgain)){
             view.onMessage(AppConstants.PASS_NOT_DUPLICATES);
             return;
         }
+
         updateUserFirebase(passwordNew);
     }
 

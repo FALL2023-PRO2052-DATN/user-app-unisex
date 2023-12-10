@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.shopclothes.constant.AppConstants;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.utils.ValidateUtils;
 import com.example.shopclothes.view.activity.account.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +22,10 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
         if (!ValidateUtils.validateForgotPassIsEmpty(emailAddress)){
             view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
             return;
+        }
+        if (!UIUtils.isEmailValid(emailAddress)){
+            view.onMessage(AppConstants.EMAIL_ERROR);
+            return ;
         }
         senEmailResetPassFirebase(emailAddress);
     }
