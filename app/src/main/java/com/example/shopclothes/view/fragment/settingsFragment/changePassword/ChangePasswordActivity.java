@@ -33,26 +33,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         String password = mBinding.etPasswordOld.getText().toString();
         String passwordNew = mBinding.etPasswordNew.getText().toString();
         String passwordAgain = mBinding.etPasswordNewAgain.getText().toString();
-        if (isValidate(password, passwordNew, passwordAgain)) return;
-        String changePass = "Đổi mật khẩu";
-        progressDialog = ProgressDialog.show(this, changePass, AppConstants.LOADING);
+        progressDialog = ProgressDialog.show(this, AppConstants.CHANGE_PASS, AppConstants.LOADING);
         mPresenter.doChange(password, passwordNew, passwordAgain);
-    }
-
-    private boolean isValidate(String password, String passwordNew, String passwordAgain) {
-        if (!UIUtils.isPasswordValid(password)) {
-            UIUtils.showMessage(mBinding.getRoot(), "Mật khẩu cũ phải lớn hơn " + UIUtils.MIN_PASSWORD_LENGTH + " kí tự");
-            return true;
-        }
-        if (!UIUtils.isPasswordValid(passwordNew)) {
-            UIUtils.showMessage(mBinding.getRoot(), "Mật khẩu mới phải lớn hơn " + UIUtils.MIN_PASSWORD_LENGTH + " kí tự");
-            return true;
-        }
-        if (!passwordNew.equals(passwordAgain)) {
-            UIUtils.showMessage(mBinding.getRoot(), "Mật khẩu không trùng khớp");
-            return true;
-        }
-        return false;
     }
 
     public void onPasswordOldToggleImageClick(){
@@ -74,7 +56,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void onMessage(String message) {
         progressDialog.dismiss();
-        UIUtils.clearText(mBinding.etPasswordNew, mBinding.etPasswordOld, mBinding.etPasswordNewAgain);
         UIUtils.showMessage(mBinding.getRoot(), message);
     }
 }

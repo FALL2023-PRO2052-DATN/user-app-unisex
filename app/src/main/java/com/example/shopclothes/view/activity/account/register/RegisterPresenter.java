@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.network.ApiService;
+import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.utils.ValidateUtils;
 import com.example.shopclothes.view.activity.account.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,10 +33,19 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             view.onMessage(AppConstants.ENTER_COMPLETE_INFORMATION);
             return;
         }
+        if (!UIUtils.isEmailValid(email)){
+            view.onMessage(AppConstants.EMAIL_ERROR);
+            return ;
+        }
+        if (!UIUtils.isPasswordValid(password)) {
+            view.onMessage(AppConstants.PASS_LENGTH);
+            return ;
+        }
         if (!ValidateUtils.validateRegisterEqual(password,confirmPassword)){
             view.onMessage(AppConstants.PASS_NOT_DUPLICATES);
             return;
         }
+
         createUserFirebase(email, password);
     }
 

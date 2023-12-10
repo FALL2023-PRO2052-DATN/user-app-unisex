@@ -35,7 +35,7 @@ import java.util.Random;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
-public class MainActivity extends AppCompatActivity implements ItemClickUtils.onLogoutListener {
+public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
     private Socket mSocket;
 
@@ -135,9 +135,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
                     switchIcon(R.id.btn_bell);
                     break;
                 case R.id.btn_settings:
-                    SettingsFragment settingsFragment = new SettingsFragment();
-                    settingsFragment.setLogoutListener(this);
-                    switchFragment(settingsFragment);
+                    switchFragment(new SettingsFragment());
                     switchIcon(R.id.btn_settings);
                     break;
             }
@@ -179,12 +177,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickUtils.on
         setIntent(intent);
         getSelectIntent();
     }
-
-    @Override
-    public void onLogout() {
-        finishAffinity();
-    }
-
     public int generateRandomId() {
         Random random = new Random();
         return random.nextInt();

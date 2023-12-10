@@ -1,5 +1,7 @@
 package com.example.shopclothes.constant;
 
+import com.example.shopclothes.utils.UIUtils;
+
 public class AppConstants {
 
     public final static String PUBLISHABLE_KEY = "pk_test_51OBJAqKSzL2WW6juKKkdFPl3blwqGDLgX8JXwkJgVaJjHu93csOCqu3784EhKbJhTfJSuEzeA6C43SsgD9wl8OEU00GuBudnJP";
@@ -15,6 +17,11 @@ public class AppConstants {
     public static final String SUCCESS = "SUCCESS";
     public static final String TAG = "ERROR";
     public static final String PASS_NOT_DUPLICATES = "Mật khẩu nhập lại không trùng khớp";
+    public static final String EMAIL_ERROR = "Email sai định dạng";
+    public static final String PASS_LENGTH= "Mật khẩu phải lớn hơn " + UIUtils.MIN_PASSWORD_LENGTH + " kí tự";
+    public static final String REGISTER = "Đăng ký tài khoản";
+    public static final String SEN_CODE = "Gửi mã xác nhận";
+    public static final String CHANGE_PASS = "Đổi mật khẩu";
     public static final String LOADING = "Vui lòng chờ...";
     public static final String X = "x";
     public static final String SIZE = "Size - ";
