@@ -56,6 +56,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void onMessage(String message) {
         progressDialog.dismiss();
-        UIUtils.showMessage(mBinding.getRoot(), message);
+        if (message.equals(AppConstants.ON_SUCCESS)){
+            onBackPressed();
+        }else {
+            UIUtils.showMessage(mBinding.getRoot(), message);
+        }
     }
 }

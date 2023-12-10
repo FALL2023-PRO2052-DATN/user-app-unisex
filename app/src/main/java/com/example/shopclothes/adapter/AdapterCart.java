@@ -15,6 +15,7 @@ import com.example.shopclothes.model.Cart;
 import com.example.shopclothes.utils.FormatUtils;
 import com.example.shopclothes.view.activity.cart.CartContract;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
@@ -23,12 +24,14 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     private int selectedItemsCount = 0; // xem item nào đươc check
     private final CartContract.View mView;
     private final CartContract.Presenter mPresenter;
+    private final HashMap<Integer, Boolean> checkItemMap;
 
     public AdapterCart(List<Cart> mList, CartContract.View view, CartContract.Presenter presenter) {
         this.mList = mList;
         this.mView = view;
         this.mPresenter = presenter;
         mListNew = new ArrayList<>();
+        checkItemMap = new HashMap<>();
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -52,13 +55,10 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         onClickItem(holder.mBinding, cart);
         checkBox(holder.mBinding, cart);
 
-        holder.mBinding.tvClearProductCart.setOnClickListener(view -> deleteCart(cart));
-        for (int i = 0 ; i < mListNew.size() ; i ++){
-            if (cart.getId() == mListNew.get(i)){
-                holder.mBinding.checkBoxCart.setChecked(true);
-                holder.mBinding.tvClearProductCart.setVisibility(View.GONE);
-            }
-        }
+        holder.mBinding.tvClearProductCart.setOnClickListener(view -> deleteCart(cart, holder.mBinding));
+
+        holder.mBinding.checkBoxCart.setChecked(checkItemMap.get(cart.getId()) != null && Boolean.TRUE.equals(checkItemMap.get(cart.getId())));
+
     }
 
     @Override
@@ -66,10 +66,22 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         return mList != null ? mList.size() : 0;
     }
     @SuppressLint("NotifyDataSetChanged")
-    public void deleteCart(Cart cart){
+    public void deleteCart(Cart cart,  ItemCartBinding mBinding){
         mPresenter.deleteCart(cart.getId());
         mList.remove(cart);
-        mView.onDeleteCartShowText(mList);
+
+        /*
+         * khi xóa khỏi giỏ hàng cập nhật lại giá tiền
+         */
+        int quantity = Integer.parseInt(mBinding.tvQuantityCart.getText().toString());
+        if (mBinding.checkBoxCart.isChecked()){
+            mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true);
+            mListNew.remove(Integer.valueOf(cart.getId())); // xoá khỏi list
+            mView.listCartClick(mListNew); // trả ra list để chuyển
+            checkItemMap.remove(cart.getId());
+            selectedItemsCount--;
+        }
+        mView.selectedItemsCount(selectedItemsCount);
         notifyDataSetChanged();
     }
 
@@ -130,24 +142,28 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
     public void checkBox(ItemCartBinding mBinding, Cart cart){
        mBinding.checkBoxCart.setOnClickListener(view -> {
-           int quantity = Integer.parseInt(mBinding.tvQuantityCart.getText().toString());
-
-           if (mBinding.checkBoxCart.isChecked()){
-               mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, true, true);
-               mListNew.add(cart.getId()); // add vào list để chuyển qua màn orther
-               mView.listCartClick(mListNew); // trả ra list để chuyển
-               mBinding.tvClearProductCart.setVisibility(View.GONE);
-               selectedItemsCount++;
-           }else {
-               mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true);
-               mListNew.remove(Integer.valueOf(cart.getId())); // xoá khỏi list
-               mView.listCartClick(mListNew); // trả ra list để chuyển
-               mBinding.tvClearProductCart.setVisibility(View.VISIBLE);
-               selectedItemsCount--;
-           }
+           setCheckBox(mBinding, cart);
            mView.selectedItemsCount(selectedItemsCount);
        });
     }
+
+    public void setCheckBox(ItemCartBinding mBinding, Cart cart){
+        int quantity = Integer.parseInt(mBinding.tvQuantityCart.getText().toString());
+        if (mBinding.checkBoxCart.isChecked()){
+            mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, true, true);
+            mListNew.add(cart.getId()); // add vào list để chuyển qua màn orther
+            mView.listCartClick(mListNew); // trả ra list để chuyển
+            checkItemMap.put(cart.getId(), mBinding.checkBoxCart.isChecked());
+            selectedItemsCount++;
+        }else {
+            mView.itemCartClick((cart.getPrice() - (cart.getPrice() * cart.getDiscount() / 100))  * quantity, false, true);
+            mListNew.remove(Integer.valueOf(cart.getId())); // xoá khỏi list
+            mView.listCartClick(mListNew); // trả ra list để chuyển
+            checkItemMap.remove(cart.getId());
+            selectedItemsCount--;
+        }
+    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ItemCartBinding mBinding;

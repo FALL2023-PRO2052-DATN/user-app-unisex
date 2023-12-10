@@ -3,8 +3,12 @@ package com.example.shopclothes.view.fragment.settingsFragment.changePassword;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.utils.UIUtils;
 import com.example.shopclothes.utils.ValidateUtils;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 
 public class ChangePasswordPresenter implements ChangePasswordContract.Presenter{
@@ -33,7 +37,23 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
             return;
         }
 
-        updateUserFirebase(passwordNew);
+        /*
+         * xác thực lại người dùng trước khi đổi mật khẩu, mật khẩu cũ có đúng không
+         */
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert currentUser != null;
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(Objects.requireNonNull(currentUser.getEmail()), password);
+
+        currentUser.reauthenticate(credential)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        updateUserFirebase(passwordNew);
+                    } else {
+                        view.onMessage(AppConstants.PASS_NOT);
+                    }
+                });
+
     }
 
     @Override
