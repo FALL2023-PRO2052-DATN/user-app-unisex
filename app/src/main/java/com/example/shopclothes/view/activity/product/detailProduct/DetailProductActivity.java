@@ -163,11 +163,13 @@ public class DetailProductActivity extends AppCompatActivity implements DetailPr
                 mBinding.tvSeeMore.setText("Thu gọn");
                 mBinding.tvDescriptionProduct.setLayoutParams(new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                mBinding.tvSeeMore.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(this, R.drawable.icon_collapse), null);
             } else {
                 isExpanded.set(true);
                 mBinding.tvSeeMore.setText("Xem thêm");
                 mBinding.tvDescriptionProduct.setLayoutParams(new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, 100)); // Đặt chiều cao mong muốn ở dạng pixel
+                mBinding.tvSeeMore.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(this, R.drawable.icon_downward), null);
             }
         });
     }
