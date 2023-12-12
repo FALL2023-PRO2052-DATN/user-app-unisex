@@ -286,14 +286,12 @@
                            android:layout_height="wrap_content"
                            android:fontFamily="@font/sf_pro_display_regular"
                            android:text="@string/text_see_more"
+                           android:gravity="center"
                            android:textColor="@color/primary"
+                           android:drawableEnd="@drawable/icon_collapse"
+                           android:drawablePadding="5dp"
                            android:textSize="15sp"
                            android:layout_marginEnd="5dp"/>
-                       <ImageView
-                           android:id="@+id/gggg"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:src="@drawable/arrow_bottom" />
 
                    </LinearLayout>
                 </LinearLayout>
