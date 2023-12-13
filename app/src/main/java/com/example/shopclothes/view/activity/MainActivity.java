@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setBadgerNotification();
 
         try {
-            mSocket = IO.socket("http://172.16.48.141:3000");
+            mSocket = IO.socket("http://192.168.0.104:3000");
             mSocket.connect();
         } catch (URISyntaxException e) {
             e.printStackTrace();
