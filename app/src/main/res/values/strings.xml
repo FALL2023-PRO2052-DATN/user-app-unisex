@@ -198,7 +198,7 @@
     <string name="radio4">Tôi muốn thay đổi hình thước thanh toán</string>
     <string name="radio5" tools:ignore="TypographyEllipsis">Tôi tìm thấy chỗ mua khác tốt hơn (rẻ hơn, uy tín hơn, giao nhanh hơn... </string>
     <string name="radio6">Tôi không có nhu cầu mua nữa</string>
-    <string name="radio7">Tôi không tim thấy lý do phù hợp</string>
+    <string name="radio7">Tôi không tìm thấy lý do phù hợp</string>
     <string name="text_confirm">Xác nhận</string>
     <string name="text_content">Cùng Unisex bảo vệ quyền lợi của bạn - Thường xuyên kiểm tra thông báo từ shop / Chỉ nhận &amp; thanh toán khi đơn hàng mua ở trạng thái "Đang giao hàng".</string>
     <string name="text_home_bill">Trang chủ</string>
