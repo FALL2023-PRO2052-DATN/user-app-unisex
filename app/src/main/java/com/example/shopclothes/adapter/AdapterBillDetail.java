@@ -49,7 +49,7 @@ public class AdapterBillDetail extends RecyclerView.Adapter<AdapterBillDetail.Vi
             Glide.with(mBinding.getRoot()).load(billDetail.getImageProduct()).into(mBinding.ivProductCartOrder);
             mBinding.tvNameProductCartOrder.setText(billDetail.getNameProduct());
             mBinding.tvSizeCartOrder.setText(AppConstants.SIZE + billDetail.getSizeProduct());
-            mBinding.tvPriceCartOrder.setText(FormatUtils.formatCurrency((billDetail.getPriceProduct() - (billDetail.getPriceProduct() * billDetail.getDiscount() / 100)) / billDetail.getQuantityProduct()));
+            mBinding.tvPriceCartOrder.setText(FormatUtils.formatCurrency(billDetail.getPriceProduct() / billDetail.getQuantityProduct()));
             mBinding.tvQuantityOrder.setText(AppConstants.X + billDetail.getQuantityProduct());
         }
     }
