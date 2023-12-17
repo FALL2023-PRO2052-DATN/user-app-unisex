@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.example.shopclothes.R;
 import com.example.shopclothes.constant.AppConstants;
 import com.example.shopclothes.databinding.ActivityLoginBinding;
@@ -53,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             logoutGoogle();
             googleSignIn();
         });
+        mBinding.btnLoginFb.setOnClickListener(view -> Toast.makeText(this, "Tính năng đang phát triển", Toast.LENGTH_SHORT).show());
     }
     public void login() {
         String email = mBinding.etEmailLogin.getText().toString();

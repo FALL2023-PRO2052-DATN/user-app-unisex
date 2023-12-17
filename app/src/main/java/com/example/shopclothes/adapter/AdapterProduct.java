@@ -79,7 +79,11 @@ public class AdapterProduct extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mList != null ? mList.size() : 0;
+        if (type == TYPE_LINEAR){
+            return mList != null ? Math.min(mList.size(), 5) : 0;
+        }else {
+            return mList != null ? mList.size() : 0;
+        }
     }
 
     @Override
